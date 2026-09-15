@@ -7,146 +7,230 @@
 <meta name="description" content="Kampanye kesadaran gaya hidup digital sehat: screen time, sedentary lifestyle, junk food, dan kurang tidur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 CDN Play -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body:    ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<!-- Custom: theming vars, animations, JS-toggled/generated classes -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-mode="rebahan">
 
-<nav class="topbar">
-  <div class="nav-inner">
-    <div class="brand"><a href="index.html" style="text-decoration:none;">Generasi<span>Rebahan</span></a></div>
-    <div class="navlinks" id="navlinks">
-      <a href="index.html#beranda" class="active">Beranda</a>
-      <a href="index.html#cermin">Cermin</a>
-      <a href="index.html#fakta">Fakta</a>
-      <a href="index.html#dampak">Dampak</a>
-      <a href="kuis.html">Kuis</a>
-      <a href="tips.html">Tips & Tracker</a>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="topbar sticky top-0 z-50 backdrop-blur-[10px] border-b border-[var(--border)]">
+  <div class="nav-inner max-w-[1040px] mx-auto px-6 py-[14px] flex items-center gap-[18px] flex-wrap">
+    <div class="font-display font-bold text-[1.05rem] whitespace-nowrap">
+      <a href="index.html" class="no-underline">Generasi<span class="text-[var(--accent)]">Rebahan</span></a>
     </div>
-    <div class="nav-tools">
-      <button class="tool-btn" id="fontToggle" title="Ubah ukuran teks">A+</button>
-      <button class="tool-btn" id="modeToggle">🌙 Mode Rebahan</button>
+    <div class="navlinks flex gap-1 flex-wrap ml-auto" id="navlinks">
+      <a href="index.html#beranda" class="active text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Beranda</a>
+      <a href="index.html#cermin"  class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Cermin</a>
+      <a href="index.html#fakta"   class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Fakta</a>
+      <a href="index.html#dampak"  class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Dampak</a>
+      <a href="kuis.html"          class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Kuis</a>
+      <a href="tips.html"          class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Tips &amp; Tracker</a>
+    </div>
+    <div class="flex gap-2 items-center">
+      <button class="tool-btn border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] rounded-lg px-[10px] py-[7px] text-[0.8rem] cursor-pointer font-body hover:border-[var(--accent)] transition-colors" id="fontToggle" title="Ubah ukuran teks">A+</button>
+      <button class="tool-btn border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] rounded-lg px-[10px] py-[7px] text-[0.8rem] cursor-pointer font-body hover:border-[var(--accent)] transition-colors" id="modeToggle">🌙 Mode Rebahan</button>
     </div>
   </div>
 </nav>
 
-<section class="hero" id="beranda">
-  <div class="wrap">
-    <div class="hero-inner">
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero border-b border-[var(--border)] pt-14 pb-16" id="beranda">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="hero-inner grid gap-7 items-center" style="grid-template-columns: minmax(0,1.05fr) minmax(260px,0.9fr);">
+
+      <!-- Copy -->
       <div class="hero-copy">
-        <h1>Kamu tim rebahan, atau cuma lagi istirahat?</h1>
-        <p class="lede">Situs demo ini merangkum gaya hidup "serba cepat & serba layar" generasi muda — screen time berlebihan, rebahan seharian, junk food, dan kurang tidur — sekaligus jadi contoh kerja semua fitur yang direncanakan untuk lomba Web Design INVENTION 2026.</p>
-        <div class="hero-stat-row">
-          <div class="hero-stat"><b>5,7–7,4</b><span>jam screen time / hari (rata-rata Indonesia)</span></div>
-          <div class="hero-stat"><b>66,3%</b><span>orang dengan gaya hidup sedentari</span></div>
-          <div class="hero-stat"><b>88,1%</b><span>screen time tinggi pada studi terkait</span></div>
+        <h1 class="font-display font-bold leading-tight tracking-tight mb-4" style="font-size:clamp(2.2rem,5vw,3.4rem); max-width:14ch;">
+          Kamu tim rebahan, atau cuma lagi istirahat?
+        </h1>
+        <p class="lede text-[1.15rem] text-[var(--text-dim)]" style="max-width:52ch;">
+          Situs demo ini merangkum gaya hidup "serba cepat &amp; serba layar" generasi muda — screen time berlebihan, rebahan seharian, junk food, dan kurang tidur — sekaligus jadi contoh kerja semua fitur yang direncanakan untuk lomba Web Design INVENTION 2026.
+        </p>
+
+        <!-- Stat row -->
+        <div class="flex gap-8 flex-wrap mt-10">
+          <div>
+            <b class="block font-display text-[2rem] text-[var(--accent)] font-bold">5,7–7,4</b>
+            <span class="text-[0.85rem] text-[var(--text-dim)]">jam screen time / hari (rata-rata Indonesia)</span>
+          </div>
+          <div>
+            <b class="block font-display text-[2rem] text-[var(--accent)] font-bold">66,3%</b>
+            <span class="text-[0.85rem] text-[var(--text-dim)]">orang dengan gaya hidup sedentari</span>
+          </div>
+          <div>
+            <b class="block font-display text-[2rem] text-[var(--accent)] font-bold">88,1%</b>
+            <span class="text-[0.85rem] text-[var(--text-dim)]">screen time tinggi pada studi terkait</span>
+          </div>
         </div>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="kuis.html">Cek Level Rebahanmu →</a>
-          <a class="btn btn-ghost" href="#fakta">Lihat Data Lengkap</a>
+
+        <!-- CTA -->
+        <div class="mt-8 flex gap-3 flex-wrap">
+          <a class="btn btn-primary inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] no-underline border border-transparent bg-[var(--accent)] text-[#14171c] hover:brightness-110 transition-all" href="kuis.html">Cek Level Rebahanmu →</a>
+          <a class="btn btn-ghost  inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] no-underline border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent)] transition-all" href="#fakta">Lihat Data Lengkap</a>
         </div>
       </div>
 
-      <div class="hero-mascot">
-        <div class="mascot-stage">
+      <!-- Mascot -->
+      <div class="hero-mascot flex flex-col items-center gap-[10px]">
+        <div class="mascot-stage relative w-full max-w-[420px] flex justify-center items-center">
           <span class="mascot-glow" aria-hidden="true"></span>
           <img
             id="heroMascotImg"
             src="mascot/aset6.png"
             alt="Maskot kukang Generasi Rebahan sedang rebahan dengan tablet dan keripik"
-            width="420"
-            height="420"
+            width="420" height="420"
+            class="relative z-[1] w-full max-w-[380px] h-auto block"
           >
         </div>
-        <div class="mascot-meter">
+        <div class="mascot-meter w-[min(100%,280px)] z-[1]">
           <input type="range" id="rebahanSlider" min="0" max="100" value="82" aria-label="Level rebahan maskot">
-          <div class="mascot-meter-labels">
+          <div class="mascot-meter-labels flex justify-between mt-2 text-[0.72rem] font-semibold text-[var(--text-dim)] tracking-wide">
             <span>Rebahan Ringan</span>
             <span>Rebahan Maksimal</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section id="cermin">
-  <div class="wrap">
-    <div class="eyebrow-num"><em>2</em> Cermin Kebiasaan</div>
-    <h2>Coba tebak, mana yang kebiasaanmu?</h2>
-    <p style="color:var(--text-dim)">Klik tiap kartu untuk lihat refleksinya.</p>
-    <div class="mirror-grid" id="mirrorGrid">
-      <div class="mirror-card">
-        <h3>🌅 Bangun tidur</h3>
-        <span class="hint">klik untuk refleksi</span>
-        <div class="reveal">Alarm bunyi, tangan otomatis cari HP dulu sebelum kaki menyentuh lantai. 30 menit pertama hari ini habis untuk scroll, bukan untuk diri sendiri.</div>
-      </div>
-      <div class="mirror-card">
-        <h3>🍔 Jam makan siang</h3>
-        <span class="hint">klik untuk refleksi</span>
-        <div class="reveal">Makan sambil nonton video pendek — porsi jadi tidak terasa, dan yang dipesan biasanya yang paling cepat sampai, bukan yang paling sehat.</div>
-      </div>
-      <div class="mirror-card">
-        <h3>🛋️ Sore hari</h3>
-        <span class="hint">klik untuk refleksi</span>
-        <div class="reveal">"Rebahan sebentar" setelah pulang, ternyata tahu-tahu sudah dua jam berlalu di media sosial.</div>
-      </div>
-      <div class="mirror-card">
-        <h3>🌙 Menjelang tidur</h3>
-        <span class="hint">klik untuk refleksi</span>
-        <div class="reveal">Niatnya tidur jam 10, tapi "satu video lagi" berulang sampai lewat tengah malam — besok bangun tetap harus jam yang sama.</div>
-      </div>
+<!-- ── CERMIN ─────────────────────────────────────────────── -->
+<section id="cermin" class="border-b border-[var(--border)] py-[72px]">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="inline-flex items-center gap-2 text-[var(--text-dim)] font-display text-[0.85rem] mb-[14px]">
+      <em class="not-italic w-[26px] h-[26px] rounded-full border border-[var(--border)] inline-flex items-center justify-center text-[0.75rem]">2</em>
+      Cermin Kebiasaan
     </div>
-  </div>
-</section>
+    <h2 class="font-display font-bold text-[1.8rem] tracking-tight mb-2">Coba tebak, mana yang kebiasaanmu?</h2>
+    <p class="text-[var(--text-dim)] mb-7">Klik tiap kartu untuk lihat refleksinya.</p>
 
-<section id="fakta">
-  <div class="wrap">
-    <div class="eyebrow-num"><em>3</em> Fakta & Data</div>
-    <h2>Angka yang mungkin bikin kaget</h2>
-    <p style="color:var(--text-dim)">Statistik ini animasi menghitung naik saat kamu scroll sampai sini.</p>
-    <div class="stat-grid">
-      <div class="stat-card"><div class="stat-num" data-target="7.4" data-suffix=" jam">0</div><div class="stat-label">Rata-rata screen time harian tertinggi di Indonesia</div></div>
-      <div class="stat-card"><div class="stat-num" data-target="66" data-suffix="%">0</div><div class="stat-label">Populasi dengan gaya hidup sedentari (studi RS Insan Permata, 2025)</div></div>
-      <div class="stat-card"><div class="stat-num" data-target="45" data-suffix="%">0</div><div class="stat-label">Remaja Indonesia pernah mengalami cyberbullying (UNICEF)</div></div>
-      <div class="stat-card"><div class="stat-num" data-target="61" data-suffix="%">0</div><div class="stat-label">Penduduk konsumsi minuman berpemanis &gt;1x/hari (Kemenkes)</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="dampak">
-  <div class="wrap">
-    <div class="eyebrow-num"><em>4</em> Dampaknya Buat Kamu</div>
-    <h2>Fisik dan mental, dua-duanya kena</h2>
-    <div class="impact-list">
-      <div class="impact-item"><span class="tag">Fisik</span><h3>Postur & mata</h3><p style="font-size:.9rem;color:var(--text-dim)">"Tech neck", nyeri punggung, dan digital eye strain dari posisi menunduk berjam-jam.</p></div>
-      <div class="impact-item"><span class="tag">Fisik</span><h3>Berat badan</h3><p style="font-size:.9rem;color:var(--text-dim)">Kombinasi kurang gerak dan junk food meningkatkan risiko obesitas & diabetes tipe 2.</p></div>
-      <div class="impact-item"><span class="tag">Mental</span><h3>Kecemasan & FOMO</h3><p style="font-size:.9rem;color:var(--text-dim)">Paparan media sosial berlebih dikaitkan dengan kecemasan dan perbandingan sosial.</p></div>
-      <div class="impact-item"><span class="tag">Mental</span><h3>Kualitas tidur</h3><p style="font-size:.9rem;color:var(--text-dim)">Cahaya layar sebelum tidur mengganggu ritme sirkadian, bikin susah tidur nyenyak.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Callout Section to Dedicated Pages -->
-<section id="explorePages" class="callout-section">
-  <div class="wrap">
-    <div class="callout-grid">
-      <div class="callout-card">
-        <div class="callout-icon">🎯</div>
-        <h3>Ingin Tahu Level Kebiasaanmu?</h3>
-        <p>Ikuti Cek Kebiasaan 2 Menit (12 Soal Adaptif) untuk mengetahui skor profil digitalmu dari 5 dimensi.</p>
-        <a href="kuis.html" class="btn btn-primary">Mulai Kuis Adaptif →</a>
+    <div class="mirror-grid grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));" id="mirrorGrid">
+      <div class="mirror-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5 cursor-pointer transition-all duration-200 relative min-h-[140px] hover:border-[var(--accent-2)]">
+        <h3 class="font-display text-[1rem] mb-[6px]">🌅 Bangun tidur</h3>
+        <span class="hint text-[0.75rem] text-[var(--accent-2)]">klik untuk refleksi</span>
+        <div class="reveal mt-[10px] pt-[10px] border-t border-dashed border-[var(--border)] text-[var(--text-dim)] text-[0.88rem]">Alarm bunyi, tangan otomatis cari HP dulu sebelum kaki menyentuh lantai. 30 menit pertama hari ini habis untuk scroll, bukan untuk diri sendiri.</div>
       </div>
-      <div class="callout-card">
-        <div class="callout-icon">🌱</div>
-        <h3>Tips & Habit Tracker Harian</h3>
-        <p>Akses rekomendasi aksi nyata, fakta acak, serta tracker target harian dengan fitur reset otomatis Jam 22:00.</p>
-        <a href="tips.html" class="btn btn-ghost">Buka Tips & Tracker →</a>
+      <div class="mirror-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5 cursor-pointer transition-all duration-200 relative min-h-[140px] hover:border-[var(--accent-2)]">
+        <h3 class="font-display text-[1rem] mb-[6px]">🍔 Jam makan siang</h3>
+        <span class="hint text-[0.75rem] text-[var(--accent-2)]">klik untuk refleksi</span>
+        <div class="reveal mt-[10px] pt-[10px] border-t border-dashed border-[var(--border)] text-[var(--text-dim)] text-[0.88rem]">Makan sambil nonton video pendek — porsi jadi tidak terasa, dan yang dipesan biasanya yang paling cepat sampai, bukan yang paling sehat.</div>
+      </div>
+      <div class="mirror-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5 cursor-pointer transition-all duration-200 relative min-h-[140px] hover:border-[var(--accent-2)]">
+        <h3 class="font-display text-[1rem] mb-[6px]">🛋️ Sore hari</h3>
+        <span class="hint text-[0.75rem] text-[var(--accent-2)]">klik untuk refleksi</span>
+        <div class="reveal mt-[10px] pt-[10px] border-t border-dashed border-[var(--border)] text-[var(--text-dim)] text-[0.88rem]">"Rebahan sebentar" setelah pulang, ternyata tahu-tahu sudah dua jam berlalu di media sosial.</div>
+      </div>
+      <div class="mirror-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5 cursor-pointer transition-all duration-200 relative min-h-[140px] hover:border-[var(--accent-2)]">
+        <h3 class="font-display text-[1rem] mb-[6px]">🌙 Menjelang tidur</h3>
+        <span class="hint text-[0.75rem] text-[var(--accent-2)]">klik untuk refleksi</span>
+        <div class="reveal mt-[10px] pt-[10px] border-t border-dashed border-[var(--border)] text-[var(--text-dim)] text-[0.88rem]">Niatnya tidur jam 10, tapi "satu video lagi" berulang sampai lewat tengah malam — besok bangun tetap harus jam yang sama.</div>
       </div>
     </div>
   </div>
 </section>
 
-<footer id="tentang">
+<!-- ── FAKTA ──────────────────────────────────────────────── -->
+<section id="fakta" class="border-b border-[var(--border)] py-[72px]">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="inline-flex items-center gap-2 text-[var(--text-dim)] font-display text-[0.85rem] mb-[14px]">
+      <em class="not-italic w-[26px] h-[26px] rounded-full border border-[var(--border)] inline-flex items-center justify-center text-[0.75rem]">3</em>
+      Fakta &amp; Data
+    </div>
+    <h2 class="font-display font-bold text-[1.8rem] tracking-tight mb-2">Angka yang mungkin bikin kaget</h2>
+    <p class="text-[var(--text-dim)] mb-7">Statistik ini animasi menghitung naik saat kamu scroll sampai sini.</p>
+
+    <div class="grid gap-5" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+      <div class="stat-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-[22px]">
+        <div class="stat-num font-display text-[2.3rem] text-[var(--accent-2)] font-bold" data-target="7.4" data-suffix=" jam">0</div>
+        <div class="stat-label text-[0.85rem] text-[var(--text-dim)] mt-1">Rata-rata screen time harian tertinggi di Indonesia</div>
+      </div>
+      <div class="stat-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-[22px]">
+        <div class="stat-num font-display text-[2.3rem] text-[var(--accent-2)] font-bold" data-target="66" data-suffix="%">0</div>
+        <div class="stat-label text-[0.85rem] text-[var(--text-dim)] mt-1">Populasi dengan gaya hidup sedentari (studi RS Insan Permata, 2025)</div>
+      </div>
+      <div class="stat-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-[22px]">
+        <div class="stat-num font-display text-[2.3rem] text-[var(--accent-2)] font-bold" data-target="45" data-suffix="%">0</div>
+        <div class="stat-label text-[0.85rem] text-[var(--text-dim)] mt-1">Remaja Indonesia pernah mengalami cyberbullying (UNICEF)</div>
+      </div>
+      <div class="stat-card bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-[22px]">
+        <div class="stat-num font-display text-[2.3rem] text-[var(--accent-2)] font-bold" data-target="61" data-suffix="%">0</div>
+        <div class="stat-label text-[0.85rem] text-[var(--text-dim)] mt-1">Penduduk konsumsi minuman berpemanis &gt;1x/hari (Kemenkes)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DAMPAK ─────────────────────────────────────────────── -->
+<section id="dampak" class="border-b border-[var(--border)] py-[72px]">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="inline-flex items-center gap-2 text-[var(--text-dim)] font-display text-[0.85rem] mb-[14px]">
+      <em class="not-italic w-[26px] h-[26px] rounded-full border border-[var(--border)] inline-flex items-center justify-center text-[0.75rem]">4</em>
+      Dampaknya Buat Kamu
+    </div>
+    <h2 class="font-display font-bold text-[1.8rem] tracking-tight mb-7">Fisik dan mental, dua-duanya kena</h2>
+
+    <div class="grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+      <div class="impact-item bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5">
+        <span class="inline-block text-[0.72rem] px-[9px] py-[3px] rounded-full mb-[10px] bg-[var(--surface-2)] text-[var(--text-dim)]">Fisik</span>
+        <h3 class="font-display text-[1rem] mb-2">Postur &amp; mata</h3>
+        <p class="text-[0.9rem] text-[var(--text-dim)]">"Tech neck", nyeri punggung, dan digital eye strain dari posisi menunduk berjam-jam.</p>
+      </div>
+      <div class="impact-item bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5">
+        <span class="inline-block text-[0.72rem] px-[9px] py-[3px] rounded-full mb-[10px] bg-[var(--surface-2)] text-[var(--text-dim)]">Fisik</span>
+        <h3 class="font-display text-[1rem] mb-2">Berat badan</h3>
+        <p class="text-[0.9rem] text-[var(--text-dim)]">Kombinasi kurang gerak dan junk food meningkatkan risiko obesitas &amp; diabetes tipe 2.</p>
+      </div>
+      <div class="impact-item bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5">
+        <span class="inline-block text-[0.72rem] px-[9px] py-[3px] rounded-full mb-[10px] bg-[var(--surface-2)] text-[var(--text-dim)]">Mental</span>
+        <h3 class="font-display text-[1rem] mb-2">Kecemasan &amp; FOMO</h3>
+        <p class="text-[0.9rem] text-[var(--text-dim)]">Paparan media sosial berlebih dikaitkan dengan kecemasan dan perbandingan sosial.</p>
+      </div>
+      <div class="impact-item bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-5">
+        <span class="inline-block text-[0.72rem] px-[9px] py-[3px] rounded-full mb-[10px] bg-[var(--surface-2)] text-[var(--text-dim)]">Mental</span>
+        <h3 class="font-display text-[1rem] mb-2">Kualitas tidur</h3>
+        <p class="text-[0.9rem] text-[var(--text-dim)]">Cahaya layar sebelum tidur mengganggu ritme sirkadian, bikin susah tidur nyenyak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CALLOUT ─────────────────────────────────────────────── -->
+<section id="explorePages" class="border-b border-[var(--border)] py-[72px]">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="grid gap-6" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+      <div class="bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-7 flex flex-col gap-4">
+        <div class="text-[2.5rem]">🎯</div>
+        <h3 class="font-display font-bold text-[1.1rem]">Ingin Tahu Level Kebiasaanmu?</h3>
+        <p class="text-[var(--text-dim)] text-[0.9rem]">Ikuti Cek Kebiasaan 2 Menit (12 Soal Adaptif) untuk mengetahui skor profil digitalmu dari 5 dimensi.</p>
+        <a href="kuis.html" class="btn btn-primary self-start inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] no-underline border border-transparent bg-[var(--accent)] text-[#14171c] hover:brightness-110 transition-all">Mulai Kuis Adaptif →</a>
+      </div>
+      <div class="bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-7 flex flex-col gap-4">
+        <div class="text-[2.5rem]">🌱</div>
+        <h3 class="font-display font-bold text-[1.1rem]">Tips &amp; Habit Tracker Harian</h3>
+        <p class="text-[var(--text-dim)] text-[0.9rem]">Akses rekomendasi aksi nyata, fakta acak, serta tracker target harian dengan fitur reset otomatis Jam 22:00.</p>
+        <a href="tips.html" class="btn btn-ghost self-start inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] no-underline border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent)] transition-all">Buka Tips &amp; Tracker →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer id="tentang" class="py-10 text-center text-[var(--text-dim)] text-[0.85rem]">
   Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
 </footer>
 

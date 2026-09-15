@@ -3,61 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tips & Habit Tracker — Generasi Rebahan</title>
+<title>Tips &amp; Habit Tracker — Generasi Rebahan</title>
 <meta name="description" content="Kumpulan tips digital detox, fakta acak, serta checklist habit tracker harian dengan reset otomatis jam 22:00 WIB.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 CDN Play -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body:    ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<!-- Custom: theming vars, animations, JS-toggled/generated classes -->
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-mode="rebahan">
 
-<nav class="topbar">
-  <div class="nav-inner">
-    <div class="brand"><a href="index.html" style="text-decoration:none;">Generasi<span>Rebahan</span></a></div>
-    <div class="navlinks" id="navlinks">
-      <a href="index.html#beranda">Beranda</a>
-      <a href="index.html#cermin">Cermin</a>
-      <a href="index.html#fakta">Fakta</a>
-      <a href="index.html#dampak">Dampak</a>
-      <a href="kuis.html">Kuis</a>
-      <a href="tips.html" class="active">Tips & Tracker</a>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="topbar sticky top-0 z-50 backdrop-blur-[10px] border-b border-[var(--border)]">
+  <div class="nav-inner max-w-[1040px] mx-auto px-6 py-[14px] flex items-center gap-[18px] flex-wrap">
+    <div class="font-display font-bold text-[1.05rem] whitespace-nowrap">
+      <a href="index.html" class="no-underline">Generasi<span class="text-[var(--accent)]">Rebahan</span></a>
     </div>
-    <div class="nav-tools">
-      <button class="tool-btn" id="fontToggle" title="Ubah ukuran teks">A+</button>
-      <button class="tool-btn" id="modeToggle">🌙 Mode Rebahan</button>
+    <div class="navlinks flex gap-1 flex-wrap ml-auto" id="navlinks">
+      <a href="index.html#beranda" class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Beranda</a>
+      <a href="index.html#cermin"  class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Cermin</a>
+      <a href="index.html#fakta"   class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Fakta</a>
+      <a href="index.html#dampak"  class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Dampak</a>
+      <a href="kuis.html"          class="text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Kuis</a>
+      <a href="tips.html" class="active text-[0.85rem] px-[11px] py-[7px] rounded-full no-underline text-[var(--text-dim)] transition-all duration-200 hover:bg-[var(--surface-2)] hover:text-[var(--text)]">Tips &amp; Tracker</a>
+    </div>
+    <div class="flex gap-2 items-center">
+      <button class="tool-btn border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] rounded-lg px-[10px] py-[7px] text-[0.8rem] cursor-pointer font-body hover:border-[var(--accent)] transition-colors" id="fontToggle" title="Ubah ukuran teks">A+</button>
+      <button class="tool-btn border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] rounded-lg px-[10px] py-[7px] text-[0.8rem] cursor-pointer font-body hover:border-[var(--accent)] transition-colors" id="modeToggle">🌙 Mode Rebahan</button>
     </div>
   </div>
 </nav>
 
-<section class="page-hero">
-  <div class="wrap">
-    <div class="breadcrumb"><a href="index.html">Beranda</a> / <span>Tips & Habit Tracker</span></div>
-    <h1>Tips Aksi Nyata & Tracker Harian</h1>
-    <p class="lede">Langkah kecil tetap dihitung. Pelajari tips digital detox, dapatkan fakta acak, dan pantau kebiasaan sehatmu dengan sistem reset otomatis Jam 22:00 WIB.</p>
+<!-- ── PAGE HERO ──────────────────────────────────────────── -->
+<section class="border-b border-[var(--border)] py-[72px]">
+  <div class="max-w-[1040px] mx-auto px-6">
+    <div class="text-[0.83rem] text-[var(--text-dim)] mb-3">
+      <a href="index.html" class="hover:text-[var(--accent)] transition-colors no-underline">Beranda</a>
+      <span class="mx-2 opacity-50">/</span>
+      <span>Tips &amp; Habit Tracker</span>
+    </div>
+    <h1 class="font-display font-bold leading-tight tracking-tight mb-3" style="font-size:clamp(1.8rem,4vw,2.8rem);">Tips Aksi Nyata &amp; Tracker Harian</h1>
+    <p class="lede text-[1.1rem] text-[var(--text-dim)]" style="max-width:52ch;">Langkah kecil tetap dihitung. Pelajari tips digital detox, dapatkan fakta acak, dan pantau kebiasaan sehatmu dengan sistem reset otomatis Jam 22:00 WIB.</p>
   </div>
 </section>
 
-<section id="tips" style="padding-top:10px;">
-  <div class="wrap">
+<!-- ── TIPS CONTENT ───────────────────────────────────────── -->
+<section id="tips" class="py-[72px]" style="padding-top:10px;">
+  <div class="max-w-[1040px] mx-auto px-6">
+
     <!-- Quiz Result Recommendation Banner (Dynamic JS) -->
-    <div class="quiz-reco-banner" id="quizRecoBanner" style="display: none;">
-      <div class="reco-banner-inner">
-        <div class="reco-banner-icon">🎯</div>
-        <div class="reco-banner-info">
-          <div class="reco-banner-title">
+    <div class="quiz-reco-banner mb-7 p-[18px_20px] rounded-[14px] border border-[var(--border)]"
+         style="background:color-mix(in srgb,var(--accent) 10%,var(--surface)); display:none;"
+         id="quizRecoBanner">
+      <div class="reco-banner-inner flex items-center gap-4 flex-wrap">
+        <div class="text-[1.6rem]">🎯</div>
+        <div class="flex-1 min-w-[220px]">
+          <div class="font-bold mb-1">
             Hasil Kuis Kamu: <span id="recoLevelText">BALANCED</span> (<span id="recoScoreNum">0</span>/120)
           </div>
-          <div class="reco-banner-desc">
+          <div class="text-[var(--text-dim)] text-[0.9rem]">
             Perhatian Utama: <strong id="recoFocusTitle">POLA TIDUR</strong> — <span id="recoFocusDesc">Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat.</span>
           </div>
         </div>
-        <a href="kuis.html" class="btn btn-ghost reco-banner-btn">Ulangi Kuis 🔄</a>
+        <a href="kuis.html" class="inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] no-underline border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent)] transition-all">Ulangi Kuis 🔄</a>
       </div>
     </div>
 
-    <div class="eyebrow-num"><em>1</em> Tips Digital Detox</div>
-    <h2>Langkah kecil, tetap dihitung</h2>
+    <!-- Section eyebrow -->
+    <div class="inline-flex items-center gap-2 text-[var(--text-dim)] font-display text-[0.85rem] mb-[14px]">
+      <em class="not-italic w-[26px] h-[26px] rounded-full border border-[var(--border)] inline-flex items-center justify-center text-[0.75rem]">1</em>
+      Tips Digital Detox
+    </div>
+    <h2 class="font-display font-bold text-[1.8rem] tracking-tight mb-4">Langkah kecil, tetap dihitung</h2>
 
+    <!-- Accordion -->
     <div class="accordion-list">
       <div class="accordion-item open">
         <div class="accordion-head">🌿 Digital detox singkat <span class="plus">−</span></div>
@@ -69,7 +101,7 @@
       </div>
       <div class="accordion-item">
         <div class="accordion-head">⏰ Jadwal tidur konsisten <span class="plus">+</span></div>
-        <div class="accordion-body">Tidur & bangun di jam yang sama tiap hari, termasuk akhir pekan, membantu ritme tubuh lebih stabil.</div>
+        <div class="accordion-body">Tidur &amp; bangun di jam yang sama tiap hari, termasuk akhir pekan, membantu ritme tubuh lebih stabil.</div>
       </div>
       <div class="accordion-item">
         <div class="accordion-head">🚶 Gerak 5 menit tiap jam <span class="plus">+</span></div>
@@ -77,99 +109,118 @@
       </div>
     </div>
 
-    <div class="fact-box">
-      <div id="randomFact">Klik tombol untuk lihat fakta acak seputar gaya hidup digital.</div>
-      <button class="btn btn-primary" id="factBtn">Fakta Acak 🎲</button>
+    <!-- Fact Box -->
+    <div class="mt-6 bg-[var(--surface-2)] border border-dashed border-[var(--border)] rounded-[14px] p-5 flex justify-between items-center gap-4 flex-wrap">
+      <div id="randomFact" class="text-[0.95rem]" style="max-width:60ch;">Klik tombol untuk lihat fakta acak seputar gaya hidup digital.</div>
+      <button class="btn btn-primary inline-block px-[22px] py-3 rounded-full font-semibold text-[0.9rem] border border-transparent bg-[var(--accent)] text-[#14171c] hover:brightness-110 transition-all cursor-pointer" id="factBtn">Fakta Acak 🎲</button>
     </div>
 
-    <!-- Habit Tracker Section -->
-    <div class="habit-tracker-container" id="habitTracker">
-      <div class="habit-tracker-header">
+    <!-- ── HABIT TRACKER ────────────────────────────────────── -->
+    <div class="habit-tracker-container bg-[var(--surface)] border border-[var(--border)] rounded-[14px] p-7 flex flex-col gap-6 mt-9" id="habitTracker">
+
+      <!-- Header -->
+      <div class="habit-tracker-header flex justify-between items-center gap-5 flex-wrap">
         <div class="header-text">
-          <h3 class="tracker-title">Checklist & Habit Tracker Harian</h3>
-          <p class="tracker-desc">Pantau kebiasaan sehatmu. Progres di-reset otomatis setiap hari pada Jam 22:00 (10 PM) WIB.</p>
+          <h3 class="tracker-title font-display font-bold text-[1.35rem] mb-1">Checklist &amp; Habit Tracker Harian</h3>
+          <p class="tracker-desc text-[var(--text-dim)] text-[0.88rem]" style="max-width:52ch;">Pantau kebiasaan sehatmu. Progres di-reset otomatis setiap hari pada Jam 22:00 (10 PM) WIB.</p>
         </div>
-        <div class="timer-card">
-          <div class="timer-header">
+        <div class="timer-card bg-[var(--surface-2)] border border-[var(--border)] rounded-xl px-[18px] py-3 min-w-[210px] text-right">
+          <div class="timer-header flex items-center justify-end gap-[6px] text-[0.72rem] font-bold text-[var(--text-dim)] tracking-[0.5px]">
             <span class="timer-icon">⏳</span>
             <span class="timer-label">RESET HARIAN (10 PM / 22:00)</span>
           </div>
-          <div class="timer-countdown" id="resetCountdown">00:00:00</div>
+          <div class="timer-countdown font-display text-[1.6rem] font-bold text-[var(--accent)] mt-[2px] tracking-[1px]" id="resetCountdown">00:00:00</div>
         </div>
       </div>
 
-      <div class="habit-stats-row">
-        <div class="habit-stat-card" id="streakCard">
-          <div class="stat-card-icon">🔥</div>
-          <div class="stat-card-info">
-            <div class="stat-value"><span id="streakCount">0</span> Hari</div>
-            <div class="stat-label">Streak Harian</div>
+      <!-- Stats Row -->
+      <div class="habit-stats-row grid gap-4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+
+        <!-- Streak Card -->
+        <div class="habit-stat-card bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 flex items-center gap-[14px] relative transition-all duration-200 hover:border-[var(--accent-2)]" id="streakCard">
+          <div class="stat-card-icon text-[1.8rem] bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] w-[46px] h-[46px] rounded-xl flex items-center justify-center flex-shrink-0">🔥</div>
+          <div class="stat-card-info flex-1">
+            <div class="stat-value font-display text-[1.3rem] font-bold text-[var(--text)] leading-tight"><span id="streakCount">0</span> Hari</div>
+            <div class="stat-label text-[0.8rem] text-[var(--text-dim)] mt-[2px]">Streak Harian</div>
           </div>
-          <div class="stat-badge" id="streakBadge">Min. 4 Centang</div>
+          <div class="stat-badge absolute top-3 right-[14px] text-[0.7rem] px-2 py-[3px] rounded-full bg-white/[0.06] text-[var(--text-dim)] border border-[var(--border)] font-medium whitespace-nowrap" id="streakBadge">Min. 4 Centang</div>
         </div>
 
-        <div class="habit-stat-card">
-          <div class="stat-card-icon">🎯</div>
-          <div class="stat-card-info">
-            <div class="stat-value" id="completedSummary">0 dari 0</div>
-            <div class="stat-label">Target Selesai Hari Ini</div>
+        <!-- Completed Card -->
+        <div class="habit-stat-card bg-[var(--surface-2)] border border-[var(--border)] rounded-xl p-4 flex items-center gap-[14px] relative transition-all duration-200 hover:border-[var(--accent-2)]">
+          <div class="stat-card-icon text-[1.8rem] bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] w-[46px] h-[46px] rounded-xl flex items-center justify-center flex-shrink-0">🎯</div>
+          <div class="stat-card-info flex-1">
+            <div class="stat-value font-display text-[1.3rem] font-bold text-[var(--text)] leading-tight" id="completedSummary">0 dari 0</div>
+            <div class="stat-label text-[0.8rem] text-[var(--text-dim)] mt-[2px]">Target Selesai Hari Ini</div>
           </div>
-          <div class="stat-badge" id="targetStatusBadge">Minimal 4 untuk Streak</div>
+          <div class="stat-badge absolute top-3 right-[14px] text-[0.7rem] px-2 py-[3px] rounded-full bg-white/[0.06] text-[var(--text-dim)] border border-[var(--border)] font-medium whitespace-nowrap" id="targetStatusBadge">Minimal 4 untuk Streak</div>
         </div>
+
       </div>
 
-      <div class="habit-filter-row" id="categoryTabs">
-        <button class="filter-tab active" data-cat="Semua">Semua</button>
-        <button class="filter-tab" data-cat="Fisik">🏃 Fisik</button>
-        <button class="filter-tab" data-cat="Mental">🧠 Mental</button>
-        <button class="filter-tab" data-cat="Nutrisi">🥗 Nutrisi</button>
-        <button class="filter-tab" data-cat="Tidur">🌙 Tidur</button>
-        <button class="filter-tab" data-cat="Custom">⚡ Custom</button>
+      <!-- Filter Tabs -->
+      <div class="habit-filter-row flex gap-2 flex-wrap" id="categoryTabs">
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Semua">Semua</button>
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Fisik">🏃 Fisik</button>
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Mental">🧠 Mental</button>
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Nutrisi">🥗 Nutrisi</button>
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Tidur">🌙 Tidur</button>
+        <button class="filter-tab bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text-dim)] px-4 py-[7px] rounded-full text-[0.84rem] font-medium cursor-pointer transition-all duration-200 font-body hover:text-[var(--text)] hover:border-[var(--accent)]" data-cat="Custom">⚡ Custom</button>
       </div>
 
-      <div class="add-habit-box">
-        <input type="text" id="newHabitInput" class="habit-input-text" placeholder="Tambah kebiasaan harian baru..." maxlength="60">
-        <select id="newHabitCategory" class="habit-select-cat">
+      <!-- Add Habit Form -->
+      <div class="add-habit-box flex gap-[10px] flex-wrap">
+        <input type="text" id="newHabitInput"
+               class="habit-input-text flex-1 min-w-[200px] bg-[var(--surface-2)] border border-[var(--border)] rounded-[10px] px-4 py-[11px] text-[var(--text)] font-body text-[0.9rem] outline-none transition-colors focus:border-[var(--accent)]"
+               placeholder="Tambah kebiasaan harian baru..." maxlength="60">
+        <select id="newHabitCategory"
+                class="habit-select-cat bg-[var(--surface-2)] border border-[var(--border)] rounded-[10px] px-[14px] py-[11px] text-[var(--text)] font-body text-[0.9rem] outline-none cursor-pointer">
           <option value="Custom">⚡ Custom</option>
           <option value="Fisik">🏃 Fisik</option>
           <option value="Mental">🧠 Mental</option>
           <option value="Nutrisi">🥗 Nutrisi</option>
           <option value="Tidur">🌙 Tidur</option>
         </select>
-        <button id="addHabitBtn" class="btn-add-habit">+ Tambah Target</button>
+        <button id="addHabitBtn"
+                class="btn-add-habit bg-[var(--accent)] text-[#14171c] border-none rounded-[10px] px-5 py-[11px] font-semibold text-[0.9rem] cursor-pointer transition-all hover:brightness-110 font-body">
+          + Tambah Target
+        </button>
       </div>
 
-      <div class="habit-list" id="habitList">
-        <!-- Rendered dynamically by script.js -->
-      </div>
+      <!-- Habit List (filled by script.js) -->
+      <div class="habit-list flex flex-col gap-[10px]" id="habitList"></div>
 
-      <div class="habit-progress-section">
-        <div class="progress-text-row">
+      <!-- Progress Bar -->
+      <div class="flex flex-col gap-2 mt-1">
+        <div class="flex justify-between text-[0.85rem] text-[var(--text-dim)]">
           <span id="habitProgressText">0 dari 0 selesai hari ini</span>
           <span id="habitPercentText">0%</span>
         </div>
-        <div class="habit-progress-bar">
-          <div class="habit-progress-fill" id="habitProgressFill" style="width: 0%;"></div>
+        <div class="habit-progress-bar h-2 bg-[var(--surface-2)] rounded-full overflow-hidden border border-[var(--border)]">
+          <div class="habit-progress-fill h-full rounded-full transition-all duration-300 ease-out" id="habitProgressFill" style="width:0%; background:linear-gradient(90deg,var(--accent-2),var(--accent));"></div>
         </div>
       </div>
-    </div>
+
+    </div><!-- /.habit-tracker-container -->
+
   </div>
 </section>
 
-<footer id="tentang">
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer id="tentang" class="py-10 text-center text-[var(--text-dim)] text-[0.85rem]">
   Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
 </footer>
 
 <!-- Custom Confirmation Modal -->
 <div class="confirm-modal-overlay" id="confirmModalOverlay">
   <div class="confirm-modal-box">
-    <div class="confirm-modal-icon">🎯</div>
-    <h3 class="confirm-modal-title">Konfirmasi Kebiasaan</h3>
-    <p class="confirm-modal-text" id="confirmModalText">Apakah benar Anda sudah melakukan kebiasaan ini?</p>
-    <p class="confirm-modal-subtext">⚠️ Setelah dicentang, centang tidak dapat dibatalkan atau dihapus lagi hari ini (sampai reset Jam 22:00).</p>
-    <div class="confirm-modal-actions">
-      <button class="btn btn-ghost" id="confirmCancelBtn">Batal</button>
-      <button class="btn btn-primary" id="confirmOkBtn">Ya, Saya Sudah Melakukannya</button>
+    <div class="text-[2.4rem] mb-2">🎯</div>
+    <h3 class="font-display font-bold text-[1.2rem] mb-[6px]">Konfirmasi Kebiasaan</h3>
+    <p class="confirm-modal-text text-[0.92rem] text-[var(--text)] mb-[6px] font-medium" id="confirmModalText">Apakah benar Anda sudah melakukan kebiasaan ini?</p>
+    <p class="text-[0.8rem] text-[var(--accent)] mb-5 leading-[1.4]">⚠️ Setelah dicentang, centang tidak dapat dibatalkan atau dihapus lagi hari ini (sampai reset Jam 22:00).</p>
+    <div class="flex gap-[10px] justify-center">
+      <button class="btn btn-ghost flex-1 inline-block px-[14px] py-[10px] rounded-full font-semibold text-[0.85rem] border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent)] transition-all bg-transparent cursor-pointer" id="confirmCancelBtn">Batal</button>
+      <button class="btn btn-primary flex-1 inline-block px-[14px] py-[10px] rounded-full font-semibold text-[0.85rem] border border-transparent bg-[var(--accent)] text-[#14171c] hover:brightness-110 transition-all cursor-pointer" id="confirmOkBtn">Ya, Saya Sudah Melakukannya</button>
     </div>
   </div>
 </div>
