@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id" data-mode="sehat">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Kebiasaan Digital — Generasi Rebahan</title>
+<meta name="description" content="Cek cepat 2 menit: 10 pertanyaan inti plus maksimal 2 pertanyaan adaptif untuk menganalisis profil kebiasaan gaya hidup digitalmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'sehat';
+</script>
+</head>
+<body data-mode="sehat">
+
+<!-- ===== SITE NAVIGATION (SOLUS REFINED DOCK) ===== -->
+<nav class="site-nav">
+  <div class="nav-container">
+    <a href="index.html" class="brand-logo" aria-label="Generasi Rebahan Beranda">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
+    </a>
+
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#beranda" class="nav-pill">Beranda</a>
+      <a href="index.html#cermin" class="nav-pill">Cermin</a>
+      <a href="index.html#fakta" class="nav-pill">Fakta</a>
+      <a href="index.html#dampak" class="nav-pill">Dampak</a>
+      <a href="kuis.html" class="nav-pill active">Kuis</a>
+      <a href="tips.html" class="nav-pill">Tips & Tracker</a>
+      <a href="index.html#faq" class="nav-pill">FAQ</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sound-toggle" id="soundToggle" title="Nyalakan / Matikan Suara" aria-label="Toggle Sound">🔊</button>
+      <button class="btn-mode-toggle" id="modeToggle" aria-label="Ganti Mode Tema">☀️ Mode Sehat</button>
+      <button class="mobile-nav-toggle" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== QUIZ HEADER HERO ===== -->
+<header class="site-section" style="padding: 3.5rem 1.5rem 2rem; border-bottom: none;">
+  <div class="max-w-page" style="text-align: center;">
+    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.75rem;">
+      <a href="index.html" style="color: var(--text-dim); text-decoration: none;">Beranda</a>
+      <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
+      <span style="color: var(--text); font-weight: 700;">Kuis Kebiasaan</span>
+    </div>
+    <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
+      Cek Level Kebiasaan Digitalmu
+    </h1>
+    <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 58ch; margin: 0 auto; line-height: 1.6;">
+      Cek cepat 2 menit: 10 pertanyaan inti, plus maksimal 2 pertanyaan adaptif yang menyesuaikan jawabanmu. Refleksi diri tanpa menghakimi.
+    </p>
+  </div>
+</header>
+
+<!-- ===== QUIZ INTERACTIVE CONTAINER ===== -->
+<main class="site-section" id="kuis" style="padding-top: 1rem; border-bottom: 1px solid var(--border);">
+  <div class="quiz-page-container">
+    <div class="quiz-card-box">
+
+      <!-- Active Question View -->
+      <div id="quizActiveView">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+          <span class="hero-kicker-badge" style="margin-bottom: 0.75rem;">CEK KEBIASAANMU</span>
+          <h3 style="font-size: 1.45rem; font-weight: 700;">Seberapa rebahan kamu hari ini?</h3>
+        </div>
+
+        <!-- Dots progress bar -->
+        <div class="quiz-progress-dots" id="quizDots"></div>
+
+        <!-- Dynamic question and options container -->
+        <div id="quizCardContent" style="min-height: 280px;"></div>
+
+        <!-- Step counter -->
+        <div class="quiz-step-counter">
+          <span id="quizStepCounter">1 / 10</span>
+        </div>
+      </div>
+
+      <!-- Result View -->
+      <div id="quizResultView" style="display: none;">
+        <div class="quiz-result-score-box">
+          <span class="hero-kicker-badge" style="margin-bottom: 1rem;">HASIL CEK KEBIASAANMU</span>
+          <div style="display: flex; align-items: baseline; justify-content: center; gap: 0.25rem; margin: 0.5rem 0;">
+            <span class="quiz-score-number" id="resultScoreNum">68</span>
+            <span class="quiz-score-denom">/ 120</span>
+          </div>
+
+          <div class="result-status-badge badge-balanced" id="resultStatusBadge">
+            <span id="resultStatusIcon">🟢</span>
+            <span id="resultStatusText">BALANCED</span>
+          </div>
+
+          <p id="resultStatusDesc" style="font-size: 1.05rem; font-style: italic; color: var(--text-dim); max-width: 50ch; margin: 0.5rem auto 0; line-height: 1.6;">
+            "Bukan berarti kamu tidak sehat. Tapi beberapa kebiasaanmu mulai perlu diperhatikan."
+          </p>
+        </div>
+
+        <div style="height: 1px; width: 100%; background: var(--border); margin: 2rem 0;"></div>
+
+        <!-- 5-Dimension Score Bars -->
+        <div style="margin-bottom: 2rem;">
+          <h4 style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 1.25rem;">
+            PROFIL 5 DIMENSI KEBIASAAN DIGITAL
+          </h4>
+          <div id="dimensionList" style="display: flex; flex-direction: column; gap: 0.9rem;"></div>
+        </div>
+
+        <!-- Focus Alert Box -->
+        <div class="focus-alert-card">
+          <span class="focus-alert-icon" aria-hidden="true">🚨</span>
+          <div>
+            <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--danger); display: block; margin-bottom: 0.25rem;">
+              PERHATIAN UTAMA
+            </span>
+            <h4 id="focusTitle" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--text);">
+              POLA TIDUR
+            </h4>
+            <p id="focusDesc" style="font-size: 0.92rem; color: var(--text-dim); line-height: 1.55;">
+              Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat malam.
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Recommendations -->
+        <div style="margin-bottom: 2.5rem;">
+          <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text);">
+            💡 3 hal yang bisa kamu ubah mulai hari ini:
+          </h4>
+          <div class="action-cards-grid" id="actionCardsGrid"></div>
+        </div>
+
+        <!-- Quiz CTA Buttons -->
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="tips.html" class="btn-solus-primary" id="btnGoToTips">LIHAT REKOMENDASI SARAN →</a>
+          <button class="btn-solus-outline" id="quizRestartBtn">🔄 Ulangi Kuis</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===== SOLUS SIGNATURE FOOTER ===== -->
+<footer class="site-footer" id="tentang">
+  <div class="footer-container">
+    <div class="footer-left">
+      <div>
+        <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
+        </a>
+        <p class="text-dim" style="font-size: 0.92rem; max-width: 38ch; line-height: 1.6;">
+          Platform edukasi kesadaran gaya hidup digital seimbang untuk generasi muda Indonesia.
+        </p>
+
+        <div class="footer-links-grid">
+          <div>
+            <div class="footer-col-title">Navigasi</div>
+            <ul class="footer-link-list">
+              <li><a href="index.html#beranda">Beranda</a></li>
+              <li><a href="index.html#cermin">Cermin Kebiasaan</a></li>
+              <li><a href="index.html#fakta">Fakta & Data</a></li>
+              <li><a href="index.html#dampak">Dampak Kesehatan</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Fitur Web</div>
+            <ul class="footer-link-list">
+              <li><a href="kuis.html">Kuis Adaptif</a></li>
+              <li><a href="tips.html">Tips Digital Detox</a></li>
+              <li><a href="tips.html#habitTracker">Habit Tracker</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Kompetisi</div>
+            <ul class="footer-link-list">
+              <li><a href="index.html#kontak">INVENTION 2026</a></li>
+              <li><a href="index.html#kontak">Subtema Lomba</a></li>
+              <li><a href="index.html#kontak">Kontak Tim</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        © 2026 Generasi Rebahan. Dibuat untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web".
+      </div>
+    </div>
+
+    <!-- Solus Signature Dark Card in Footer -->
+    <div class="footer-cta-card">
+      <div class="footer-card-art" aria-hidden="true">
+        <span style="font-size: 3rem;">🌱</span>
+      </div>
+      <div>
+        <span class="hero-kicker-badge" style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.2); margin-bottom: 1.25rem;">
+          LANGKAH SELANJUTNYA
+        </span>
+        <h3>
+          Mulai Pantau Kebiasaanmu di Habit Tracker.
+        </h3>
+      </div>
+      <div>
+        <a href="tips.html" class="btn-footer-solus">Buka Tips & Tracker</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Interactive System Elements -->
+<canvas id="confettiCanvas"></canvas>
+<div class="toast-container" id="toastContainer"></div>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
