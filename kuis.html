@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Kebiasaan — Generasi Rebahan</title>
+<meta name="description" content="Cek cepat 2 menit: 10 soal inti plus maksimal 2 pertanyaan adaptif untuk melihat profil kebiasaan digitalmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="m-0 bg-bg font-body text-ink" data-mode="rebahan">
+
+<nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
+  <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
+    <div class="whitespace-nowrap font-display text-[1.05rem] font-bold">
+      <a href="index.html" class="no-underline">Generasi<span class="text-accent">Rebahan</span></a>
+    </div>
+    <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
+      <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
+      <a href="index.html#cermin" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Cermin</a>
+      <a href="index.html#fakta" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Fakta</a>
+      <a href="index.html#dampak" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Dampak</a>
+      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
+      <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle">🌙 Mode Rebahan</button>
+    </div>
+  </div>
+</nav>
+
+<section class="border-b border-line py-[72px] scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-2 text-sm text-dim"><a href="index.html" class="no-underline hover:text-ink">Beranda</a> / <span>Kuis Kebiasaan</span></div>
+    <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Cek Level Kebiasaan Digitalmu</h1>
+    <p class="mb-4 max-w-[65ch] text-[1.15rem] text-dim">Cek cepat sekitar 2 menit: 10 pertanyaan inti, plus maksimal 2 lanjutan yang menyesuaikan jawabanmu — bukan tes kesehatan.</p>
+  </div>
+</section>
+
+<section id="kuis" class="border-b border-line pb-[72px] pt-2.5 scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="tilt-card no-tilt relative mt-6 overflow-hidden rounded-[14px] border border-line bg-surface px-7 py-8 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+      <div class="spotlight-glow"></div>
+      <div id="quizActiveView">
+        <div class="mb-6 text-center">
+          <span class="text-[0.78rem] font-bold uppercase tracking-[1.5px] text-accent">CEK KEBIASAANMU</span>
+          <h3 class="mt-1 font-display text-[1.45rem] text-ink">Seberapa rebahan kamu hari ini?</h3>
+        </div>
+
+        <div class="mb-7 flex flex-col items-center gap-3">
+          <div class="flex flex-wrap items-center justify-center gap-2.5" id="quizDots"></div>
+        </div>
+
+        <div class="min-h-[280px] overflow-hidden" id="quizCardContent"></div>
+
+        <div class="mt-6 flex justify-center border-t border-dashed border-line pt-3.5">
+          <span class="font-display text-[0.88rem] font-semibold tracking-widest text-dim" id="quizStepCounter">1 / 10</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-7 animate-result-in" id="quizResultView" style="display: none;">
+        <div class="flex flex-col items-center gap-2 text-center">
+          <span class="text-[0.78rem] font-bold uppercase tracking-[1.5px] text-dim">HASIL CEK KEBIASAANMU</span>
+          <div class="my-1 flex items-baseline justify-center gap-1">
+            <span class="font-display text-[3.4rem] font-bold leading-none text-accent" id="resultScoreNum">68</span>
+            <span class="text-[1.2rem] font-semibold text-dim">/ 120</span>
+          </div>
+          <div class="result-status-badge inline-flex items-center gap-2 rounded-full border border-transparent px-[18px] py-2 font-display text-[1.05rem] font-bold tracking-wide" id="resultStatusBadge">
+            <span id="resultStatusIcon">🟢</span>
+            <span id="resultStatusText">BALANCED</span>
+          </div>
+          <p class="m-0 mt-1 max-w-[50ch] text-[0.95rem] italic text-dim" id="resultStatusDesc">
+            "Bukan berarti kamu tidak sehat. Tapi beberapa kebiasaanmu mulai perlu diperhatikan."
+          </p>
+        </div>
+
+        <div class="h-px w-full bg-line"></div>
+
+        <div class="flex flex-col gap-4">
+          <h4 class="mb-1 text-[0.85rem] font-bold tracking-widest text-dim">PROFIL KEBIASAAN DIGITAL & HARIAN</h4>
+          <div class="flex flex-col gap-3.5" id="dimensionList"></div>
+        </div>
+
+        <div class="flex flex-col gap-2.5 rounded-[14px] border border-[rgba(224,104,79,0.3)] bg-surface-2 p-5">
+          <div class="flex items-center gap-3.5">
+            <span class="text-[1.8rem] leading-none">🚨</span>
+            <div>
+              <span class="text-[0.72rem] font-bold tracking-widest text-danger">PERHATIAN UTAMA</span>
+              <h4 class="m-0 font-display text-[1.05rem] text-ink" id="focusTitle">POLA TIDUR</h4>
+            </div>
+          </div>
+          <p class="m-0 text-[0.88rem] leading-relaxed text-dim" id="focusDesc">
+            Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3.5">
+          <h4 class="mb-0.5 font-display text-[1.02rem] text-ink">💡 3 hal yang bisa kamu ubah mulai hari ini</h4>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5" id="actionCardsGrid"></div>
+        </div>
+
+        <div class="mt-2 flex flex-wrap justify-center gap-3">
+          <a href="tips.html" class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 text-[0.9rem] font-semibold text-[#14171c] no-underline hover:brightness-110" id="btnGoToTips">LIHAT SARANMU →</a>
+          <button class="inline-block cursor-pointer rounded-full border border-line bg-transparent px-[22px] py-3 font-body text-[0.9rem] font-semibold text-ink hover:border-accent" id="quizRestartBtn">🔄 Ulangi Kuis</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="px-6 py-10 text-center text-[0.85rem] text-dim" id="tentang">
+  Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
+</footer>
+
+<canvas id="confettiCanvas"></canvas>
+<div class="toast-container" id="toastContainer"></div>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

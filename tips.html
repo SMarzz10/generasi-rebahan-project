@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tips & Habit Tracker — Generasi Rebahan</title>
+<meta name="description" content="Kumpulan tips digital detox, fakta acak, serta checklist habit tracker harian dengan reset otomatis jam 22:00 WIB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="m-0 bg-bg font-body text-ink" data-mode="rebahan">
+
+<nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
+  <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
+    <div class="whitespace-nowrap font-display text-[1.05rem] font-bold">
+      <a href="index.html" class="no-underline">Generasi<span class="text-accent">Rebahan</span></a>
+    </div>
+    <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
+      <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
+      <a href="index.html#cermin" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Cermin</a>
+      <a href="index.html#fakta" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Fakta</a>
+      <a href="index.html#dampak" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Dampak</a>
+      <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
+      <a href="tips.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle">🌙 Mode Rebahan</button>
+    </div>
+  </div>
+</nav>
+
+<section class="border-b border-line py-[72px] scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-2 text-sm text-dim"><a href="index.html" class="no-underline hover:text-ink">Beranda</a> / <span>Tips & Habit Tracker</span></div>
+    <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Tips Aksi Nyata & Tracker Harian</h1>
+    <p class="mb-4 max-w-[65ch] text-[1.15rem] text-dim">Langkah kecil tetap dihitung. Pelajari tips digital detox, dapatkan fakta acak, dan pantau kebiasaan sehatmu dengan sistem reset otomatis Jam 22:00 WIB.</p>
+  </div>
+</section>
+
+<section id="tips" class="border-b border-line pb-[72px] pt-2.5 scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="tilt-card no-tilt mb-7 rounded-[14px] border border-line bg-surface p-[18px_20px]" id="quizRecoBanner" style="display: none;">
+      <div class="spotlight-glow"></div>
+      <div class="flex flex-wrap items-center gap-4">
+        <div class="text-[1.6rem]">🎯</div>
+        <div class="min-w-[220px] flex-1">
+          <div class="mb-1 font-bold">
+            Hasil Kuis Kamu: <span id="recoLevelText">BALANCED</span> (<span id="recoScoreNum">0</span>/120)
+          </div>
+          <div class="text-[0.9rem] text-dim">
+            Perhatian Utama: <strong id="recoFocusTitle">POLA TIDUR</strong> — <span id="recoFocusDesc">Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat.</span>
+          </div>
+        </div>
+        <a href="kuis.html" class="inline-block cursor-pointer rounded-full border border-line px-[22px] py-3 text-[0.9rem] font-semibold text-ink no-underline hover:border-accent">Ulangi Kuis 🔄</a>
+      </div>
+    </div>
+
+    <div class="mb-3.5 inline-flex items-center gap-2 font-display text-[0.85rem] text-dim"><em class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-line text-[0.75rem] not-italic">1</em> Tips Digital Detox</div>
+    <h2 class="mb-2 font-display text-3xl font-bold">Langkah kecil, tetap dihitung</h2>
+
+    <div>
+      <div class="accordion-item open mt-2.5 overflow-hidden rounded-xl border border-line bg-surface">
+        <div class="accordion-head flex cursor-pointer items-center justify-between px-[18px] py-4 text-[0.95rem] font-semibold">🌿 Digital detox singkat <span class="plus font-display text-accent-2">−</span></div>
+        <div class="accordion-body-wrapper"><div class="accordion-body-content px-[18px] pb-4 text-[0.9rem] text-dim">Coba mulai dari 1 jam tanpa HP sebelum tidur, atau taruh HP di luar jangkauan tangan saat makan.</div></div>
+      </div>
+      <div class="accordion-item mt-2.5 overflow-hidden rounded-xl border border-line bg-surface">
+        <div class="accordion-head flex cursor-pointer items-center justify-between px-[18px] py-4 text-[0.95rem] font-semibold">🥗 Ganti snack, bukan langsung diet ketat <span class="plus font-display text-accent-2">+</span></div>
+        <div class="accordion-body-wrapper"><div class="accordion-body-content px-[18px] pb-4 text-[0.9rem] text-dim">Sediakan buah potong atau kacang-kacangan sebagai camilan pengganti gorengan/junk food kemasan.</div></div>
+      </div>
+      <div class="accordion-item mt-2.5 overflow-hidden rounded-xl border border-line bg-surface">
+        <div class="accordion-head flex cursor-pointer items-center justify-between px-[18px] py-4 text-[0.95rem] font-semibold">⏰ Jadwal tidur konsisten <span class="plus font-display text-accent-2">+</span></div>
+        <div class="accordion-body-wrapper"><div class="accordion-body-content px-[18px] pb-4 text-[0.9rem] text-dim">Tidur & bangun di jam yang sama tiap hari, termasuk akhir pekan, membantu ritme tubuh lebih stabil.</div></div>
+      </div>
+      <div class="accordion-item mt-2.5 overflow-hidden rounded-xl border border-line bg-surface">
+        <div class="accordion-head flex cursor-pointer items-center justify-between px-[18px] py-4 text-[0.95rem] font-semibold">🚶 Gerak 5 menit tiap jam <span class="plus font-display text-accent-2">+</span></div>
+        <div class="accordion-body-wrapper"><div class="accordion-body-content px-[18px] pb-4 text-[0.9rem] text-dim">Set pengingat untuk berdiri/jalan singkat tiap satu jam kerja atau belajar di depan layar.</div></div>
+      </div>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-[14px] border border-dashed border-line bg-surface-2 p-5">
+      <div id="randomFact" class="max-w-[60ch] text-[0.95rem]">Klik tombol untuk lihat fakta acak seputar gaya hidup digital.</div>
+      <button class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 font-body text-[0.9rem] font-semibold text-[#14171c] hover:brightness-110" id="factBtn">Fakta Acak 🎲</button>
+    </div>
+
+    <div class="tilt-card no-tilt mt-9 flex flex-col gap-[22px] rounded-[14px] border border-line bg-surface p-7" id="habitTracker">
+      <div class="spotlight-glow"></div>
+      <div class="flex flex-wrap items-center justify-between gap-5 max-sm:flex-col max-sm:items-start">
+        <div>
+          <h3 class="mb-1 font-display text-[1.35rem]">Checklist & Habit Tracker Harian</h3>
+          <p class="m-0 max-w-[52ch] text-[0.88rem] text-dim">Pantau kebiasaan sehatmu. Progres di-reset otomatis setiap hari pada Jam 22:00 (10 PM) WIB.</p>
+        </div>
+        <div class="min-w-[210px] rounded-xl border border-line bg-surface-2 px-[18px] py-3 text-right max-sm:w-full max-sm:text-left">
+          <div class="flex items-center justify-end gap-1.5 text-[0.72rem] font-bold tracking-wide text-dim max-sm:justify-start">
+            <span>⏳</span>
+            <span>RESET HARIAN (10 PM / 22:00)</span>
+          </div>
+          <div class="mt-0.5 font-display text-[1.6rem] font-bold tracking-widest text-accent" id="resetCountdown">00:00:00</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+        <div class="habit-stat-card relative flex items-center gap-3.5 rounded-xl border border-line bg-surface-2 px-[18px] py-4 transition hover:border-accent-2" id="streakCard">
+          <div class="stat-card-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl text-[1.8rem]">🔥</div>
+          <div class="flex-1">
+            <div class="stat-value font-display text-[1.3rem] font-bold leading-tight text-ink"><span id="streakCount">0</span> Hari</div>
+            <div class="mt-0.5 text-[0.8rem] text-dim">Streak Harian</div>
+          </div>
+          <div class="stat-badge absolute right-3.5 top-3 whitespace-nowrap rounded-full border border-line px-2 py-[3px] text-[0.7rem] font-medium text-dim" id="streakBadge">Min. 4 Centang</div>
+        </div>
+
+        <div class="habit-stat-card relative flex items-center gap-3.5 rounded-xl border border-line bg-surface-2 px-[18px] py-4 transition hover:border-accent-2">
+          <div class="stat-card-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl text-[1.8rem]">🎯</div>
+          <div class="flex-1">
+            <div class="stat-value font-display text-[1.3rem] font-bold leading-tight text-ink" id="completedSummary">0 dari 0</div>
+            <div class="mt-0.5 text-[0.8rem] text-dim">Target Selesai Hari Ini</div>
+          </div>
+          <div class="stat-badge absolute right-3.5 top-3 whitespace-nowrap rounded-full border border-line px-2 py-[3px] text-[0.7rem] font-medium text-dim" id="targetStatusBadge">Minimal 4 untuk Streak</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2" id="categoryTabs">
+        <button class="filter-tab active cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Semua">Semua</button>
+        <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Fisik">🏃 Fisik</button>
+        <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Mental">🧠 Mental</button>
+        <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Nutrisi">🥗 Nutrisi</button>
+        <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Tidur">🌙 Tidur</button>
+        <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Custom">⚡ Custom</button>
+      </div>
+
+      <div class="flex flex-wrap gap-2.5 max-sm:flex-col">
+        <input type="text" id="newHabitInput" class="min-w-[200px] flex-1 rounded-[10px] border border-line bg-surface-2 px-4 py-[11px] font-body text-[0.9rem] text-ink outline-none transition focus:border-accent" placeholder="Tambah kebiasaan harian baru..." maxlength="60">
+        <select id="newHabitCategory" class="cursor-pointer rounded-[10px] border border-line bg-surface-2 px-3.5 py-[11px] font-body text-[0.9rem] text-ink outline-none max-sm:w-full">
+          <option value="Custom">⚡ Custom</option>
+          <option value="Fisik">🏃 Fisik</option>
+          <option value="Mental">🧠 Mental</option>
+          <option value="Nutrisi">🥗 Nutrisi</option>
+          <option value="Tidur">🌙 Tidur</option>
+        </select>
+        <button id="addHabitBtn" class="cursor-pointer rounded-[10px] border-none bg-accent px-5 py-[11px] font-body text-[0.9rem] font-semibold text-[#14171c] transition hover:brightness-110 max-sm:w-full">+ Tambah Target</button>
+      </div>
+
+      <div class="flex flex-col gap-2.5" id="habitList"></div>
+
+      <div class="mt-1 flex flex-col gap-2">
+        <div class="flex justify-between text-[0.85rem] text-dim">
+          <span id="habitProgressText">0 dari 0 selesai hari ini</span>
+          <span id="habitPercentText">0%</span>
+        </div>
+        <div class="h-2 overflow-hidden rounded-full border border-line bg-surface-2">
+          <div class="habit-progress-fill h-full rounded-full transition-[width] duration-400" id="habitProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="px-6 py-10 text-center text-[0.85rem] text-dim" id="tentang">
+  Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
+</footer>
+
+<div class="confirm-modal-overlay pointer-events-none fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 p-5 opacity-0 backdrop-blur-[6px] transition-opacity duration-250" id="confirmModalOverlay">
+  <div class="confirm-modal-box w-full max-w-[440px] translate-y-[15px] rounded-2xl border border-line bg-surface p-7 text-center shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-transform duration-250">
+    <div class="mb-2 text-[2.4rem]">🎯</div>
+    <h3 class="mb-1.5 font-display text-[1.2rem]">Konfirmasi Kebiasaan</h3>
+    <p class="mb-1.5 text-[0.92rem] font-medium text-ink" id="confirmModalText">Apakah benar Anda sudah melakukan kebiasaan ini?</p>
+    <p class="mb-5 text-[0.8rem] leading-snug text-accent">⚠️ Setelah dicentang, centang tidak dapat dibatalkan atau dihapus lagi hari ini (sampai reset Jam 22:00).</p>
+    <div class="flex justify-center gap-2.5">
+      <button class="flex-1 cursor-pointer rounded-full border border-line bg-transparent px-3.5 py-2.5 font-body text-[0.85rem] font-semibold text-ink hover:border-accent" id="confirmCancelBtn">Batal</button>
+      <button class="flex-1 cursor-pointer rounded-full border border-transparent bg-accent px-3.5 py-2.5 font-body text-[0.85rem] font-semibold text-[#14171c] hover:brightness-110" id="confirmOkBtn">Ya, Saya Sudah Melakukannya</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+<div class="toast-container" id="toastContainer"></div>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
