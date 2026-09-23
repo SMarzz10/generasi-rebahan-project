@@ -12,6 +12,10 @@
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
+  const savedMode = localStorage.getItem('rebahan_mode');
+  const initialMode = savedMode === 'sehat' ? 'sehat' : 'rebahan';
+  document.documentElement.setAttribute('data-mode', initialMode);
+  document.body.setAttribute('data-mode', initialMode);
 
   /* =========================================================
      0. INTERACTIVE SYSTEM HELPERS (Toast, Sound, Confetti, Tilt, Scroll)
@@ -291,14 +295,17 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ----- 1.1 Mode Toggle (Rebahan ↔ Sehat / Dark ↔ Light) ----- */
   const modeToggle = document.getElementById('modeToggle');
   if (modeToggle) {
+    modeToggle.innerHTML = initialMode === 'sehat' ? '☀️ Mode Sehat' : '🌙 Mode Rebahan';
     modeToggle.addEventListener('click', function () {
       const isSehat = document.body.getAttribute('data-mode') === 'sehat';
+      const nextMode = isSehat ? 'rebahan' : 'sehat';
+      document.documentElement.setAttribute('data-mode', nextMode);
+      document.body.setAttribute('data-mode', nextMode);
+      localStorage.setItem('rebahan_mode', nextMode);
       if (isSehat) {
-        document.body.setAttribute('data-mode', 'rebahan');
         this.innerHTML = '🌙 Mode Rebahan';
         showToast('Mode Rebahan Aktif 🌙', '🌙');
       } else {
-        document.body.setAttribute('data-mode', 'sehat');
         this.innerHTML = '☀️ Mode Sehat';
         showToast('Mode Sehat Aktif ☀️', '☀️');
       }
