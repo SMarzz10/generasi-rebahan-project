@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id" data-mode="sehat">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tips & Habit Tracker — Generasi Rebahan</title>
+<meta name="description" content="Kumpulan tips digital detox, generator fakta acak, serta checklist habit tracker harian dengan reset otomatis setiap pukul 22:00 WIB.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'sehat';
+</script>
+</head>
+<body data-mode="sehat">
+
+<!-- ===== SITE NAVIGATION (SOLUS REFINED DOCK) ===== -->
+<nav class="site-nav">
+  <div class="nav-container">
+    <a href="index.html" class="brand-logo" aria-label="Generasi Rebahan Beranda">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
+    </a>
+
+    <div class="navlinks" id="navlinks">
+      <a href="index.html#beranda" class="nav-pill">Beranda</a>
+      <a href="index.html#cermin" class="nav-pill">Cermin</a>
+      <a href="index.html#fakta" class="nav-pill">Fakta</a>
+      <a href="index.html#dampak" class="nav-pill">Dampak</a>
+      <a href="kuis.html" class="nav-pill">Kuis</a>
+      <a href="tips.html" class="nav-pill active">Tips & Tracker</a>
+      <a href="index.html#faq" class="nav-pill">FAQ</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn-sound-toggle" id="soundToggle" title="Nyalakan / Matikan Suara" aria-label="Toggle Sound">🔊</button>
+      <button class="btn-mode-toggle" id="modeToggle" aria-label="Ganti Mode Tema">☀️ Mode Sehat</button>
+      <button class="mobile-nav-toggle" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HEADER HERO ===== -->
+<header class="site-section" style="padding: 3.5rem 1.5rem 2rem; border-bottom: none;">
+  <div class="max-w-page" style="text-align: center;">
+    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.75rem;">
+      <a href="index.html" style="color: var(--text-dim); text-decoration: none;">Beranda</a>
+      <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
+      <span style="color: var(--text); font-weight: 700;">Tips & Habit Tracker</span>
+    </div>
+    <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
+      Tips Aksi Nyata & Tracker Harian
+    </h1>
+    <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 60ch; margin: 0 auto; line-height: 1.6;">
+      Langkah kecil tetap dihitung. Pelajari strategi digital detox, dapatkan wawasan fakta acak, dan pantau kebiasaan sehatmu dengan sistem reset otomatis pukul 22:00 WIB.
+    </p>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="site-section" id="tips" style="padding-top: 1rem; border-bottom: 1px solid var(--border);">
+  <div class="max-w-page">
+
+    <!-- Quiz Recommendation Banner (Dynamic) -->
+    <div class="reco-banner-card" id="quizRecoBanner" style="display: none;">
+      <div style="font-size: 2.2rem;">🎯</div>
+      <div style="flex: 1; min-width: 240px;">
+        <div style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem;">
+          Hasil Kuis Kamu: <span id="recoLevelText" style="color: var(--surface-dark);">BALANCED</span> (<span id="recoScoreNum">0</span>/120)
+        </div>
+        <div style="font-size: 0.92rem; color: var(--text-dim);">
+          Perhatian Utama: <strong id="recoFocusTitle" style="color: var(--text);">POLA TIDUR</strong> — <span id="recoFocusDesc">Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat.</span>
+        </div>
+      </div>
+      <div>
+        <a href="kuis.html" class="btn-solus-outline" style="padding: 0.65rem 1.4rem; font-size: 0.88rem;">Ulangi Kuis 🔄</a>
+      </div>
+    </div>
+
+    <!-- Section 1: Tips Digital Detox Accordion -->
+    <div style="margin-bottom: 3.5rem;">
+      <div class="section-kicker" style="margin-bottom: 0.5rem;">
+        <span>01 / TIPS AKSI NYATA</span>
+      </div>
+      <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1.5rem;">Strategi Sederhana yang Berdampak Besar</h2>
+
+      <div class="accordion-container">
+        <div class="accordion-item open">
+          <div class="accordion-head">
+            <span>🌿 Digital detox singkat harian</span>
+            <span class="plus">−</span>
+          </div>
+          <div class="accordion-body-wrapper">
+            <div class="accordion-body-content">
+              Coba mulai dari 1 jam tanpa smartphone sebelum tidur di malam hari, atau taruh HP di luar jangkauan tangan saat makan bersama keluarga dan teman.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-head">
+            <span>🥗 Ganti camilan, jangan langsung diet ketat</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="accordion-body-wrapper">
+            <div class="accordion-body-content">
+              Sediakan buah potong segar atau kacang-kacangan panggang di meja kerja sebagai pengganti gorengan dan camilan ultra-proses saat menonton layar.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-head">
+            <span>⏰ Jadwal tidur dan bangun yang konsisten</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="accordion-body-wrapper">
+            <div class="accordion-body-content">
+              Tidur dan bangun pada jam yang sama setiap hari (termasuk akhir pekan) membantu mengatur jam biologis (ritme sirkadian) tubuh agar metabolisme lebih stabil.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-head">
+            <span>🚶 Gerak 5 menit setiap 1 jam menatap layar</span>
+            <span class="plus">+</span>
+          </div>
+          <div class="accordion-body-wrapper">
+            <div class="accordion-body-content">
+              Pasang pengingat otomatis untuk berdiri, melakukan stretching ringan pada leher dan pundak, atau berjalan mengambil air minum setiap 60 menit bekerja.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Random Fact Card -->
+    <div style="background: var(--surface-peach); border: 1px solid var(--border-light); border-radius: 26px; padding: 2.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem;">
+      <div style="flex: 1; min-width: 240px;">
+        <span class="hero-kicker-badge" style="margin-bottom: 0.5rem;">FAKTA ACAK</span>
+        <div id="randomFact" style="font-size: 1.05rem; font-weight: 600; color: var(--text); line-height: 1.55;">
+          Klik tombol di samping untuk membaca fakta mengejutkan seputar sains kebiasaan digital.
+        </div>
+      </div>
+      <div>
+        <button class="btn-solus-primary" id="factBtn">Fakta Acak 🎲</button>
+      </div>
+    </div>
+
+    <!-- Section 3: Habit Tracker Container -->
+    <div class="habit-tracker-container" id="habitTracker">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+        <div>
+          <span class="hero-kicker-badge" style="margin-bottom: 0.5rem;">DAILY CHECKLIST</span>
+          <h3 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">Habit Tracker Harian</h3>
+          <p class="text-dim" style="font-size: 0.94rem;">
+            Centang kebiasaan yang telah kamu selesaikan. Progres otomatis di-reset setiap hari pukul 22:00 WIB.
+          </p>
+        </div>
+
+        <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; padding: 1rem 1.5rem; text-align: right;">
+          <div style="font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase;">
+            ⏳ RESET HARIAN (22:00 WIB)
+          </div>
+          <div id="resetCountdown" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--accent); letter-spacing: 0.05em; margin-top: 0.2rem;">
+            00:00:00
+          </div>
+        </div>
+      </div>
+
+      <!-- Habit Stats Row -->
+      <div class="habit-stats-row">
+        <div class="habit-stat-box" id="streakCard">
+          <div class="habit-stat-icon">🔥</div>
+          <div>
+            <div class="habit-stat-val"><span id="streakCount">0</span> Hari</div>
+            <div class="text-dim" style="font-size: 0.85rem;">Streak Harian Konsisten</div>
+          </div>
+          <div id="streakBadge" style="position: absolute; top: 1rem; right: 1rem; font-size: 0.72rem; font-weight: 700; background: var(--surface); border: 1px solid var(--border); padding: 3px 10px; border-radius: 9999px; color: var(--text-dim);">
+            Min. 4 Centang
+          </div>
+        </div>
+
+        <div class="habit-stat-box">
+          <div class="habit-stat-icon">🎯</div>
+          <div>
+            <div class="habit-stat-val" id="completedSummary">0 dari 0</div>
+            <div class="text-dim" style="font-size: 0.85rem;">Target Selesai Hari Ini</div>
+          </div>
+          <div id="targetStatusBadge" style="position: absolute; top: 1rem; right: 1rem; font-size: 0.72rem; font-weight: 700; background: var(--surface); border: 1px solid var(--border); padding: 3px 10px; border-radius: 9999px; color: var(--text-dim);">
+            Minimal 4 untuk Streak
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="categoryTabs">
+        <button class="filter-tab-pill filter-tab active" data-cat="Semua">Semua</button>
+        <button class="filter-tab-pill filter-tab" data-cat="Fisik">🏃 Fisik</button>
+        <button class="filter-tab-pill filter-tab" data-cat="Mental">🧠 Mental</button>
+        <button class="filter-tab-pill filter-tab" data-cat="Nutrisi">🥗 Nutrisi</button>
+        <button class="filter-tab-pill filter-tab" data-cat="Tidur">🌙 Tidur</button>
+        <button class="filter-tab-pill filter-tab" data-cat="Custom">⚡ Custom</button>
+      </div>
+
+      <!-- Add Habit Row -->
+      <div class="habit-add-row">
+        <input type="text" id="newHabitInput" class="habit-input" placeholder="Tambah kebiasaan harian baru..." maxlength="60">
+        <select id="newHabitCategory" class="habit-select">
+          <option value="Custom">⚡ Custom</option>
+          <option value="Fisik">🏃 Fisik</option>
+          <option value="Mental">🧠 Mental</option>
+          <option value="Nutrisi">🥗 Nutrisi</option>
+          <option value="Tidur">🌙 Tidur</option>
+        </select>
+        <button id="addHabitBtn" class="btn-solus-primary" style="padding: 0.85rem 1.6rem; border-radius: 16px;">
+          + Tambah Target
+        </button>
+      </div>
+
+      <!-- Habit Items List -->
+      <div class="habit-list-container" id="habitList"></div>
+
+      <!-- Progress Bar & Summary -->
+      <div style="margin-top: 0.5rem;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem;">
+          <span id="habitProgressText">0 dari 0 selesai hari ini</span>
+          <span id="habitPercentText" style="color: var(--text); font-weight: 700;">0%</span>
+        </div>
+        <div style="height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; border: 1px solid var(--border);">
+          <div class="habit-progress-fill" id="habitProgressFill" style="height: 100%; width: 0%; border-radius: 999px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); transition: width 0.4s ease;"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ===== SOLUS SIGNATURE FOOTER ===== -->
+<footer class="site-footer" id="tentang">
+  <div class="footer-container">
+    <div class="footer-left">
+      <div>
+        <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
+        </a>
+        <p class="text-dim" style="font-size: 0.92rem; max-width: 38ch; line-height: 1.6;">
+          Platform edukasi kesadaran gaya hidup digital seimbang untuk generasi muda Indonesia.
+        </p>
+
+        <div class="footer-links-grid">
+          <div>
+            <div class="footer-col-title">Navigasi</div>
+            <ul class="footer-link-list">
+              <li><a href="index.html#beranda">Beranda</a></li>
+              <li><a href="index.html#cermin">Cermin Kebiasaan</a></li>
+              <li><a href="index.html#fakta">Fakta & Data</a></li>
+              <li><a href="index.html#dampak">Dampak Kesehatan</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Fitur Web</div>
+            <ul class="footer-link-list">
+              <li><a href="kuis.html">Kuis Adaptif</a></li>
+              <li><a href="tips.html">Tips Digital Detox</a></li>
+              <li><a href="tips.html#habitTracker">Habit Tracker</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Kompetisi</div>
+            <ul class="footer-link-list">
+              <li><a href="index.html#kontak">INVENTION 2026</a></li>
+              <li><a href="index.html#kontak">Subtema Lomba</a></li>
+              <li><a href="index.html#kontak">Kontak Tim</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        © 2026 Generasi Rebahan. Dibuat untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web".
+      </div>
+    </div>
+
+    <!-- Solus Signature Dark Card in Footer -->
+    <div class="footer-cta-card">
+      <div class="footer-card-art" aria-hidden="true">
+        <span style="font-size: 3rem;">🎯</span>
+      </div>
+      <div>
+        <span class="hero-kicker-badge" style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.2); margin-bottom: 1.25rem;">
+          EVALUASI DIRI
+        </span>
+        <h3>
+          Belum Tahu Level Kebiasaanmu? Coba Kuis 2 Menit.
+        </h3>
+      </div>
+      <div>
+        <a href="kuis.html" class="btn-footer-solus">Mulai Kuis Adaptif</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Confirmation Modal Dialog -->
+<div class="confirm-modal-overlay" id="confirmModalOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+  <div class="confirm-modal-box">
+    <div style="font-size: 2.4rem; margin-bottom: 0.5rem;">🎯</div>
+    <h3 id="confirmModalTitle" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Konfirmasi Kebiasaan</h3>
+    <p id="confirmModalText" style="font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">
+      Apakah benar Anda sudah melakukan kebiasaan ini?
+    </p>
+    <p style="font-size: 0.82rem; color: var(--accent); margin-bottom: 1.75rem; line-height: 1.5;">
+      ⚠️ Setelah dicentang, centang tidak dapat dibatalkan lagi hari ini (sampai reset otomatis pukul 22:00 WIB).
+    </p>
+    <div style="display: flex; gap: 0.75rem;">
+      <button class="btn-solus-outline" id="confirmCancelBtn" style="flex: 1; padding: 0.75rem 1rem;">Batal</button>
+      <button class="btn-solus-primary" id="confirmOkBtn" style="flex: 1.2; padding: 0.75rem 1rem; font-size: 0.88rem;">Ya, Sudah</button>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive System Elements -->
+<canvas id="confettiCanvas"></canvas>
+<div class="toast-container" id="toastContainer"></div>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
