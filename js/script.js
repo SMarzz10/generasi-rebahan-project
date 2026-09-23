@@ -254,40 +254,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ----- 0.7 Mascot Floating Emoji Particle Generator ----- */
-  let lastParticleTime = 0;
-  function spawnMascotEmoji(sliderVal) {
-    const now = Date.now();
-    if (now - lastParticleTime < 240) return;
-    lastParticleTime = now;
-
-    const mascotContainer = document.getElementById('mascotContainer');
-    if (!mascotContainer) return;
-
-    let emojis = ['💤', '📱', '🍕', '🛋️', '🥤'];
-    if (sliderVal <= 33) emojis = ['⚡', '🏃', '🥗', '🌱', '☀️'];
-    else if (sliderVal <= 66) emojis = ['📱', '🎧', '🛋️', '🍿', '☕'];
-
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-
-    const particle = document.createElement('span');
-    particle.className = 'floating-emoji-particle';
-    particle.textContent = randomEmoji;
-
-    const rect = mascotContainer.getBoundingClientRect();
-    const posX = Math.random() * (rect.width * 0.7) + (rect.width * 0.15);
-    const posY = Math.random() * (rect.height * 0.4) + (rect.height * 0.3);
-
-    particle.style.left = `${posX}px`;
-    particle.style.top = `${posY}px`;
-
-    mascotContainer.appendChild(particle);
-
-    setTimeout(() => {
-      if (particle.parentNode) particle.parentNode.removeChild(particle);
-    }, 1300);
-  }
-
   /* =========================================================
      1. UI CONTROLS
      ========================================================= */
@@ -344,7 +310,6 @@ document.addEventListener('DOMContentLoaded', function () {
     rebahanSlider.addEventListener('input', function () {
       const val = parseInt(this.value, 10);
       updateHeroMascot(val);
-      spawnMascotEmoji(val);
     });
   }
 
