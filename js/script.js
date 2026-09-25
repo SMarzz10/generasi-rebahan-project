@@ -126,6 +126,100 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', syncNavOffset);
   }
 
+  /* ----- 0.3 Informasi Data Chatbot ----- */
+  const chatbotLauncher = document.getElementById('chatbotLauncher');
+  const chatbotPanel = document.getElementById('chatbotPanel');
+  const chatbotClose = document.getElementById('chatbotClose');
+  const chatbotForm = document.getElementById('chatbotForm');
+  const chatbotInput = document.getElementById('chatbotInput');
+  const chatbotMessages = document.getElementById('chatbotMessages');
+
+  /*
+   * Data references:
+   * Full source summaries: sources/ringkasan-referensi.md
+   * - Bagaskara, Yasmin, & Komalasari, Junior Medical Journal Vol. 3 No. 6 (2025).
+   * - Seketika.com, "Orang Indonesia Rata-rata Gunakan Ponsel 6 Jam Sehari..."
+   * - UNICEF, "More than a third of young people in 30 countries report being a victim of online bullying".
+   * - Artikel "Mayoritas Warga RI Masih Sering Konsumsi Minuman Manis".
+   */
+  const chatbotAnswers = [
+    {
+      keywords: ['jurnal', 'screen time', 'screentime', 'sedentari', 'sedenter'],
+      answer: 'Dalam studi Junior Medical Journal (2025) pada pegawai RS Insan Permata, 66,3% responden memiliki gaya hidup sedenter dan 88,1% memiliki screen time tinggi. Studi ini melibatkan 101 data responden yang dianalisis, jadi angkanya tidak otomatis mewakili seluruh penduduk Indonesia.'
+    },
+    {
+      keywords: ['duduk', 'sedentari', 'sedenter', 'bergerak', 'jantung'],
+      answer: 'Gaya hidup sedenter berarti banyak waktu duduk atau berbaring dengan sedikit aktivitas. Jurnal yang kamu berikan mencatat 24,1% penduduk Indonesia berperilaku sedenter selama 6 jam per hari berdasarkan rujukan Riskesdas/penelitian terkait. Coba selingi duduk dengan berdiri atau berjalan singkat.'
+    },
+    {
+      keywords: ['ponsel', 'hp', 'handphone', 'penggunaan ponsel', '6 jam'],
+      answer: 'Artikel Seketika.com yang kamu berikan menyoroti rata-rata penggunaan ponsel di Indonesia sekitar 6 jam per hari dan menyebutnya sebagai salah satu yang tertinggi di dunia. Angka ini perlu dibaca sebagai laporan media, bukan hasil pengukuran chatbot.'
+    },
+    {
+      keywords: ['cyberbullying', 'bullying', 'perundungan', 'online bullying'],
+      answer: 'Polling UNICEF yang kamu berikan menyebut lebih dari sepertiga anak muda di 30 negara pernah menjadi korban perundungan daring. Jika mengalami atau menyaksikan cyberbullying, simpan bukti, blokir/laporkan akun, dan ceritakan kepada orang dewasa tepercaya.'
+    },
+    {
+      keywords: ['minuman', 'manis', 'gula', 'boba', 'soda'],
+      answer: 'Sumber berita tentang mayoritas warga RI yang masih sering mengonsumsi minuman manis menunjukkan kebiasaan ini perlu diperhatikan. Chatbot tidak menetapkan angka persentase tanpa data tabel sumber; langkah sederhana yang bisa dicoba adalah mengurangi frekuensi dan memilih air putih lebih sering.'
+    },
+    {
+      keywords: ['hubungan', 'penyakit jantung', 'pjk', 'risiko'],
+      answer: 'Jurnal RS Insan Permata tidak menemukan hubungan signifikan antara durasi screen time maupun durasi tidur dengan risiko penyakit jantung koroner pada sampel tersebut (p masing-masing 0,604 dan 0,086). Faktor usia dan jenis kelamin justru menunjukkan hubungan signifikan. Ini bukan diagnosis pribadi.'
+    },
+    {
+      keywords: ['tips', 'sehat', 'solusi', 'apa yang harus', 'mengurangi'],
+      answer: 'Mulai dari langkah kecil: jeda berdiri atau berjalan tiap jam, jauhkan ponsel sebelum tidur, kurangi minuman berpemanis secara bertahap, dan gunakan tracker di halaman Tips & Tracker. Pilih target yang realistis dan konsisten.'
+    },
+    {
+      keywords: ['sumber', 'referensi', 'data kamu', 'asal data'],
+      answer: 'Sumber informasi: (1) Bagaskara, Yasmin, dan Komalasari, Junior Medical Journal Vol. 3 No. 6, Desember 2025, tentang sedentary life, screen time, dan risiko PJK pada pegawai RS Insan Permata; (2) artikel Seketika.com tentang rata-rata penggunaan ponsel Indonesia; (3) polling UNICEF tentang online bullying di 30 negara; (4) artikel tentang konsumsi minuman manis warga RI. Silakan cek dokumen asli untuk konteks lengkap.'
+    }
+  ];
+
+  function getChatbotAnswer(question) {
+    const normalized = question.toLowerCase().trim();
+    if (!normalized) return 'Tulis pertanyaan terlebih dahulu, misalnya: “Apa temuan jurnal tentang screen time?”';
+    const match = chatbotAnswers.find(item => item.keywords.some(keyword => normalized.includes(keyword)));
+    return match ? match.answer : 'Saya bisa membantu menjelaskan screen time, gaya hidup sedentari, risiko PJK, cyberbullying, minuman manis, tips sehat, dan sumber data. Coba gunakan salah satu topik tersebut.';
+  }
+
+  function addChatMessage(text, type) {
+    const message = document.createElement('div');
+    message.className = `chatbot-message ${type}`;
+    message.textContent = text;
+    chatbotMessages.appendChild(message);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function askChatbot(question) {
+    addChatMessage(question, 'user');
+    window.setTimeout(() => addChatMessage(getChatbotAnswer(question), 'bot'), 180);
+  }
+
+  if (chatbotLauncher && chatbotPanel && chatbotMessages) {
+    chatbotLauncher.addEventListener('click', function () {
+      const isOpen = !chatbotPanel.hidden;
+      chatbotPanel.hidden = isOpen;
+      this.setAttribute('aria-expanded', String(!isOpen));
+      if (!isOpen && chatbotInput) chatbotInput.focus();
+    });
+    chatbotClose.addEventListener('click', () => {
+      chatbotPanel.hidden = true;
+      chatbotLauncher.setAttribute('aria-expanded', 'false');
+    });
+    chatbotForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const question = chatbotInput.value.trim();
+      if (!question) return;
+      askChatbot(question);
+      chatbotInput.value = '';
+    });
+    document.querySelectorAll('[data-chat-question]').forEach(button => {
+      button.addEventListener('click', () => askChatbot(button.dataset.chatQuestion));
+    });
+  }
+
   /* ----- 0.3 Canvas Confetti Particle System ----- */
   function launchConfetti() {
     const canvas = document.getElementById('confettiCanvas');
@@ -327,7 +421,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const bottom = top + section.offsetHeight;
       if (scrollPos >= top && scrollPos < bottom) {
         navLinks.forEach(a => a.classList.remove('active'));
-        const activeLink = document.querySelector('.navlinks a[href="#' + section.id + '"]');
+        const homeSectionIds = ['beranda', 'cermin', 'fakta', 'dampak', 'explorePages'];
+        const navTarget = homeSectionIds.includes(section.id) ? 'beranda' : section.id;
+        const activeLink = document.querySelector('.navlinks a[href$="#' + navTarget + '"]');
         if (activeLink) activeLink.classList.add('active');
       }
     });

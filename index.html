@@ -23,9 +23,6 @@
     </div>
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
       <a href="index.html#beranda" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
-      <a href="index.html#cermin" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Cermin</a>
-      <a href="index.html#fakta" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Fakta</a>
-      <a href="index.html#dampak" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Dampak</a>
       <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
       <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
     </div>
@@ -207,6 +204,35 @@
 <canvas id="confettiCanvas"></canvas>
 <div class="toast-container" id="toastContainer"></div>
 <button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<div class="info-chatbot" id="infoChatbot">
+  <button class="chatbot-launcher" id="chatbotLauncher" type="button" aria-label="Buka Rebahan Bot" title="Buka Rebahan Bot" aria-expanded="false" aria-controls="chatbotPanel"><span class="chatbot-avatar"><img src="mascot/aset4.png" alt="" aria-hidden="true"></span></button>
+  <section class="chatbot-panel" id="chatbotPanel" aria-label="Chatbot informasi kesehatan digital" hidden>
+    <div class="chatbot-header">
+      <div class="chatbot-brand">
+        <span class="chatbot-avatar chatbot-avatar-large"><img src="mascot/aset4.png" alt="Maskot Rebahan Bot"></span>
+        <div>
+        <strong>Rebahan Bot</strong>
+        <span>Informasi berbasis sumber</span>
+        </div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose" type="button" aria-label="Tutup chatbot">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite">
+      <div class="chatbot-message bot">Halo! Tanyakan tentang screen time, sedentari, cyberbullying, minuman manis, atau tips hidup lebih aktif.</div>
+    </div>
+    <div class="chatbot-quick-actions">
+      <button type="button" data-chat-question="Apa temuan jurnal tentang screen time?">Temuan jurnal</button>
+      <button type="button" data-chat-question="Apa dampak terlalu lama duduk?">Dampak sedentari</button>
+      <button type="button" data-chat-question="Berapa lama penggunaan ponsel di Indonesia?">Data ponsel</button>
+      <button type="button" data-chat-question="Apa sumber data kamu?">Sumber data</button>
+    </div>
+    <form class="chatbot-form" id="chatbotForm">
+      <input id="chatbotInput" type="text" maxlength="180" placeholder="Tulis pertanyaan..." autocomplete="off" aria-label="Pertanyaan untuk chatbot">
+      <button type="submit" aria-label="Kirim pertanyaan">Kirim</button>
+    </form>
+  </section>
+</div>
 
 <script src="js/script.js"></script>
 </body>
