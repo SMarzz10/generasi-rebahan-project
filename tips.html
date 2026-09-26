@@ -23,20 +23,22 @@
     </div>
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
       <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
-      <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
       <a href="tips.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+      <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
     </div>
     <div class="flex items-center gap-2">
+      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">👤 Masuk</button>
       <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle">🌙 Mode Rebahan</button>
     </div>
   </div>
 </nav>
 
-<section class="border-b border-line py-[72px] scroll-reveal">
+<section class="tips-intro border-b border-line py-[72px] scroll-reveal">
   <div class="mx-auto max-w-page px-6">
     <div class="mb-2 text-sm text-dim"><a href="index.html" class="no-underline hover:text-ink">Beranda</a> / <span>Tips & Habit Tracker</span></div>
+    <p class="tips-eyebrow">KEBIASAAN KECIL · DAMPAK NYATA</p>
     <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Tips Aksi Nyata & Tracker Harian</h1>
-    <p class="mb-4 max-w-[65ch] text-[1.15rem] text-dim">Langkah kecil tetap dihitung. Pelajari tips digital detox, dapatkan fakta acak, dan pantau kebiasaan sehatmu dengan sistem reset otomatis Jam 22:00 WIB.</p>
+    <p class="mb-4 max-w-[65ch] text-[1.05rem] text-dim">Langkah kecil tetap dihitung. Temukan cara sederhana menjaga keseimbangan digital dan catat rutinitas sehatmu setiap hari.</p>
   </div>
 </section>
 
@@ -121,6 +123,29 @@
         </div>
       </div>
 
+      <section class="streak-history" id="streakHistory" aria-labelledby="streakHistoryTitle">
+        <div class="streak-history-heading">
+          <div>
+            <h4 id="streakHistoryTitle">Riwayat Streak</h4>
+            <p>Hari dengan minimal 4 rutinitas selesai akan ditandai di kalender.</p>
+          </div>
+          <div class="streak-history-summary">
+            <span>🔥</span>
+            <strong id="streakHistoryTotal">0 hari tercatat</strong>
+          </div>
+        </div>
+        <div class="streak-calendar-toolbar">
+          <h5 id="streakCalendarMonth" aria-live="polite"></h5>
+          <div>
+            <button id="streakMonthPrev" type="button" aria-label="Lihat bulan sebelumnya">‹</button>
+            <button id="streakMonthNext" type="button" aria-label="Lihat bulan berikutnya">›</button>
+          </div>
+        </div>
+        <div class="streak-calendar" id="streakCalendar" role="grid" aria-label="Kalender riwayat streak"></div>
+        <div class="streak-calendar-legend"><span></span> Target harian tercapai</div>
+        <p class="streak-history-login" id="streakHistoryLogin" hidden>Login terlebih dahulu untuk melihat riwayat streak akunmu.</p>
+      </section>
+
       <div class="flex flex-wrap gap-2" id="categoryTabs">
         <button class="filter-tab active cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Semua">Semua</button>
         <button class="filter-tab cursor-pointer rounded-full border border-line bg-surface-2 px-4 py-[7px] font-body text-[0.84rem] font-medium text-dim transition hover:border-accent hover:text-ink" data-cat="Fisik">🏃 Fisik</button>
@@ -174,9 +199,37 @@
   </div>
 </div>
 
+<div class="streak-celebration-overlay" id="streakCelebrationOverlay" hidden>
+  <section class="streak-celebration" role="dialog" aria-modal="true" aria-labelledby="streakCelebrationTitle">
+    <button class="streak-celebration-close" id="streakCelebrationClose" type="button" aria-label="Tutup pop-up">×</button>
+    <img src="mascot/streak_kukang.png" alt="Maskot kukang dengan api, merayakan streak aktif">
+    <p class="streak-celebration-eyebrow">TARGET HARIAN TERCAPAI</p>
+    <h2 id="streakCelebrationTitle">Streak-mu menyala!</h2>
+    <p>Hebat! Kamu sudah menyelesaikan 4 rutinitas hari ini. Pertahankan kebiasaan baikmu.</p>
+    <button class="streak-celebration-action" id="streakCelebrationOk" type="button">Lanjutkan</button>
+  </section>
+</div>
+
 <canvas id="confettiCanvas"></canvas>
 <div class="toast-container" id="toastContainer"></div>
 <button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<div class="account-modal-overlay" id="accountModalOverlay" hidden>
+  <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+    <button class="account-modal-close" id="accountModalClose" type="button" aria-label="Tutup login">×</button>
+    <div class="text-[2rem]">👤</div>
+    <h2 id="accountModalTitle">Simpan progresmu</h2>
+    <p class="account-modal-note">Login dummy untuk menyimpan checklist rutinitas di akun perangkat ini. Tidak ada data yang dikirim ke server.</p>
+    <form id="accountForm">
+      <label for="accountName">Nama pengguna</label>
+      <input id="accountName" type="text" maxlength="40" required placeholder="Contoh: Raka">
+      <label for="accountEmail">Email dummy</label>
+      <input id="accountEmail" type="email" required placeholder="raka@email.test">
+      <button type="submit">Masuk & Simpan Progres</button>
+    </form>
+    <button class="account-logout" id="accountLogout" type="button" hidden>Keluar dari akun</button>
+  </section>
+</div>
 
 <div class="info-chatbot" id="infoChatbot">
   <button class="chatbot-launcher" id="chatbotLauncher" type="button" aria-label="Buka Rebahan Bot" title="Buka Rebahan Bot" aria-expanded="false" aria-controls="chatbotPanel"><span class="chatbot-avatar"><img src="mascot/aset4.png" alt="" aria-hidden="true"></span></button>

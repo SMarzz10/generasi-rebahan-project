@@ -23,10 +23,11 @@
     </div>
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
       <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
-      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
       <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
     </div>
     <div class="flex items-center gap-2">
+      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">👤 Masuk</button>
       <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle">🌙 Mode Rebahan</button>
     </div>
   </div>
@@ -118,6 +119,23 @@
 <canvas id="confettiCanvas"></canvas>
 <div class="toast-container" id="toastContainer"></div>
 <button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<div class="account-modal-overlay" id="accountModalOverlay" hidden>
+  <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+    <button class="account-modal-close" id="accountModalClose" type="button" aria-label="Tutup login">×</button>
+    <div class="text-[2rem]">👤</div>
+    <h2 id="accountModalTitle">Simpan progresmu</h2>
+    <p class="account-modal-note">Login dummy untuk menyimpan checklist rutinitas di akun perangkat ini. Tidak ada data yang dikirim ke server.</p>
+    <form id="accountForm">
+      <label for="accountName">Nama pengguna</label>
+      <input id="accountName" type="text" maxlength="40" required placeholder="Contoh: Raka">
+      <label for="accountEmail">Email dummy</label>
+      <input id="accountEmail" type="email" required placeholder="raka@email.test">
+      <button type="submit">Masuk & Simpan Progres</button>
+    </form>
+    <button class="account-logout" id="accountLogout" type="button" hidden>Keluar dari akun</button>
+  </section>
+</div>
 
 <div class="info-chatbot" id="infoChatbot">
   <button class="chatbot-launcher" id="chatbotLauncher" type="button" aria-label="Buka Rebahan Bot" title="Buka Rebahan Bot" aria-expanded="false" aria-controls="chatbotPanel"><span class="chatbot-avatar"><img src="mascot/aset4.png" alt="" aria-hidden="true"></span></button>

@@ -126,7 +126,95 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', syncNavOffset);
   }
 
-  /* ----- 0.3 Informasi Data Chatbot ----- */
+  /* ----- 0.3 Dummy Account — progress tracker per user/device ----- */
+  const accountButton = document.getElementById('accountButton');
+  const accountOverlay = document.getElementById('accountModalOverlay');
+  const accountClose = document.getElementById('accountModalClose');
+  const accountForm = document.getElementById('accountForm');
+  const accountLogout = document.getElementById('accountLogout');
+  const accountName = document.getElementById('accountName');
+  const accountEmail = document.getElementById('accountEmail');
+  let currentUser = null;
+
+  try {
+    currentUser = JSON.parse(localStorage.getItem('rebahan_current_user')) || null;
+  } catch (e) {
+    currentUser = null;
+  }
+
+  function accountStorageKey(prefix, user = currentUser) {
+    return user ? prefix + '_' + encodeURIComponent(user.id) : prefix;
+  }
+
+  function updateAccountUI() {
+    if (!accountButton) return;
+    accountButton.textContent = currentUser ? '👤 ' + currentUser.name : '👤 Masuk';
+    accountButton.title = currentUser
+      ? 'Akun dummy aktif: ' + currentUser.email
+      : 'Login dummy untuk menyimpan progres';
+    if (accountLogout) accountLogout.hidden = !currentUser;
+    if (accountForm) accountForm.hidden = !!currentUser;
+    if (accountName && currentUser) accountName.value = currentUser.name;
+    if (accountEmail && currentUser) accountEmail.value = currentUser.email;
+  }
+
+  function openAccountModal() {
+    if (!accountOverlay) return;
+    accountOverlay.hidden = false;
+    updateAccountUI();
+    accountOverlay.classList.add('show');
+    if (currentUser && accountLogout) accountLogout.focus();
+    else if (accountName) accountName.focus();
+  }
+
+  function closeAccountModal() {
+    if (accountOverlay) {
+      accountOverlay.classList.remove('show');
+      setTimeout(function () { accountOverlay.hidden = true; }, 250);
+    }
+  }
+
+  if (accountButton) accountButton.addEventListener('click', openAccountModal);
+  if (accountClose) accountClose.addEventListener('click', closeAccountModal);
+  if (accountOverlay) {
+    accountOverlay.addEventListener('click', function (e) {
+      if (e.target === accountOverlay) closeAccountModal();
+    });
+  }
+  if (accountForm) {
+    accountForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = accountName.value.trim();
+      const email = accountEmail.value.trim().toLowerCase();
+      if (!name || !email) return;
+
+      const previousTracker = localStorage.getItem('rebahan_tracker_state');
+      const previousHabits = localStorage.getItem('rebahan_custom_habits');
+      currentUser = { id: email, name: name, email: email };
+      localStorage.setItem('rebahan_current_user', JSON.stringify(currentUser));
+      if (!localStorage.getItem(accountStorageKey('rebahan_tracker_state'))) {
+        if (previousTracker) localStorage.setItem(accountStorageKey('rebahan_tracker_state'), previousTracker);
+        if (previousHabits) localStorage.setItem(accountStorageKey('rebahan_custom_habits'), previousHabits);
+      }
+      updateAccountUI();
+      if (typeof loadTrackerForCurrentUser === 'function') loadTrackerForCurrentUser();
+      closeAccountModal();
+      showToast('Login dummy berhasil. Progresmu tersimpan di akun ini.', '✅');
+    });
+  }
+  if (accountLogout) {
+    accountLogout.addEventListener('click', function () {
+      currentUser = null;
+      localStorage.removeItem('rebahan_current_user');
+      updateAccountUI();
+      if (typeof loadTrackerForCurrentUser === 'function') loadTrackerForCurrentUser();
+      closeAccountModal();
+      showToast('Kamu keluar dari akun dummy.', '👋');
+    });
+  }
+  updateAccountUI();
+
+  /* ----- 0.4 Informasi Data Chatbot ----- */
   const chatbotLauncher = document.getElementById('chatbotLauncher');
   const chatbotPanel = document.getElementById('chatbotPanel');
   const chatbotClose = document.getElementById('chatbotClose');
@@ -149,15 +237,15 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     {
       keywords: ['duduk', 'sedentari', 'sedenter', 'bergerak', 'jantung'],
-      answer: 'Gaya hidup sedenter berarti banyak waktu duduk atau berbaring dengan sedikit aktivitas. Jurnal yang kamu berikan mencatat 24,1% penduduk Indonesia berperilaku sedenter selama 6 jam per hari berdasarkan rujukan Riskesdas/penelitian terkait. Coba selingi duduk dengan berdiri atau berjalan singkat.'
+      answer: 'Gaya hidup sedenter berarti banyak waktu duduk atau berbaring dengan sedikit aktivitas. Data yang kami miliki mencatat 24,1% penduduk Indonesia berperilaku sedenter selama 6 jam per hari berdasarkan rujukan Riskesdas/penelitian terkait. Coba selingi duduk dengan berdiri atau berjalan singkat.'
     },
     {
       keywords: ['ponsel', 'hp', 'handphone', 'penggunaan ponsel', '6 jam'],
-      answer: 'Artikel Seketika.com yang kamu berikan menyoroti rata-rata penggunaan ponsel di Indonesia sekitar 6 jam per hari dan menyebutnya sebagai salah satu yang tertinggi di dunia. Angka ini perlu dibaca sebagai laporan media, bukan hasil pengukuran chatbot.'
+      answer: 'Data yang kami miliki dari artikel Seketika.com menyoroti rata-rata penggunaan ponsel di Indonesia sekitar 6 jam per hari dan menyebutnya sebagai salah satu yang tertinggi di dunia. Angka ini perlu dibaca sebagai laporan media, bukan hasil pengukuran chatbot.'
     },
     {
       keywords: ['cyberbullying', 'bullying', 'perundungan', 'online bullying'],
-      answer: 'Polling UNICEF yang kamu berikan menyebut lebih dari sepertiga anak muda di 30 negara pernah menjadi korban perundungan daring. Jika mengalami atau menyaksikan cyberbullying, simpan bukti, blokir/laporkan akun, dan ceritakan kepada orang dewasa tepercaya.'
+      answer: 'Data yang kami miliki dari polling UNICEF menyebut lebih dari sepertiga anak muda di 30 negara pernah menjadi korban perundungan daring. Jika mengalami atau menyaksikan cyberbullying, simpan bukti, blokir/laporkan akun, dan ceritakan kepada orang dewasa tepercaya.'
     },
     {
       keywords: ['minuman', 'manis', 'gula', 'boba', 'soda'],
@@ -324,9 +412,11 @@ document.addEventListener('DOMContentLoaded', function () {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.14 });
 
     reveals.forEach(r => observer.observe(r));
   }
@@ -437,41 +527,72 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ----- 2.3 Fakta & Data — Counter animasi saat section terlihat ----- */
-  let counted = false;
-  function animateCounters() {
-    if (counted) return;
-    const fakta = document.getElementById('fakta');
-    if (!fakta) return;
-    const statTop = fakta.offsetTop;
-    if (window.scrollY + window.innerHeight > statTop + 80) {
-      counted = true;
-      document.querySelectorAll('.stat-num').forEach(el => {
-        const target = parseFloat(el.getAttribute('data-target'));
-        const suffix = el.getAttribute('data-suffix') || '';
-        const isDecimal = target % 1 !== 0;
-        
-        let startTimestamp = null;
-        const duration = 1400;
-        
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          const currentVal = progress * target;
-          
-          el.textContent = (isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal)) + suffix;
-          
-          if (progress < 1) {
-            window.requestAnimationFrame(step);
-          } else {
-            el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
-          }
-        };
+  const fakta = document.getElementById('fakta');
+  const statNumbers = fakta ? Array.from(fakta.querySelectorAll('.stat-num')) : [];
+
+  function formatStatValue(value, isDecimal) {
+    return isDecimal ? value.toFixed(1) : String(Math.floor(value));
+  }
+
+  statNumbers.forEach(function (element) {
+    const target = parseFloat(element.getAttribute('data-target'));
+    const suffix = element.getAttribute('data-suffix') || '';
+    const isDecimal = target % 1 !== 0;
+    element.textContent = formatStatValue(0, isDecimal) + suffix;
+  });
+
+  function startStatCount(element) {
+    const target = parseFloat(element.getAttribute('data-target'));
+    const suffix = element.getAttribute('data-suffix') || '';
+    const isDecimal = target % 1 !== 0;
+    const duration = 2400;
+    let startTimestamp = null;
+
+    function step(timestamp) {
+      if (startTimestamp === null) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = easedProgress * target;
+      element.textContent = formatStatValue(currentValue, isDecimal) + suffix;
+
+      if (progress < 1) {
         window.requestAnimationFrame(step);
+      } else {
+        element.textContent = formatStatValue(target, isDecimal) + suffix;
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  }
+
+  if (fakta && statNumbers.length) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      statNumbers.forEach(function (element) {
+        const target = parseFloat(element.getAttribute('data-target'));
+        const suffix = element.getAttribute('data-suffix') || '';
+        element.textContent = formatStatValue(target, target % 1 !== 0) + suffix;
       });
+    } else if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            statNumbers.forEach(startStatCount);
+            return;
+          }
+
+          statNumbers.forEach(function (element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const isDecimal = target % 1 !== 0;
+            const suffix = element.getAttribute('data-suffix') || '';
+            element.textContent = formatStatValue(0, isDecimal) + suffix;
+          });
+        });
+      }, { threshold: 0.2 });
+      counterObserver.observe(fakta);
+    } else {
+      statNumbers.forEach(startStatCount);
     }
   }
-  window.addEventListener('scroll', animateCounters);
-  animateCounters();
 
   /* =========================================================
      3. QUIZ ENGINE — Cek Kebiasaan Adaptif
@@ -1104,23 +1225,30 @@ document.addEventListener('DOMContentLoaded', function () {
     { id: 'def_6', title: 'Stretching & perbaiki postur tubuh', category: 'Fisik', isDefault: true }
   ];
 
-  let customHabits = [];
-  try {
-    customHabits = JSON.parse(localStorage.getItem('rebahan_custom_habits')) || [];
-  } catch (e) { customHabits = []; }
-
   /* State tracker: periode reset terakhir, map centang, jumlah streak */
   let trackerState = {
     lastResetPeriod: '',
     checkedMap: {},
-    streak: 0
+    streak: 0,
+    history: []
   };
-  try {
-    const loadedState = JSON.parse(localStorage.getItem('rebahan_tracker_state'));
-    if (loadedState && typeof loadedState === 'object') {
-      trackerState = Object.assign(trackerState, loadedState);
+  let customHabits = [];
+
+  function loadTrackerForCurrentUser() {
+    customHabits = [];
+    trackerState = { lastResetPeriod: '', checkedMap: {}, streak: 0 };
+    try {
+      const savedHabits = JSON.parse(localStorage.getItem(accountStorageKey('rebahan_custom_habits'))) || [];
+      if (Array.isArray(savedHabits)) customHabits = savedHabits;
+      const loadedState = JSON.parse(localStorage.getItem(accountStorageKey('rebahan_tracker_state')));
+      if (loadedState && typeof loadedState === 'object') {
+        trackerState = Object.assign(trackerState, loadedState);
+      }
+    } catch (e) {
+      customHabits = [];
     }
-  } catch (e) { }
+    if (typeof renderAll === 'function') renderAll();
+  }
 
   /* ----- 7.2 Reset Harian (Jam 22:00) — Hitung tanggal target reset ----- */
   function getTargetResetDate(now) {
@@ -1153,6 +1281,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (prevCheckedCount >= 4) {
           trackerState.streak = (trackerState.streak || 0) + 1;
+          const completedPeriod = trackerState.lastResetPeriod.slice(0, 10);
+          if (!Array.isArray(trackerState.history)) trackerState.history = [];
+          if (!trackerState.history.includes(completedPeriod)) {
+            trackerState.history.push(completedPeriod);
+          }
         } else {
           trackerState.streak = 0;
         }
@@ -1165,25 +1298,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function saveTrackerState() {
     try {
-      localStorage.setItem('rebahan_tracker_state', JSON.stringify(trackerState));
+      localStorage.setItem(accountStorageKey('rebahan_tracker_state'), JSON.stringify(trackerState));
     } catch (e) { }
   }
 
   function saveCustomHabits() {
     try {
-      localStorage.setItem('rebahan_custom_habits', JSON.stringify(customHabits));
+      localStorage.setItem(accountStorageKey('rebahan_custom_habits'), JSON.stringify(customHabits));
     } catch (e) { }
   }
 
   /* ----- 7.4 Countdown Timer Reset Harian (update setiap 1 detik) ----- */
   function updateCountdownTimer() {
     const now = new Date();
+    const previousPeriod = trackerState.lastResetPeriod;
+    checkAndApplyReset();
+    if (trackerState.lastResetPeriod !== previousPeriod) {
+      renderAll();
+    }
     const targetReset = getTargetResetDate(now);
     const diffMs = targetReset.getTime() - now.getTime();
 
     if (diffMs <= 0) {
-      checkAndApplyReset();
-      renderAll();
       return;
     }
 
@@ -1200,11 +1336,99 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   setInterval(updateCountdownTimer, 1000);
-  updateCountdownTimer();
 
   /* ----- 7.5 Getter Semua Kebiasaan (default + custom) ----- */
   function getAllHabits() {
-    return DEFAULT_HABITS.concat(customHabits);
+    return DEFAULT_HABITS.concat(Array.isArray(customHabits) ? customHabits : []);
+  }
+
+  let streakCalendarDate = new Date();
+  streakCalendarDate.setDate(1);
+
+  function renderStreakHistory() {
+    const calendar = document.getElementById('streakCalendar');
+    if (!calendar) return;
+
+    const loginMessage = document.getElementById('streakHistoryLogin');
+    const loggedIn = !!currentUser;
+    calendar.hidden = !loggedIn;
+    document.querySelector('.streak-calendar-toolbar').hidden = !loggedIn;
+    document.querySelector('.streak-calendar-legend').hidden = !loggedIn;
+    if (loginMessage) loginMessage.hidden = loggedIn;
+
+    const history = Array.isArray(trackerState.history) ? trackerState.history : [];
+    const completedDates = new Set(history);
+    const currentDone = Object.keys(trackerState.checkedMap || {}).filter(function (id) {
+      return trackerState.checkedMap[id] === true;
+    }).length >= 4;
+    if (currentDone && trackerState.lastResetPeriod) {
+      completedDates.add(trackerState.lastResetPeriod.slice(0, 10));
+    }
+
+    const total = document.getElementById('streakHistoryTotal');
+    if (total) total.textContent = completedDates.size + ' hari tercatat';
+
+    const monthHeading = document.getElementById('streakCalendarMonth');
+    if (!monthHeading) return;
+    monthHeading.textContent = new Intl.DateTimeFormat('id-ID', {
+      month: 'long',
+      year: 'numeric'
+    }).format(streakCalendarDate);
+
+    const weekdays = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+    calendar.innerHTML = weekdays.map(function (day) {
+      return '<div class="streak-calendar-day weekday" role="columnheader">' + day + '</div>';
+    }).join('');
+
+    const year = streakCalendarDate.getFullYear();
+    const month = streakCalendarDate.getMonth();
+    const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const today = new Date();
+    const todayKey = today.getFullYear() + '-' +
+      String(today.getMonth() + 1).padStart(2, '0') + '-' +
+      String(today.getDate()).padStart(2, '0');
+
+    for (let blank = 0; blank < firstWeekday; blank++) {
+      calendar.insertAdjacentHTML('beforeend', '<div class="streak-calendar-day empty" role="gridcell" aria-hidden="true"></div>');
+    }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateKey = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+      const classes = ['streak-calendar-day'];
+      if (completedDates.has(dateKey)) classes.push('completed');
+      if (dateKey === todayKey) classes.push('today');
+      const label = completedDates.has(dateKey)
+        ? day + ', target harian tercapai'
+        : String(day);
+      calendar.insertAdjacentHTML(
+        'beforeend',
+        '<div class="' + classes.join(' ') + '" role="gridcell" aria-label="' + label + '">' + day + '</div>'
+      );
+    }
+
+    const prevButton = document.getElementById('streakMonthPrev');
+    const nextButton = document.getElementById('streakMonthNext');
+    if (prevButton) prevButton.disabled = !loggedIn;
+    if (nextButton) nextButton.disabled = !loggedIn;
+  }
+
+  const previousStreakMonth = document.getElementById('streakMonthPrev');
+  if (previousStreakMonth) {
+    previousStreakMonth.addEventListener('click', function () {
+      streakCalendarDate.setMonth(streakCalendarDate.getMonth() - 1);
+      renderStreakHistory();
+    });
+  }
+  const nextStreakMonth = document.getElementById('streakMonthNext');
+  if (nextStreakMonth) {
+    nextStreakMonth.addEventListener('click', function () {
+      streakCalendarDate = new Date(
+        streakCalendarDate.getFullYear(),
+        streakCalendarDate.getMonth() + 1,
+        1
+      );
+      renderStreakHistory();
+    });
   }
 
   /* ----- 7.6 Filter Tab Kategori ----- */
@@ -1338,6 +1562,14 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (e.target.closest('.habit-checkbox')) {
       const cb = e.target.closest('.habit-checkbox');
       const habitId = cb.getAttribute('data-id');
+
+      if (!currentUser) {
+        e.preventDefault();
+        openAccountModal();
+        showToast('Silakan login terlebih dahulu untuk menyimpan progres.', '👤');
+        return;
+      }
+
       const isAlreadyChecked = !!trackerState.checkedMap[habitId];
 
       if (isAlreadyChecked) {
@@ -1400,6 +1632,39 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ----- 7.12 Update UI Statistik (progress %, streak card, status badge) ----- */
+  const streakCelebrationOverlay = document.getElementById('streakCelebrationOverlay');
+  const streakCelebrationClose = document.getElementById('streakCelebrationClose');
+  const streakCelebrationOk = document.getElementById('streakCelebrationOk');
+
+  function closeStreakCelebration() {
+    if (!streakCelebrationOverlay) return;
+    streakCelebrationOverlay.classList.remove('show');
+    setTimeout(function () {
+      streakCelebrationOverlay.hidden = true;
+    }, 220);
+  }
+
+  function showStreakCelebration() {
+    if (!streakCelebrationOverlay) return;
+    streakCelebrationOverlay.hidden = false;
+    requestAnimationFrame(function () {
+      streakCelebrationOverlay.classList.add('show');
+    });
+    if (streakCelebrationOk) streakCelebrationOk.focus();
+  }
+
+  if (streakCelebrationClose) {
+    streakCelebrationClose.addEventListener('click', closeStreakCelebration);
+  }
+  if (streakCelebrationOk) {
+    streakCelebrationOk.addEventListener('click', closeStreakCelebration);
+  }
+  if (streakCelebrationOverlay) {
+    streakCelebrationOverlay.addEventListener('click', function (event) {
+      if (event.target === streakCelebrationOverlay) closeStreakCelebration();
+    });
+  }
+
   function updateHabitUI() {
     const all = getAllHabits();
     const totalCount = all.length;
@@ -1449,7 +1714,7 @@ document.addEventListener('DOMContentLoaded', function () {
         saveTrackerState();
         setTimeout(function () {
           launchConfetti();
-          showToast('Selamat! Target 4+ Harian Tercapai! Streak Hari Ini Aktif 🔥', '🔥');
+          showStreakCelebration();
         }, 300);
       }
       if(targetStatusBadge) { targetStatusBadge.textContent = '✅ Target Min. 4 Reached!'; targetStatusBadge.classList.add('active-streak'); }
@@ -1484,8 +1749,11 @@ document.addEventListener('DOMContentLoaded', function () {
     checkAndApplyReset();
     renderHabitList();
     updateHabitUI();
+    renderStreakHistory();
   }
 
+  loadTrackerForCurrentUser();
   renderAll();
+  updateCountdownTimer();
 
 });
