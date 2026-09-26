@@ -375,26 +375,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouch) return;
 
-    const tiltCards = document.querySelectorAll('.tilt-card:not(.no-tilt), .mirror-card:not(.no-tilt)');
+    const tiltCards = document.querySelectorAll('#beranda ~ section .tilt-card:not(.no-tilt)');
     tiltCards.forEach(card => {
       card.addEventListener('mousemove', function (e) {
         const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        if (!rect.width || !rect.height) return;
 
-        this.style.setProperty('--mouse-x', `${x}px`);
-        this.style.setProperty('--mouse-y', `${y}px`);
+        const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        const rotateX = Math.max(-6, Math.min(6, y * 6));
+        const rotateY = Math.max(-6, Math.min(6, x * 6));
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        this.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(24px)`;
       });
 
       card.addEventListener('mouseleave', function () {
-        this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        this.style.transform = '';
       });
     });
   }
