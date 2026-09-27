@@ -16,18 +16,36 @@ document.addEventListener('DOMContentLoaded', function () {
   const initialMode = savedMode === 'sehat' ? 'sehat' : 'rebahan';
   document.documentElement.setAttribute('data-mode', initialMode);
   document.body.setAttribute('data-mode', initialMode);
+  const iconAssets = {
+    getUp: 'icon/get-up-svgrepo-com.svg',
+    walking: 'icon/man-walking-svgrepo-com.svg',
+    burger: 'icon/junk-food-burger-svgrepo-com%20(1).svg',
+    moon: 'icon/moon-night-svgrepo-com.svg',
+    clock: 'icon/clock-svgrepo-com.svg',
+    sunset: 'icon/sunset-svgrepo-com.svg',
+    snack: 'icon/snack-fast-food-svgrepo-com.svg',
+    phone: 'icon/smartphone-tablet-svgrepo-com.svg',
+    planning: 'icon/tactics-planning-svgrepo-com.svg',
+    target: 'icon/target-hit-aim-svgrepo-com.svg'
+  };
+
+  function iconMarkup(name, className = 'ui-icon') {
+    const src = iconAssets[name];
+    return src ? `<img class="${className}" src="${src}" alt="" aria-hidden="true">` : '';
+  }
 
   /* =========================================================
      0. INTERACTIVE SYSTEM HELPERS (Toast, Sound, Confetti, Tilt, Scroll)
      ========================================================= */
 
   /* ----- 0.1 Toast Notification Engine ----- */
-  function showToast(message, icon = '✨', duration = 3000) {
+  function showToast(message, icon = null, duration = 3000) {
     const container = document.getElementById('toastContainer');
     if (!container) return;
     const toast = document.createElement('div');
     toast.className = 'toast-msg';
-    toast.innerHTML = `<span style="font-size:1.1rem;">${icon}</span> <span>${message}</span>`;
+    toast.innerHTML = `${icon ? iconMarkup(icon, 'ui-icon toast-icon') : ''}<span></span>`;
+    toast.lastElementChild.textContent = message;
     container.appendChild(toast);
     
     void toast.offsetWidth; // force reflow
@@ -148,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function updateAccountUI() {
     if (!accountButton) return;
-    accountButton.textContent = currentUser ? '👤 ' + currentUser.name : '👤 Masuk';
+    accountButton.textContent = currentUser ? currentUser.name : 'Masuk';
     accountButton.title = currentUser
       ? 'Akun dummy aktif: ' + currentUser.email
       : 'Login dummy untuk menyimpan progres';
@@ -199,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
       updateAccountUI();
       if (typeof loadTrackerForCurrentUser === 'function') loadTrackerForCurrentUser();
       closeAccountModal();
-      showToast('Login dummy berhasil. Progresmu tersimpan di akun ini.', '✅');
+      showToast('Login dummy berhasil. Progresmu tersimpan di akun ini.');
     });
   }
   if (accountLogout) {
@@ -209,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
       updateAccountUI();
       if (typeof loadTrackerForCurrentUser === 'function') loadTrackerForCurrentUser();
       closeAccountModal();
-      showToast('Kamu keluar dari akun dummy.', '👋');
+      showToast('Kamu keluar dari akun dummy.');
     });
   }
   updateAccountUI();
@@ -441,7 +459,9 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ----- 1.1 Mode Toggle (Rebahan ↔ Sehat / Dark ↔ Light) ----- */
   const modeToggle = document.getElementById('modeToggle');
   if (modeToggle) {
-    modeToggle.innerHTML = initialMode === 'sehat' ? '☀️ Mode Sehat' : '🌙 Mode Rebahan';
+    modeToggle.innerHTML = initialMode === 'sehat'
+      ? `${iconMarkup('getUp')}<span>Mode Sehat</span>`
+      : `${iconMarkup('moon')}<span>Mode Rebahan</span>`;
     modeToggle.addEventListener('click', function () {
       const isSehat = document.body.getAttribute('data-mode') === 'sehat';
       const nextMode = isSehat ? 'rebahan' : 'sehat';
@@ -449,11 +469,11 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.setAttribute('data-mode', nextMode);
       localStorage.setItem('rebahan_mode', nextMode);
       if (isSehat) {
-        this.innerHTML = '🌙 Mode Rebahan';
-        showToast('Mode Rebahan Aktif 🌙', '🌙');
+        this.innerHTML = `${iconMarkup('moon')}<span>Mode Rebahan</span>`;
+        showToast('Mode Rebahan Aktif', 'moon');
       } else {
-        this.innerHTML = '☀️ Mode Sehat';
-        showToast('Mode Sehat Aktif ☀️', '☀️');
+        this.innerHTML = `${iconMarkup('getUp')}<span>Mode Sehat</span>`;
+        showToast('Mode Sehat Aktif', 'getUp');
       }
     });
   }
@@ -954,7 +974,7 @@ document.addEventListener('DOMContentLoaded', function () {
       calculateAndRenderScore();
       fadeIn(document.getElementById('quizResultView'), 'flex', 360, () => {
         launchConfetti();
-        showToast('Kuis Selesai! Hasil kamu telah dihitung 🎉', '🎉');
+        showToast('Kuis Selesai! Hasil kamu telah dihitung.', 'target');
       });
     });
   }
@@ -968,11 +988,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const minRawScore = answered * 1;
 
     const catScores = {
-      digital: { sum: 0, count: 0, icon: '📱', label: 'DIGITAL' },
-      gerak: { sum: 0, count: 0, icon: '🪑', label: 'GERAK' },
-      tidur: { sum: 0, count: 0, icon: '😴', label: 'TIDUR' },
-      makan: { sum: 0, count: 0, icon: '🍔', label: 'MAKAN' },
-      wellbeing: { sum: 0, count: 0, icon: '🧠', label: 'WELLBEING' }
+      digital: { sum: 0, count: 0, icon: 'phone', label: 'DIGITAL' },
+      gerak: { sum: 0, count: 0, icon: 'walking', label: 'GERAK' },
+      tidur: { sum: 0, count: 0, icon: 'moon', label: 'TIDUR' },
+      makan: { sum: 0, count: 0, icon: 'burger', label: 'MAKAN' },
+      wellbeing: { sum: 0, count: 0, icon: 'planning', label: 'WELLBEING' }
     };
 
     userAnswers.forEach(function (ans) {
@@ -1009,10 +1029,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* --- Tentukan level badge (4 tier) --- */
     const levelConfig = {
-      balanced: { key: 'balanced', icon: '🟢', text: 'BALANCED', badgeClass: 'badge-balanced', desc: 'Kebiasaanmu relatif seimbang.' },
-      reset: { key: 'reset', icon: '🟡', text: 'NEED A RESET', badgeClass: 'badge-reset', desc: 'Bukan berarti kamu tidak sehat. Tapi beberapa kebiasaanmu mulai perlu diperhatikan.' },
-      move: { key: 'move', icon: '🟠', text: 'TIME TO MOVE', badgeClass: 'badge-move', desc: 'Beberapa pola hidup digitalmu sudah cukup dominan.' },
-      break: { key: 'break', icon: '🔴', text: 'BREAK THE LOOP', badgeClass: 'badge-break', desc: 'Banyak kebiasaanmu saling berkaitan dan sudah waktunya melakukan perubahan.' }
+      balanced: { key: 'balanced', text: 'BALANCED', badgeClass: 'badge-balanced', desc: 'Kebiasaanmu relatif seimbang.' },
+      reset: { key: 'reset', text: 'NEED A RESET', badgeClass: 'badge-reset', desc: 'Bukan berarti kamu tidak sehat. Tapi beberapa kebiasaanmu mulai perlu diperhatikan.' },
+      move: { key: 'move', text: 'TIME TO MOVE', badgeClass: 'badge-move', desc: 'Beberapa pola hidup digitalmu sudah cukup dominan.' },
+      break: { key: 'break', text: 'BREAK THE LOOP', badgeClass: 'badge-break', desc: 'Banyak kebiasaanmu saling berkaitan dan sudah waktunya melakukan perubahan.' }
     };
 
     let currentLevel;
@@ -1021,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', function () {
     else if (score120 <= 94) currentLevel = levelConfig.move;
     else currentLevel = levelConfig.break;
 
-    document.getElementById('resultStatusIcon').textContent = currentLevel.icon;
+    document.getElementById('resultStatusIcon').className = 'result-status-indicator ' + currentLevel.badgeClass;
     document.getElementById('resultStatusText').textContent = currentLevel.text;
     document.getElementById('resultStatusDesc').textContent = '“' + currentLevel.desc + '”';
     document.getElementById('resultStatusBadge').className = 'result-status-badge ' + currentLevel.badgeClass + ' inline-flex items-center gap-2 rounded-full border border-transparent px-[18px] py-2 font-display text-[1.05rem] font-bold tracking-wide';
@@ -1051,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const dimItemHtml =
         '<div class="flex flex-col gap-1.5">' +
           '<div class="flex items-center justify-between text-[0.88rem] font-semibold">' +
-            '<span>' + c.icon + ' ' + c.label + '</span>' +
+            '<span class="inline-flex items-center gap-1.5">' + iconMarkup(c.icon) + c.label + '</span>' +
             '<span class="text-[0.82rem] text-dim">' + catPercent + '%</span>' +
           '</div>' +
           '<div class="h-2.5 overflow-hidden rounded-full border border-line bg-surface-2">' +
@@ -1083,17 +1103,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* --- Rekomendasi Aksi (pilih 3 dari recoKey jawaban user + fallback) --- */
     const recoMap = {
-      morning_detox: { icon: '🌅', title: 'Beri jeda 15 menit saat bangun', desc: 'Hirup udara atau bergerak dulu sebelum menyentuh HP.' },
-      stand_up_breaks: { icon: '🚶', title: 'Bangun dan bergerak secara berkala', desc: 'Berdiri atau jalan 2 menit di tengah sesi duduk lama.' },
-      regular_movement: { icon: '🏃', title: 'Jadwalkan gerak ringan 15 menit', desc: 'Pilih aktivitas fisik sederhana beberapa kali seminggu.' },
-      sleep_schedule: { icon: '⏰', title: 'Jaga jam tidur yang lebih stabil', desc: 'Usahakan tidur dan bangun di jam yang relatif konstan.' },
-      night_screen_detox: { icon: '📵', title: 'Beri jeda dari layar sebelum tidur', desc: 'Jauhkan HP dari kasur agar otak lebih mudah rileks.' },
-      healthy_snack: { icon: '🥗', title: 'Ganti junk food dengan camilan sederhana', desc: 'Sediakan buah atau kacang sebagai pilihan saat lapar.' },
-      reduce_sweet_drinks: { icon: '🥤', title: 'Kurangi frekuensi minuman berpemanis', desc: 'Ganti soda, boba, atau kopi manis dengan air putih.' },
-      mindful_eating: { icon: '🥣', title: 'Makan tanpa menatap layar', desc: 'Fokus pada makanannya agar porsi dan rasa lebih terasa.' },
-      body_recovery: { icon: '👁️', title: 'Istirahatkan mata tiap 20 menit', desc: 'Tatap objek jauh selama 20 detik untuk meredakan kelelahan.' },
-      app_timers: { icon: '📱', title: 'Pasang batas waktu aplikasi', desc: 'Gunakan timer agar scrolling tidak berjalan tanpa sadar.' },
-      focus_priority: { icon: '🎯', title: 'Selesaikan 1 hal penting dulu', desc: 'Tentukan satu prioritas sebelum membuka hiburan di HP.' }
+      morning_detox: { icon: 'getUp', title: 'Beri jeda 15 menit saat bangun', desc: 'Hirup udara atau bergerak dulu sebelum menyentuh HP.' },
+      stand_up_breaks: { icon: 'walking', title: 'Bangun dan bergerak secara berkala', desc: 'Berdiri atau jalan 2 menit di tengah sesi duduk lama.' },
+      regular_movement: { icon: 'walking', title: 'Jadwalkan gerak ringan 15 menit', desc: 'Pilih aktivitas fisik sederhana beberapa kali seminggu.' },
+      sleep_schedule: { icon: 'moon', title: 'Jaga jam tidur yang lebih stabil', desc: 'Usahakan tidur dan bangun di jam yang relatif konstan.' },
+      night_screen_detox: { icon: 'phone', title: 'Beri jeda dari layar sebelum tidur', desc: 'Jauhkan HP dari kasur agar otak lebih mudah rileks.' },
+      healthy_snack: { icon: 'snack', title: 'Ganti junk food dengan camilan sederhana', desc: 'Sediakan buah atau kacang sebagai pilihan saat lapar.' },
+      reduce_sweet_drinks: { icon: 'snack', title: 'Kurangi frekuensi minuman berpemanis', desc: 'Ganti soda, boba, atau kopi manis dengan air putih.' },
+      mindful_eating: { icon: 'burger', title: 'Makan tanpa menatap layar', desc: 'Fokus pada makanannya agar porsi dan rasa lebih terasa.' },
+      body_recovery: { icon: 'phone', title: 'Istirahatkan mata tiap 20 menit', desc: 'Tatap objek jauh selama 20 detik untuk meredakan kelelahan.' },
+      app_timers: { icon: 'clock', title: 'Pasang batas waktu aplikasi', desc: 'Gunakan timer agar scrolling tidak berjalan tanpa sadar.' },
+      focus_priority: { icon: 'target', title: 'Selesaikan 1 hal penting dulu', desc: 'Tentukan satu prioritas sebelum membuka hiburan di HP.' }
     };
 
     const selectedRecos = [];
@@ -1122,7 +1142,7 @@ document.addEventListener('DOMContentLoaded', function () {
       actionGrid.insertAdjacentHTML('beforeend',
         '<div class="relative flex items-start gap-3 rounded-xl border border-line bg-surface-2 p-4">' +
           '<div class="absolute right-3 top-2.5 font-display text-[0.8rem] font-bold text-dim/50">' + (i + 1) + '</div>' +
-          '<div class="mt-0.5 text-2xl leading-none">' + r.icon + '</div>' +
+          '<div class="mt-0.5 leading-none">' + iconMarkup(r.icon, 'ui-icon ui-icon--feature') + '</div>' +
           '<div><h5 class="mb-1 text-[0.92rem] font-semibold text-ink">' + r.title + '</h5><p class="m-0 text-[0.82rem] leading-snug text-dim">' + r.desc + '</p></div>' +
         '</div>'
       );
@@ -1481,7 +1501,7 @@ document.addEventListener('DOMContentLoaded', function () {
       void addHabitBtn.offsetWidth;
       addHabitBtn.classList.add('flash-success');
       const originalText = addHabitBtn.textContent;
-      addHabitBtn.textContent = '✅ Ditambahkan!';
+      addHabitBtn.textContent = 'Ditambahkan!';
       setTimeout(function () {
         addHabitBtn.textContent = originalText;
         addHabitBtn.classList.remove('flash-success');
@@ -1562,7 +1582,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!currentUser) {
         e.preventDefault();
         openAccountModal();
-        showToast('Silakan login terlebih dahulu untuk menyimpan progres.', '👤');
+        showToast('Silakan login terlebih dahulu untuk menyimpan progres.');
         return;
       }
 
@@ -1607,8 +1627,8 @@ document.addEventListener('DOMContentLoaded', function () {
     filtered.forEach(h => {
       const isDone = !!trackerState.checkedMap[h.id];
       const catLabel = h.category;
-      const deleteBtnHtml = (!h.isDefault && !isDone) ? '<button class="btn-delete-habit" data-id="' + h.id + '" title="Hapus kebiasaan">🗑️</button>' : '';
-      const lockTagHtml = isDone ? '<span class="locked-tag">🔒 Terkunci</span>' : '';
+      const deleteBtnHtml = (!h.isDefault && !isDone) ? '<button class="btn-delete-habit" data-id="' + h.id + '" title="Hapus kebiasaan" aria-label="Hapus kebiasaan">Hapus</button>' : '';
+      const lockTagHtml = isDone ? '<span class="locked-tag">Terkunci</span>' : '';
 
       const itemHtml = `
         <div class="habit-item ${isDone ? 'done' : ''}" data-id="${h.id}">
@@ -1713,8 +1733,8 @@ document.addEventListener('DOMContentLoaded', function () {
           showStreakCelebration();
         }, 300);
       }
-      if(targetStatusBadge) { targetStatusBadge.textContent = '✅ Target Min. 4 Reached!'; targetStatusBadge.classList.add('active-streak'); }
-      if(streakBadge) { streakBadge.textContent = '🔥 Active Hari Ini'; streakBadge.classList.add('active-streak'); }
+      if(targetStatusBadge) { targetStatusBadge.textContent = 'Target Min. 4 tercapai'; targetStatusBadge.classList.add('active-streak'); }
+      if(streakBadge) { streakBadge.innerHTML = iconMarkup('target') + '<span>Aktif Hari Ini</span>'; streakBadge.classList.add('active-streak'); }
       if(streakCard) streakCard.classList.add('active-streak-card');
 
       const activeStreak = (trackerState.streak || 0) + 1;

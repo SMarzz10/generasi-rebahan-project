@@ -24,11 +24,11 @@
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
       <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
       <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
-      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kuis</a>
+      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Refleksi</a>
     </div>
     <div class="flex items-center gap-2">
-      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">👤 Masuk</button>
-      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle">🌙 Mode Rebahan</button>
+      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">Masuk</button>
+      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true"><span>Mode Rebahan</span></button>
     </div>
   </div>
 </nav>
@@ -70,7 +70,7 @@
             <span class="text-[1.2rem] font-semibold text-dim">/ 120</span>
           </div>
           <div class="result-status-badge inline-flex items-center gap-2 rounded-full border border-transparent px-[18px] py-2 font-display text-[1.05rem] font-bold tracking-wide" id="resultStatusBadge">
-            <span id="resultStatusIcon">🟢</span>
+            <span id="resultStatusIcon" class="result-status-indicator" aria-hidden="true"></span>
             <span id="resultStatusText">BALANCED</span>
           </div>
           <p class="m-0 mt-1 max-w-[50ch] text-[0.95rem] italic text-dim" id="resultStatusDesc">
@@ -87,7 +87,7 @@
 
         <div class="flex flex-col gap-2.5 rounded-[14px] border border-[rgba(224,104,79,0.3)] bg-surface-2 p-5">
           <div class="flex items-center gap-3.5">
-            <span class="text-[1.8rem] leading-none">🚨</span>
+            <img class="ui-icon ui-icon--feature" src="icon/target-hit-aim-svgrepo-com.svg" alt="" aria-hidden="true">
             <div>
               <span class="text-[0.72rem] font-bold tracking-widest text-danger">PERHATIAN UTAMA</span>
               <h4 class="m-0 font-display text-[1.05rem] text-ink" id="focusTitle">POLA TIDUR</h4>
@@ -99,13 +99,13 @@
         </div>
 
         <div class="flex flex-col gap-3.5">
-          <h4 class="mb-0.5 font-display text-[1.02rem] text-ink">💡 3 hal yang bisa kamu ubah mulai hari ini</h4>
+          <h4 class="mb-0.5 flex items-center gap-2 font-display text-[1.02rem] text-ink"><img class="ui-icon" src="icon/tactics-planning-svgrepo-com.svg" alt="" aria-hidden="true">3 hal yang bisa kamu ubah mulai hari ini</h4>
           <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5" id="actionCardsGrid"></div>
         </div>
 
         <div class="mt-2 flex flex-wrap justify-center gap-3">
           <a href="tips.html" class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 text-[0.9rem] font-semibold text-[#14171c] no-underline hover:brightness-110" id="btnGoToTips">LIHAT SARANMU →</a>
-          <button class="inline-block cursor-pointer rounded-full border border-line bg-transparent px-[22px] py-3 font-body text-[0.9rem] font-semibold text-ink hover:border-accent" id="quizRestartBtn">🔄 Ulangi Kuis</button>
+          <button class="inline-block cursor-pointer rounded-full border border-line bg-transparent px-[22px] py-3 font-body text-[0.9rem] font-semibold text-ink hover:border-accent" id="quizRestartBtn">Ulangi Kuis</button>
         </div>
       </div>
     </div>
@@ -123,7 +123,6 @@
 <div class="account-modal-overlay" id="accountModalOverlay" hidden>
   <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
     <button class="account-modal-close" id="accountModalClose" type="button" aria-label="Tutup login">×</button>
-    <div class="text-[2rem]">👤</div>
     <h2 id="accountModalTitle">Simpan progresmu</h2>
     <p class="account-modal-note">Login dummy untuk menyimpan checklist rutinitas di akun perangkat ini. Tidak ada data yang dikirim ke server.</p>
     <form id="accountForm">

@@ -381,6 +381,20 @@ h1, h2, h3, h4, h5 {
   border-color: rgba(95, 189, 176, 0.35);
 }
 
+.result-status-indicator {
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.result-status-indicator.badge-balanced { color: var(--accent-2); }
+.result-status-indicator.badge-reset { color: var(--accent); }
+.result-status-indicator.badge-move { color: #fb923c; }
+.result-status-indicator.badge-break { color: var(--danger); }
+
 .result-status-badge.badge-reset {
   background: color-mix(in srgb, var(--accent) 18%, transparent);
   color: var(--accent);
@@ -1312,12 +1326,12 @@ h1, h2, h3, h4, h5 {
   --star-dim: rgba(224, 233, 255, 0.48);
   --star-teal: rgba(111, 228, 214, 0.58);
   --star-amber: rgba(255, 184, 92, 0.64);
-  --card-bg: #141b3b;
-  --card-border: color-mix(in srgb, var(--accent-2) 30%, var(--bg));
+  --card-bg: #25355f;
+  --card-border: #315879;
   --card-radius: 11px;
   --card-shadow: none;
-  --card-hover-bg: color-mix(in srgb, var(--card-bg) 94%, var(--accent-2) 6%);
-  --card-hover-border: color-mix(in srgb, var(--accent-2) 45%, var(--bg));
+  --card-hover-bg: #293b69;
+  --card-hover-border: #3d7182;
   --card-transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
@@ -1446,10 +1460,15 @@ nav.site-nav > div > div:first-child .text-accent {
 
 #beranda {
   position: relative;
+  box-sizing: border-box;
   min-height: 720px;
   padding-top: clamp(5rem, 10vw, 8rem);
   padding-bottom: clamp(4rem, 8vw, 7rem);
   isolation: isolate;
+}
+
+#beranda > div {
+  width: 100%;
 }
 
 #beranda::before,
@@ -1524,6 +1543,37 @@ nav.site-nav > div > div:first-child .text-accent {
 
 #heroMascotImg {
   filter: drop-shadow(0 24px 18px rgba(0, 0, 0, 0.3));
+}
+
+@media (min-width: 768px) {
+  #beranda h1 {
+    max-width: 100%;
+    margin-top: 0;
+    font-size: clamp(2.5rem, min(4.8vw, 7vh), 4.8rem);
+  }
+
+  #beranda p {
+    margin-top: 0;
+  }
+
+  #mascotContainer {
+    min-height: 0;
+  }
+
+  #heroMascotImg {
+    width: auto;
+    max-height: 48svh;
+  }
+}
+
+@media (min-width: 1024px) {
+  #beranda {
+    min-height: calc(100vh - 81px);
+    min-height: calc(100svh - 81px);
+    display: flex;
+    align-items: center;
+    padding-block: clamp(0.75rem, 1.7vh, 1.25rem);
+  }
 }
 
 .mascot-meter input[type="range"] {
@@ -1934,15 +1984,35 @@ a.button-primary:active,
    Clean / Solid / Consistent
    ===================================================== */
 
+.ui-icon {
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  flex: 0 0 auto;
+  object-fit: contain;
+  vertical-align: -0.25em;
+}
+
+.ui-icon--feature {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+}
+
+.toast-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .tilt-card,
 .mirror-card,
 .accordion-item,
 #habitTracker,
 #quizRecoBanner {
-  background: #25355f !important;
-  border: 1px solid #315879 !important;
-  border-radius: 12px !important;
-  box-shadow: none !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--card-radius) !important;
+  box-shadow: var(--card-shadow) !important;
   background-image: none !important;
 }
 
@@ -1958,9 +2028,9 @@ a.button-primary:active,
 .accordion-item:hover,
 #habitTracker:hover,
 #quizRecoBanner:hover {
-  background: #293b69 !important;
-  border-color: #3d7182 !important;
-  box-shadow: none !important;
+  background: var(--card-hover-bg) !important;
+  border-color: var(--card-hover-border) !important;
+  box-shadow: var(--card-shadow) !important;
 }
 
 /* Jangan gunakan efek lift berlebihan */
@@ -1972,16 +2042,16 @@ a.button-primary:active,
 /* Card yang menggunakan hover-lift tetap memakai
    sistem visual yang sama */
 .hover-lift {
-  border-radius: 12px !important;
+  border-radius: var(--card-radius) !important;
 }
 
 /* Stat card */
 .stat-card,
 .habit-stat-card {
-  background: #25355f !important;
-  border: 1px solid #315879 !important;
-  border-radius: 12px !important;
-  box-shadow: none !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--card-radius) !important;
+  box-shadow: var(--card-shadow) !important;
 }
 
 /* Angka/statistik menggunakan accent amber */
@@ -1994,9 +2064,9 @@ a.button-primary:active,
 
 /* Reflection card */
 .mirror-card {
-  background: #25355f !important;
-  border: 1px solid #315879 !important;
-  border-radius: 12px !important;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--card-radius) !important;
 }
 
 /* Jangan gunakan spotlight/glow pada card */
