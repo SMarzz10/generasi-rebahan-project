@@ -2297,3 +2297,348 @@ a.button-primary:active,
 .mirror-card .spotlight-glow {
   display: none !important;
 }
+
+/* =========================================================
+   COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
+   Flawless on Mobile (320px+), Tablet, Laptop & Desktop (4K)
+   ========================================================= */
+
+/* ----- 1. Global Viewport & Touch Protection ----- */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent auto zoom on iOS Safari inputs */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Base Container Padding */
+.max-w-page {
+  width: 100%;
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .px-6 {
+    padding-inline: 1rem !important;
+  }
+  .py-\[72px\] {
+    padding-block: 2.75rem !important;
+  }
+}
+
+/* ----- 2. Responsive Site Navigation ----- */
+@media (min-width: 901px) {
+  .stat-badge {
+    position: absolute;
+    right: 0.875rem;
+    top: 0.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  nav.site-nav #accountButton {
+    max-width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  nav.site-nav .navlinks {
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+
+  nav.site-nav.is-open .navlinks {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  nav.site-nav {
+    inset: 6px 6px auto !important;
+    width: calc(100% - 12px) !important;
+    border-radius: 18px !important;
+  }
+
+  nav.site-nav > div {
+    padding-inline: 0.5rem !important;
+    min-height: 52px !important;
+  }
+
+  nav.site-nav .nav-brand {
+    font-size: 0.92rem !important;
+  }
+
+  nav.site-nav #accountButton {
+    max-width: 90px;
+    font-size: 0.75rem !important;
+    padding-inline: 0.4rem !important;
+    min-height: 36px !important;
+  }
+
+  nav.site-nav #modeToggle,
+  nav.site-nav .nav-menu-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+  }
+}
+
+/* ----- 3. Hero & Home Section Responsiveness ----- */
+@media (max-width: 767px) {
+  #beranda {
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+    min-height: auto !important;
+  }
+
+  #beranda h1 {
+    font-size: clamp(1.85rem, 8.5vw, 3.2rem) !important;
+    word-break: break-word;
+    text-wrap: balance;
+    max-width: 100% !important;
+  }
+
+  #beranda p {
+    font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+  }
+
+  #beranda .mt-10.flex.flex-wrap.gap-8 {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  #mascotContainer {
+    width: 100% !important;
+    max-width: 280px !important;
+    min-height: auto !important;
+  }
+
+  #heroMascotImg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Section Headings Fluid Typography */
+section:not(#beranda) > div > h2 {
+  font-size: clamp(1.6rem, 5vw, 2.8rem) !important;
+  text-wrap: balance;
+  max-width: 100% !important;
+}
+
+/* ----- 4. Card Grids Fluid Scaling (Minmax Safety) ----- */
+#mirrorGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)) !important;
+}
+
+#fakta .grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)) !important;
+}
+
+#dampak .grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)) !important;
+}
+
+#explorePages .grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)) !important;
+}
+
+#actionCardsGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)) !important;
+}
+
+/* ----- 5. Quiz Section (kuis.html) Responsiveness ----- */
+@media (max-width: 640px) {
+  #kuis .tilt-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  #quizDots {
+    gap: 0.35rem !important;
+    max-width: 100% !important;
+  }
+
+  #quizDots span {
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  .quiz-opt-btn {
+    padding: 0.75rem 0.85rem !important;
+    min-height: 48px !important;
+    font-size: 0.88rem !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  #quizResultView {
+    gap: 1.25rem !important;
+  }
+
+  #resultScoreNum {
+    font-size: clamp(2.5rem, 12vw, 3.4rem) !important;
+  }
+
+  .result-status-badge {
+    font-size: 0.88rem !important;
+    padding: 0.35rem 0.85rem !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+  }
+
+  #quizResultView .mt-2.flex {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  #quizResultView .mt-2.flex > * {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+/* ----- 6. Tips & Habit Tracker (tips.html) Responsiveness ----- */
+@media (max-width: 640px) {
+  .habit-stat-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .stat-badge {
+    position: static !important;
+    margin-top: 0.15rem !important;
+    align-self: flex-start !important;
+  }
+
+  #categoryTabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.35rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  #categoryTabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-tab {
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .habit-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+    padding: 0.85rem 0.85rem !important;
+  }
+
+  .habit-left {
+    width: 100% !important;
+  }
+
+  .habit-right {
+    width: 100% !important;
+    justify-content: space-between !important;
+    border-top: 1px dashed var(--border) !important;
+    padding-top: 0.45rem !important;
+  }
+
+  .streak-calendar-toolbar {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .streak-calendar-day {
+    min-height: 2.1rem !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+/* ----- 7. Modals, Floating Chatbot & Overlay Responsiveness ----- */
+.account-modal,
+.confirm-modal-box,
+.streak-celebration,
+.chatbot-panel {
+  max-height: calc(100vh - 2rem) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (max-width: 480px) {
+  .confirm-modal-box,
+  .account-modal,
+  .streak-celebration {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+    width: calc(100vw - 1.5rem) !important;
+  }
+
+  .confirm-modal-box .flex {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .confirm-modal-box button {
+    width: 100% !important;
+  }
+
+  .back-to-top {
+    left: 0.75rem !important;
+    bottom: 0.75rem !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .info-chatbot {
+    right: 0.75rem !important;
+    bottom: 0.75rem !important;
+  }
+
+  .chatbot-launcher {
+    width: 3.8rem !important;
+    height: 3.8rem !important;
+  }
+
+  .chatbot-panel {
+    width: calc(100vw - 1.5rem) !important;
+    max-height: calc(100vh - 4.5rem) !important;
+  }
+}
