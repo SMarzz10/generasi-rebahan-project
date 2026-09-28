@@ -18,7 +18,7 @@
 
 <nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
   <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
-    <div class="whitespace-nowrap font-display text-[1.05rem] font-bold">
+    <div class="nav-brand whitespace-nowrap font-display text-[1.05rem] font-bold">
       <span class="no-underline">Generasi<span class="text-accent">Rebahan</span></span>
     </div>
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
@@ -26,9 +26,12 @@
       <a href="tips.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
       <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Refleksi</a>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="nav-actions flex items-center gap-2">
       <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">Masuk</button>
       <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true"><span>Mode Rebahan</span></button>
+      <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -36,9 +39,20 @@
 <section class="tips-intro border-b border-line py-[72px] scroll-reveal">
   <div class="mx-auto max-w-page px-6">
     <div class="mb-2 text-sm text-dim"><a href="index.html" class="no-underline hover:text-ink">Beranda</a> / <span>Tips & Habit Tracker</span></div>
-    <p class="tips-eyebrow">KEBIASAAN KECIL · DAMPAK NYATA</p>
-    <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Tips Aksi Nyata & Tracker Harian</h1>
-    <p class="mb-4 max-w-[65ch] text-[1.05rem] text-dim">Langkah kecil tetap dihitung. Temukan cara sederhana menjaga keseimbangan digital dan catat rutinitas sehatmu setiap hari.</p>
+    <div class="tips-intro-layout">
+      <div class="tips-intro-copy">
+        <p class="tips-eyebrow">KEBIASAAN KECIL · DAMPAK NYATA</p>
+        <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Tips Aksi Nyata & Tracker Harian</h1>
+        <p class="mb-4 max-w-[65ch] text-[1.05rem] text-dim">Langkah kecil tetap dihitung. Temukan cara sederhana menjaga keseimbangan digital dan catat rutinitas sehatmu setiap hari.</p>
+      </div>
+      <img
+        class="tips-intro-mascot"
+        src="mascot/tips_tracker_kukang.png"
+        alt="Maskot kukang berkacamata dengan daftar tugas rebahan"
+        width="474"
+        height="526"
+      >
+    </div>
   </div>
 </section>
 
@@ -105,7 +119,7 @@
 
       <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
         <div class="habit-stat-card relative flex items-center gap-3.5 rounded-xl border border-line bg-surface-2 px-[18px] py-4 transition hover:border-accent-2" id="streakCard">
-          <div class="stat-card-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl"><img class="ui-icon ui-icon--feature" src="icon/target-hit-aim-svgrepo-com.svg" alt="" aria-hidden="true"></div>
+          <div class="stat-card-icon flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl"><img class="ui-icon ui-icon--feature" src="icon/fire-svgrepo-com.svg" alt="" aria-hidden="true"></div>
           <div class="flex-1">
             <div class="stat-value font-display text-[1.3rem] font-bold leading-tight text-ink"><span id="streakCount">0</span> Hari</div>
             <div class="mt-0.5 text-[0.8rem] text-dim">Streak Harian</div>

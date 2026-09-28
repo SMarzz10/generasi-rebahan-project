@@ -18,7 +18,7 @@
 
 <nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
   <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
-    <div class="whitespace-nowrap font-display text-[1.05rem] font-bold">
+    <div class="nav-brand whitespace-nowrap font-display text-[1.05rem] font-bold">
       <span class="no-underline">Generasi<span class="text-accent">Rebahan</span></span>
     </div>
     <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
@@ -26,9 +26,12 @@
       <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
       <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Refleksi</a>
     </div>
-    <div class="flex items-center gap-2">
+    <div class="nav-actions flex items-center gap-2">
       <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">Masuk</button>
       <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true"><span>Mode Rebahan</span></button>
+      <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>

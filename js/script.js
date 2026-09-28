@@ -138,10 +138,50 @@ document.addEventListener('DOMContentLoaded', function () {
   const siteNav = document.querySelector('.site-nav');
   if (siteNav) {
     const syncNavOffset = function () {
-      document.body.style.paddingTop = `${siteNav.offsetHeight}px`;
+      const navTop = parseFloat(getComputedStyle(siteNav).top) || 0;
+      document.body.style.paddingTop = `${siteNav.offsetHeight + navTop + 16}px`;
     };
     syncNavOffset();
     window.addEventListener('resize', syncNavOffset);
+
+    if (document.getElementById('beranda')) {
+      const updateNavOnScroll = function () {
+        siteNav.classList.toggle('is-scrolled', window.scrollY > 24);
+      };
+      updateNavOnScroll();
+      window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+    }
+
+    const navMenuToggle = siteNav.querySelector('#navMenuToggle');
+    const closeNavMenu = function () {
+      siteNav.classList.remove('is-open');
+      navMenuToggle?.setAttribute('aria-expanded', 'false');
+      navMenuToggle?.setAttribute('aria-label', 'Buka menu');
+    };
+
+    if (navMenuToggle) {
+      navMenuToggle.addEventListener('click', function () {
+        const isOpen = siteNav.classList.toggle('is-open');
+        navMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        navMenuToggle.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+      });
+
+      siteNav.querySelectorAll('.navlinks a').forEach(function (link) {
+        link.addEventListener('click', closeNavMenu);
+      });
+
+      document.addEventListener('click', function (event) {
+        if (!siteNav.contains(event.target)) closeNavMenu();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeNavMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeNavMenu();
+      });
+    }
   }
 
   /* ----- 0.3 Dummy Account — progress tracker per user/device ----- */
