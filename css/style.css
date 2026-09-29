@@ -1313,10 +1313,6 @@ h1, h2, h3, h4, h5 {
   --card-hover-border: color-mix(in srgb, var(--accent-2) 42%, var(--surface));
 }
 
-body.bg-bg[data-mode="sehat"] {
-  background-image: none;
-}
-
 body.bg-bg {
   background: var(--bg);
   background-image:
@@ -1332,6 +1328,10 @@ body.bg-bg {
     173px 149px, 211px 197px, 267px 233px, 319px 281px,
     173px 149px, 211px 197px, 267px 233px, 319px 281px;
   overflow-x: hidden;
+}
+
+body.bg-bg[data-mode="sehat"] {
+  background-image: none;
 }
 
 nav.site-nav {
