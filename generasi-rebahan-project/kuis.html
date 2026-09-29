@@ -1,228 +1,154 @@
 <!DOCTYPE html>
-<html lang="id" data-mode="sehat">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuis Kebiasaan Digital — Generasi Rebahan</title>
-<meta name="description" content="Cek cepat 2 menit: 10 pertanyaan inti plus maksimal 2 pertanyaan adaptif untuk menganalisis profil kebiasaan gaya hidup digitalmu.">
+<title>Kuis Kebiasaan — Generasi Rebahan</title>
+<meta name="description" content="Cek cepat 2 menit: 10 soal inti plus maksimal 2 pertanyaan adaptif untuk melihat profil kebiasaan digitalmu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
 <link rel="stylesheet" href="css/style.css">
 <script>
-  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'sehat';
+  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'rebahan';
 </script>
+
 </head>
-<body data-mode="sehat">
+<body class="m-0 bg-bg font-body text-ink" data-mode="rebahan">
 
-<!-- ===== SITE NAVIGATION (SOLUS REFINED DOCK) ===== -->
-<nav class="site-nav">
-  <div class="nav-container">
-    <a href="index.html" class="brand-logo" aria-label="Generasi Rebahan Beranda">
-      <span class="brand-dot" aria-hidden="true"></span>
-      <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
-    </a>
-
-    <div class="navlinks" id="navlinks">
-      <a href="index.html#beranda" class="nav-pill">Beranda</a>
-      <a href="index.html#cermin" class="nav-pill">Cermin</a>
-      <a href="index.html#fakta" class="nav-pill">Fakta</a>
-      <a href="index.html#dampak" class="nav-pill">Dampak</a>
-      <a href="kuis.html" class="nav-pill active">Kuis</a>
-      <a href="tips.html" class="nav-pill">Tips & Tracker</a>
-      <a href="index.html#faq" class="nav-pill">FAQ</a>
+<nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
+  <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
+    <div class="nav-brand whitespace-nowrap font-display text-[1.05rem] font-bold">
+      <span class="no-underline">Generasi<span class="text-accent">Rebahan</span></span>
     </div>
-
-    <div class="nav-actions">
-      <button class="btn-sound-toggle" id="soundToggle" title="Nyalakan / Matikan Suara" aria-label="Toggle Sound">🔊</button>
-      <button class="btn-mode-toggle" id="modeToggle" aria-label="Ganti Mode Tema">☀️ Mode Sehat</button>
-      <button class="mobile-nav-toggle" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
+      <a href="index.html#beranda" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
+      <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+      <a href="kuis.html" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Refleksi</a>
+      <a href="bmi.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kalkulator BMI</a>
+    </div>
+    <div class="nav-actions flex items-center gap-2">
+      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">Masuk</button>
+      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true"><span>Mode Rebahan</span></button>
+      <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- ===== QUIZ HEADER HERO ===== -->
-<header class="site-section" style="padding: 3.5rem 1.5rem 2rem; border-bottom: none;">
-  <div class="max-w-page" style="text-align: center;">
-    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.75rem;">
-      <a href="index.html" style="color: var(--text-dim); text-decoration: none;">Beranda</a>
-      <span style="margin: 0 0.5rem; opacity: 0.5;">/</span>
-      <span style="color: var(--text); font-weight: 700;">Kuis Kebiasaan</span>
-    </div>
-    <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem;">
-      Cek Level Kebiasaan Digitalmu
-    </h1>
-    <p style="font-size: 1.1rem; color: var(--text-dim); max-width: 58ch; margin: 0 auto; line-height: 1.6;">
-      Cek cepat 2 menit: 10 pertanyaan inti, plus maksimal 2 pertanyaan adaptif yang menyesuaikan jawabanmu. Refleksi diri tanpa menghakimi.
-    </p>
+<section class="border-b border-line py-[72px] scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-2 text-sm text-dim"><a href="index.html" class="no-underline hover:text-ink">Beranda</a> / <span>Kuis Kebiasaan</span></div>
+    <h1 class="mb-2 font-display text-[clamp(2rem,4vw,2.8rem)] font-bold">Cek Level Kebiasaan Digitalmu</h1>
+    <p class="mb-4 max-w-[65ch] text-[1.15rem] text-dim">Cek cepat sekitar 2 menit: 10 pertanyaan inti, plus maksimal 2 lanjutan yang menyesuaikan jawabanmu — bukan tes kesehatan.</p>
   </div>
-</header>
+</section>
 
-<!-- ===== QUIZ INTERACTIVE CONTAINER ===== -->
-<main class="site-section" id="kuis" style="padding-top: 1rem; border-bottom: 1px solid var(--border);">
-  <div class="quiz-page-container">
-    <div class="quiz-card-box">
-
-      <!-- Active Question View -->
+<section id="kuis" class="border-b border-line pb-[72px] pt-2.5 scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="tilt-card no-tilt relative mt-6 overflow-hidden rounded-[14px] border border-line bg-surface px-7 py-8 shadow-[0_10px_30px_rgba(0,0,0,0.15)]">
+      <div class="spotlight-glow"></div>
       <div id="quizActiveView">
-        <div style="text-align: center; margin-bottom: 1.75rem;">
-          <span class="hero-kicker-badge" style="margin-bottom: 0.75rem;">CEK KEBIASAANMU</span>
-          <h3 style="font-size: 1.45rem; font-weight: 700;">Seberapa rebahan kamu hari ini?</h3>
+        <div class="mb-6 text-center">
+          <span class="text-[0.78rem] font-bold uppercase tracking-[1.5px] text-accent">CEK KEBIASAANMU</span>
+          <h3 class="mt-1 font-display text-[1.45rem] text-ink">Seberapa rebahan kamu hari ini?</h3>
         </div>
 
-        <!-- Dots progress bar -->
-        <div class="quiz-progress-dots" id="quizDots"></div>
+        <div class="mb-7 flex flex-col items-center gap-3">
+          <div class="flex flex-wrap items-center justify-center gap-2.5" id="quizDots"></div>
+        </div>
 
-        <!-- Dynamic question and options container -->
-        <div id="quizCardContent" style="min-height: 280px;"></div>
+        <div class="min-h-[280px] overflow-hidden" id="quizCardContent"></div>
 
-        <!-- Step counter -->
-        <div class="quiz-step-counter">
-          <span id="quizStepCounter">1 / 10</span>
+        <div class="mt-6 flex justify-center border-t border-dashed border-line pt-3.5">
+          <span class="font-display text-[0.88rem] font-semibold tracking-widest text-dim" id="quizStepCounter">1 / 10</span>
         </div>
       </div>
 
-      <!-- Result View -->
-      <div id="quizResultView" style="display: none;">
-        <div class="quiz-result-score-box">
-          <span class="hero-kicker-badge" style="margin-bottom: 1rem;">HASIL CEK KEBIASAANMU</span>
-          <div style="display: flex; align-items: baseline; justify-content: center; gap: 0.25rem; margin: 0.5rem 0;">
-            <span class="quiz-score-number" id="resultScoreNum">68</span>
-            <span class="quiz-score-denom">/ 120</span>
+      <div class="flex flex-col gap-7 animate-result-in" id="quizResultView" style="display: none;">
+        <div class="flex flex-col items-center gap-2 text-center">
+          <span class="text-[0.78rem] font-bold uppercase tracking-[1.5px] text-dim">HASIL CEK KEBIASAANMU</span>
+          <div class="my-1 flex items-baseline justify-center gap-1">
+            <span class="font-display text-[3.4rem] font-bold leading-none text-accent" id="resultScoreNum">68</span>
+            <span class="text-[1.2rem] font-semibold text-dim">/ 120</span>
           </div>
-
-          <div class="result-status-badge badge-balanced" id="resultStatusBadge">
-            <span id="resultStatusIcon">🟢</span>
+          <div class="result-status-badge inline-flex items-center gap-2 rounded-full border border-transparent px-[18px] py-2 font-display text-[1.05rem] font-bold tracking-wide" id="resultStatusBadge">
+            <span id="resultStatusIcon" class="result-status-indicator" aria-hidden="true"></span>
             <span id="resultStatusText">BALANCED</span>
           </div>
-
-          <p id="resultStatusDesc" style="font-size: 1.05rem; font-style: italic; color: var(--text-dim); max-width: 50ch; margin: 0.5rem auto 0; line-height: 1.6;">
+          <p class="m-0 mt-1 max-w-[50ch] text-[0.95rem] italic text-dim" id="resultStatusDesc">
             "Bukan berarti kamu tidak sehat. Tapi beberapa kebiasaanmu mulai perlu diperhatikan."
           </p>
         </div>
 
-        <div style="height: 1px; width: 100%; background: var(--border); margin: 2rem 0;"></div>
+        <div class="h-px w-full bg-line"></div>
 
-        <!-- 5-Dimension Score Bars -->
-        <div style="margin-bottom: 2rem;">
-          <h4 style="font-size: 0.88rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 1.25rem;">
-            PROFIL 5 DIMENSI KEBIASAAN DIGITAL
-          </h4>
-          <div id="dimensionList" style="display: flex; flex-direction: column; gap: 0.9rem;"></div>
+        <div class="flex flex-col gap-4">
+          <h4 class="mb-1 text-[0.85rem] font-bold tracking-widest text-dim">PROFIL KEBIASAAN DIGITAL & HARIAN</h4>
+          <div class="flex flex-col gap-3.5" id="dimensionList"></div>
         </div>
 
-        <!-- Focus Alert Box -->
-        <div class="focus-alert-card">
-          <span class="focus-alert-icon" aria-hidden="true">🚨</span>
-          <div>
-            <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--danger); display: block; margin-bottom: 0.25rem;">
-              PERHATIAN UTAMA
-            </span>
-            <h4 id="focusTitle" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--text);">
-              POLA TIDUR
-            </h4>
-            <p id="focusDesc" style="font-size: 0.92rem; color: var(--text-dim); line-height: 1.55;">
-              Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat malam.
-            </p>
+        <div class="flex flex-col gap-2.5 rounded-[14px] border border-[rgba(224,104,79,0.3)] bg-surface-2 p-5">
+          <div class="flex items-center gap-3.5">
+            <img class="ui-icon ui-icon--feature" src="icon/target-hit-aim-svgrepo-com.svg" alt="" aria-hidden="true">
+            <div>
+              <span class="text-[0.72rem] font-bold tracking-widest text-danger">PERHATIAN UTAMA</span>
+              <h4 class="m-0 font-display text-[1.05rem] text-ink" id="focusTitle">POLA TIDUR</h4>
+            </div>
           </div>
+          <p class="m-0 text-[0.88rem] leading-relaxed text-dim" id="focusDesc">
+            Aktivitas digitalmu terlihat cukup sering menggeser waktu istirahat.
+          </p>
         </div>
 
-        <!-- Action Recommendations -->
-        <div style="margin-bottom: 2.5rem;">
-          <h4 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text);">
-            💡 3 hal yang bisa kamu ubah mulai hari ini:
-          </h4>
-          <div class="action-cards-grid" id="actionCardsGrid"></div>
+        <div class="flex flex-col gap-3.5">
+          <h4 class="mb-0.5 flex items-center gap-2 font-display text-[1.02rem] text-ink"><img class="ui-icon" src="icon/tactics-planning-svgrepo-com.svg" alt="" aria-hidden="true">3 hal yang bisa kamu ubah mulai hari ini</h4>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5" id="actionCardsGrid"></div>
         </div>
 
-        <!-- Quiz CTA Buttons -->
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-          <a href="tips.html" class="btn-solus-primary" id="btnGoToTips">LIHAT REKOMENDASI SARAN →</a>
-          <button class="btn-solus-outline" id="quizRestartBtn">🔄 Ulangi Kuis</button>
+        <div class="mt-2 flex flex-wrap justify-center gap-3">
+          <a href="tips.html" class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 text-[0.9rem] font-semibold text-[#14171c] no-underline hover:brightness-110" id="btnGoToTips">LIHAT SARANMU →</a>
+          <button class="inline-block cursor-pointer rounded-full border border-line bg-transparent px-[22px] py-3 font-body text-[0.9rem] font-semibold text-ink hover:border-accent" id="quizRestartBtn">Ulangi Kuis</button>
         </div>
-
-      </div>
-
-    </div>
-  </div>
-</main>
-
-<!-- ===== SOLUS SIGNATURE FOOTER ===== -->
-<footer class="site-footer" id="tentang">
-  <div class="footer-container">
-    <div class="footer-left">
-      <div>
-        <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
-        </a>
-        <p class="text-dim" style="font-size: 0.92rem; max-width: 38ch; line-height: 1.6;">
-          Platform edukasi kesadaran gaya hidup digital seimbang untuk generasi muda Indonesia.
-        </p>
-
-        <div class="footer-links-grid">
-          <div>
-            <div class="footer-col-title">Navigasi</div>
-            <ul class="footer-link-list">
-              <li><a href="index.html#beranda">Beranda</a></li>
-              <li><a href="index.html#cermin">Cermin Kebiasaan</a></li>
-              <li><a href="index.html#fakta">Fakta & Data</a></li>
-              <li><a href="index.html#dampak">Dampak Kesehatan</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-title">Fitur Web</div>
-            <ul class="footer-link-list">
-              <li><a href="kuis.html">Kuis Adaptif</a></li>
-              <li><a href="tips.html">Tips Digital Detox</a></li>
-              <li><a href="tips.html#habitTracker">Habit Tracker</a></li>
-              <li><a href="index.html#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-title">Kompetisi</div>
-            <ul class="footer-link-list">
-              <li><a href="index.html#kontak">INVENTION 2026</a></li>
-              <li><a href="index.html#kontak">Subtema Lomba</a></li>
-              <li><a href="index.html#kontak">Kontak Tim</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-copyright">
-        © 2026 Generasi Rebahan. Dibuat untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web".
-      </div>
-    </div>
-
-    <!-- Solus Signature Dark Card in Footer -->
-    <div class="footer-cta-card">
-      <div class="footer-card-art" aria-hidden="true">
-        <span style="font-size: 3rem;">🌱</span>
-      </div>
-      <div>
-        <span class="hero-kicker-badge" style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.2); margin-bottom: 1.25rem;">
-          LANGKAH SELANJUTNYA
-        </span>
-        <h3>
-          Mulai Pantau Kebiasaanmu di Habit Tracker.
-        </h3>
-      </div>
-      <div>
-        <a href="tips.html" class="btn-footer-solus">Buka Tips & Tracker</a>
       </div>
     </div>
   </div>
+</section>
+
+<footer class="px-6 py-10 text-center text-[0.85rem] text-dim" id="tentang">
+  Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
 </footer>
 
-<!-- Interactive System Elements -->
 <canvas id="confettiCanvas"></canvas>
 <div class="toast-container" id="toastContainer"></div>
-<button class="back-to-top" id="backToTop" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<div class="account-modal-overlay" id="accountModalOverlay" hidden>
+  <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+    <button class="account-modal-close" id="accountModalClose" type="button" aria-label="Tutup login">×</button>
+    <h2 id="accountModalTitle">Simpan progresmu</h2>
+    <p class="account-modal-note">Login dummy untuk menyimpan checklist rutinitas di akun perangkat ini. Tidak ada data yang dikirim ke server.</p>
+    <form id="accountForm">
+      <label for="accountName">Nama pengguna</label>
+      <input id="accountName" type="text" maxlength="40" required placeholder="Contoh: Raka">
+      <label for="accountEmail">Email dummy</label>
+      <input id="accountEmail" type="email" required placeholder="raka@email.test">
+      <button type="submit">Masuk & Simpan Progres</button>
+    </form>
+    <button class="account-logout" id="accountLogout" type="button" hidden>Keluar dari akun</button>
+  </section>
+</div>
+
+<div class="info-chatbot" id="infoChatbot">
+  <button class="chatbot-launcher" id="chatbotLauncher" type="button" aria-label="Buka Rebahan Bot" title="Buka Rebahan Bot" aria-expanded="false" aria-controls="chatbotPanel"><span class="chatbot-avatar"><img src="mascot/aset4.png" alt="" aria-hidden="true"></span></button>
+  <section class="chatbot-panel" id="chatbotPanel" aria-label="Chatbot informasi kesehatan digital" hidden>
+    <div class="chatbot-header"><div class="chatbot-brand"><span class="chatbot-avatar chatbot-avatar-large"><img src="mascot/aset4.png" alt="Maskot Rebahan Bot"></span><div><strong>Rebahan Bot</strong><span>Informasi berbasis sumber</span></div></div><button class="chatbot-close" id="chatbotClose" type="button" aria-label="Tutup chatbot">×</button></div>
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite"><div class="chatbot-message bot">Halo! Tanyakan tentang screen time, sedentari, cyberbullying, minuman manis, atau tips hidup lebih aktif.</div></div>
+    <div class="chatbot-quick-actions"><button type="button" data-chat-question="Apa temuan jurnal tentang screen time?">Temuan jurnal</button><button type="button" data-chat-question="Apa dampak terlalu lama duduk?">Dampak sedentari</button><button type="button" data-chat-question="Berapa lama penggunaan ponsel di Indonesia?">Data ponsel</button><button type="button" data-chat-question="Apa sumber data kamu?">Sumber data</button></div>
+    <form class="chatbot-form" id="chatbotForm"><input id="chatbotInput" type="text" maxlength="180" placeholder="Tulis pertanyaan..." autocomplete="off" aria-label="Pertanyaan untuk chatbot"><button type="submit" aria-label="Kirim pertanyaan">Kirim</button></form>
+  </section>
+</div>
 
 <script src="js/script.js"></script>
 </body>

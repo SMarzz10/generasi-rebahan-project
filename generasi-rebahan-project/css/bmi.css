@@ -1,0 +1,507 @@
+/* =========================================================
+   GENERASI REBAHAN — BMI Calculator Styles
+   ========================================================= */
+
+/* ── Layout Grid ─────────────────────────────────────────── */
+.bmi-workbench {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .bmi-workbench {
+    grid-template-columns: 1fr 380px;
+    gap: 1.75rem;
+  }
+}
+
+/* ── Control Card (left) ─────────────────────────────────── */
+.bmi-controls-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Avatar toggle */
+.avatar-toggle-bar {
+  display: flex;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.avatar-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 8px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.avatar-tab-btn:hover { color: var(--text); }
+
+.avatar-tab-btn.active {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* Slider Row */
+.control-row-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  transition: border-color 0.15s;
+}
+
+.control-row-card:focus-within { border-color: rgba(242, 184, 75, 0.45); }
+
+.control-badge-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px 7px;
+}
+
+.control-badge-box input[type="number"] {
+  width: 48px;
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: right;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.control-badge-box input[type="number"]::-webkit-outer-spin-button,
+.control-badge-box input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stepper-btn {
+  width: 27px;
+  height: 27px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stepper-btn:hover {
+  background: var(--accent);
+  color: #14171c;
+  border-color: var(--accent);
+}
+
+/* Range Slider */
+.clean-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+  margin: 0.85rem 0 0.3rem;
+  display: block;
+}
+
+.clean-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2.5px solid #12151b;
+  cursor: grab;
+  box-shadow: 0 0 8px rgba(242, 184, 75, 0.5);
+  transition: transform 0.1s;
+}
+
+.clean-slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+.clean-slider::-moz-range-thumb {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2.5px solid #12151b;
+  cursor: grab;
+}
+
+/* Preset Chips */
+.preset-chip {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.73rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.preset-chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--surface);
+}
+
+/* Result Panel */
+.result-panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+}
+
+/* Action buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: #14171c;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.12s;
+  text-decoration: none;
+}
+
+.btn-primary:hover { filter: brightness(1.08); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.12s;
+}
+
+.btn-secondary:hover { border-color: var(--accent); }
+
+/* ── Stage Card (right) ──────────────────────────────────── */
+.stage-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (min-width: 1024px) {
+  .stage-card {
+    position: sticky;
+    top: 72px;
+  }
+}
+
+.stage-halo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 16px;
+  transition: background 0.6s;
+  opacity: 0;
+}
+
+/* Mascot */
+.mascot-box {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 240px;
+}
+
+.mascot-svg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.35));
+  overflow: visible;
+}
+
+/* Breathing idle animation */
+.mascot-body {
+  transform-origin: 150px 200px;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+/* ── BMI Gauge ───────────────────────────────────────────── */
+.gauge-wrap {
+  width: 100%;
+  max-width: 260px;
+  margin: 0.75rem auto 0;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+.gauge-needle {
+  transform-origin: 150px 130px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gauge-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.68rem;
+}
+
+.gauge-pill {
+  border-radius: 6px;
+  padding: 4px 2px;
+  background: var(--surface-2);
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  font-weight: 600;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+
+.gauge-pill.active {
+  font-weight: 700;
+}
+
+/* Stage header row */
+.stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.stage-cat-label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.73rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+/* ── Badge colors ────────────────────────────────────────── */
+.badge-under  { background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.35); }
+.badge-normal { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.35); }
+.badge-over   { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.35); }
+.badge-obese  { background: rgba(244,63,94,0.15);  color: #f43f5e; border: 1px solid rgba(244,63,94,0.35); }
+
+/* ── Bottom grid ─────────────────────────────────────────── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .bottom-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Base bmi-card */
+.bmi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* Advice card inner styling */
+#bmiAdviceCard .advice-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#bmiAdviceCard .advice-insight {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+#bmiAdviceCard .advice-tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#bmiAdviceCard .advice-tip-item {
+  display: flex;
+  gap: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+#bmiAdviceCard .advice-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+#bmiAdviceCard .advice-caloric {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  padding-top: 0.85rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── History rows ────────────────────────────────────────── */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 8px 11px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition: border-color 0.12s;
+}
+
+.history-row:hover { border-color: var(--accent); }
+
+.del-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: color 0.12s, background 0.12s;
+}
+
+.del-btn:hover {
+  color: #f43f5e;
+  background: rgba(244,63,94,0.1);
+}
+
+/* ── Ref grid ────────────────────────────────────────────── */
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.ref-cell {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.ref-cell p { margin: 0; }
+
+/* Animation for character morphing */
+#charTorso, #charTummy, #charCheekL, #charCheekR, #charMouth, #charEyeL, #charEyeR, #charShadow {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover animation for cards */
+.bmi-controls-card, .stage-card, .bmi-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bmi-controls-card:hover, .stage-card:hover, .bmi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}

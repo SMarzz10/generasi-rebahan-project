@@ -1,447 +1,75 @@
 <!DOCTYPE html>
-<html lang="id" data-mode="sehat">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generasi Rebahan — Solusi Sehat untuk Gaya Hidup Digital</title>
-<meta name="description" content="Kampanye kesadaran gaya hidup digital sehat: atasi screen time berlebihan, sedentary lifestyle, junk food, dan kurang tidur. Purwarupa Web Design INVENTION 2026.">
+<title>Generasi Rebahan — Potret Gaya Hidup Digital</title>
+<meta name="description" content="Kampanye kesadaran gaya hidup digital sehat: screen time, sedentary lifestyle, junk food, dan kurang tidur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
 <link rel="stylesheet" href="css/style.css">
 <script>
-  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'sehat';
+  document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'rebahan';
 </script>
+
 </head>
-<body data-mode="sehat">
+<body class="m-0 bg-bg font-body text-ink" data-mode="rebahan">
 
-<!-- ===== SITE NAVIGATION (SOLUS REFINED DOCK) ===== -->
-<nav class="site-nav">
-  <div class="nav-container">
-    <a href="index.html" class="brand-logo" aria-label="Generasi Rebahan Beranda">
-      <span class="brand-dot" aria-hidden="true"></span>
-      <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
-    </a>
-
-    <div class="navlinks" id="navlinks">
-      <a href="index.html#beranda" class="nav-pill active">Beranda</a>
-      <a href="index.html#cermin" class="nav-pill">Cermin</a>
-      <a href="index.html#fakta" class="nav-pill">Fakta</a>
-      <a href="index.html#dampak" class="nav-pill">Dampak</a>
-      <a href="kuis.html" class="nav-pill">Kuis</a>
-      <a href="tips.html" class="nav-pill">Tips & Tracker</a>
-      <a href="#faq" class="nav-pill">FAQ</a>
+<nav class="site-nav sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-[10px]">
+  <div class="mx-auto flex max-w-page flex-wrap items-center gap-[18px] px-6 py-3.5 max-sm:gap-2.5">
+    <div class="nav-brand whitespace-nowrap font-display text-[1.05rem] font-bold">
+      <span class="no-underline">Generasi<span class="text-accent">Rebahan</span></span>
     </div>
-
-    <div class="nav-actions">
-      <button class="btn-sound-toggle" id="soundToggle" title="Nyalakan / Matikan Suara" aria-label="Toggle Sound">🔊</button>
-      <button class="btn-mode-toggle" id="modeToggle" aria-label="Ganti Mode Tema">☀️ Mode Sehat</button>
-      <button class="mobile-nav-toggle" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="navlinks ml-auto flex flex-wrap gap-1 max-sm:order-3 max-sm:w-full max-sm:justify-start" id="navlinks">
+      <a href="index.html#beranda" class="active rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Beranda</a>
+      <a href="tips.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Tips & Tracker</a>
+      <a href="kuis.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Refleksi</a>
+      <a href="bmi.html" class="rounded-full px-[11px] py-[7px] text-[0.85rem] text-dim no-underline transition hover:bg-surface-2 hover:text-ink">Kalkulator BMI</a>
+    </div>
+    <div class="nav-actions flex items-center gap-2">
+      <button class="account-button cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="accountButton" type="button">Masuk</button>
+      <button class="cursor-pointer rounded-lg border border-line bg-surface px-2.5 py-[7px] font-body text-[0.8rem] text-ink hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" id="modeToggle"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true"><span>Mode Rebahan</span></button>
+      <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navlinks">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- ===== HERO SECTION (SOLUS GRAND ROUNDED CARD) ===== -->
-<section class="hero-section" id="beranda">
-  <div class="hero-banner-container">
-    <div class="hero-kicker-badge">
-      <span>🌱</span>
-      <span>KAMPANYE KESADARAN GAYA HIDUP DIGITAL</span>
-    </div>
-
-    <h1 class="hero-title">Kamu tim rebahan, atau cuma lagi istirahat?</h1>
-
-    <p class="hero-description">
-      Situs ini merangkum potret gaya hidup "serba cepat & serba layar" generasi muda — screen time berlebihan, rebahan seharian, junk food, dan kurang tidur — dikemas dengan pendekatan sehat dan interaktif untuk lomba Web Design INVENTION 2026.
-    </p>
-
-    <div class="hero-cta-group">
-      <a href="kuis.html" class="btn-solus-primary">Cek Level Rebahanmu →</a>
-      <a href="#fakta" class="btn-solus-outline">Lihat Data Lengkap</a>
-    </div>
-
-    <!-- Playful Mascot Art with Solus-inspired Decorative Frame -->
-    <div class="hero-mascot-wrapper">
-      <div class="doodle-shape doodle-star" aria-hidden="true">✦</div>
-      <div class="doodle-shape doodle-sparkle" aria-hidden="true">★</div>
-      <div class="doodle-shape doodle-blob" aria-hidden="true">✿</div>
-
-      <div class="hero-mascot-art-card" id="mascotContainer">
-        <img
-          id="heroMascotImg"
-          src="mascot/aset6.png"
-          alt="Maskot kukang Generasi Rebahan sedang rebahan dengan tablet dan keripik"
-          width="420"
-          height="420"
-        >
-      </div>
-
-      <div class="mascot-controller-pill">
-        <div class="mascot-controller-header">
-          <span>Level Rebahan Maskot</span>
-          <span class="mascot-badge-val" id="rebahanSliderVal">82% · Rebahan Maksimal</span>
+<section class="border-b border-line pb-16 pt-14 scroll-reveal" id="beranda">
+  <div class="mx-auto max-w-page px-6">
+    <div class="grid items-center gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(260px,0.9fr)] lg:gap-10">
+      <div class="max-lg:order-2">
+        <h1 class="mb-2 max-w-[14ch] font-display text-[clamp(2.2rem,5vw,3.4rem)] font-bold leading-tight max-lg:max-w-[16ch]">Kamu tim rebahan, atau cuma lagi istirahat?</h1>
+        <p class="mb-4 max-w-[52ch] text-[1.15rem] text-dim">Situs demo ini merangkum gaya hidup "serba cepat & serba layar" generasi muda — screen time berlebihan, rebahan seharian, junk food, dan kurang tidur — sekaligus jadi contoh kerja semua fitur yang direncanakan untuk lomba Web Design INVENTION 2026.</p>
+        <div class="mt-10 flex flex-wrap gap-8">
+          <div><b class="mb-1 block font-display text-[2rem] text-accent">5,7–7,4</b><span class="text-[0.85rem] text-dim">jam screen time / hari (rata-rata Indonesia)</span></div>
+          <div><b class="mb-1 block font-display text-[2rem] text-accent">66,3%</b><span class="text-[0.85rem] text-dim">orang dengan gaya hidup sedentari</span></div>
+          <div><b class="mb-1 block font-display text-[2rem] text-accent">88,1%</b><span class="text-[0.85rem] text-dim">screen time tinggi pada studi terkait</span></div>
         </div>
-        <input type="range" id="rebahanSlider" min="0" max="100" value="82" aria-label="Level rebahan maskot kukang">
-      </div>
-    </div>
-
-    <!-- Solus Stats Highlights Bar -->
-    <div class="hero-stats-row">
-      <div class="hero-stat-card">
-        <div class="hero-stat-number" style="color: var(--accent);">5,7–7,4 jam</div>
-        <div class="hero-stat-label">Rata-rata screen time harian di Indonesia (We Are Social 2025)</div>
-      </div>
-      <div class="hero-stat-card">
-        <div class="hero-stat-number" style="color: var(--accent-2);">66,3%</div>
-        <div class="hero-stat-label">Populasi dengan gaya hidup sedentari tanpa aktivitas fisik cukup</div>
-      </div>
-      <div class="hero-stat-card">
-        <div class="hero-stat-number" style="color: var(--accent-rose);">88,1%</div>
-        <div class="hero-stat-label">Tingkat penggunaan gadget berlebih sebelum tidur pada generasi muda</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 2: CERMIN KEBIASAAN (HOW IT WORKS) ===== -->
-<section class="site-section" id="cermin">
-  <div class="section-header">
-    <div class="section-kicker">
-      <span>01 / REFLEKSI DIRI</span>
-    </div>
-    <h2 class="section-title">Coba tebak, mana yang kebiasaanmu?</h2>
-    <p class="section-subtitle">Klik tiap kartu di bawah ini untuk melihat refleksi kebiasaan harian yang sering tidak kita sadari.</p>
-  </div>
-
-  <div class="mirror-grid" id="mirrorGrid">
-    <div class="mirror-card">
-      <div class="mirror-card-top">
-        <div class="mirror-emoji-badge">🌅</div>
-        <span class="mirror-indicator">Klik untuk refleksi</span>
-      </div>
-      <h3>Bangun Tidur</h3>
-      <p class="text-dim" style="font-size: 0.9rem;">Membuka mata di pagi hari</p>
-      <div class="reveal">
-        <div class="mirror-reflection-content">
-          Alarm bunyi, tangan otomatis cari HP sebelum kaki menyentuh lantai. 30 menit pertama hari habis untuk scrolling linimasa, bukan untuk menyapa diri sendiri.
-        </div>
-      </div>
-    </div>
-
-    <div class="mirror-card">
-      <div class="mirror-card-top">
-        <div class="mirror-emoji-badge">🍔</div>
-        <span class="mirror-indicator">Klik untuk refleksi</span>
-      </div>
-      <h3>Jam Makan Siang</h3>
-      <p class="text-dim" style="font-size: 0.9rem;">Mengisi energi di siang hari</p>
-      <div class="reveal">
-        <div class="mirror-reflection-content">
-          Makan sambil menonton video pendek berdurasi singkat — porsi makanan jadi tidak terasa, dan yang dipesan seringnya yang paling praktis atau tinggi gula/lemak.
-        </div>
-      </div>
-    </div>
-
-    <div class="mirror-card">
-      <div class="mirror-card-top">
-        <div class="mirror-emoji-badge">🛋️</div>
-        <span class="mirror-indicator">Klik untuk refleksi</span>
-      </div>
-      <h3>Sore Hari</h3>
-      <p class="text-dim" style="font-size: 0.9rem;">Waktu senggang seusai aktivitas</p>
-      <div class="reveal">
-        <div class="mirror-reflection-content">
-          "Rebahan 15 menit saja" seusai kuliah atau kerja. Tanpa disadari, langit sudah gelap dan waktu produktif terlewatkan tanpa peregangan atau jalan santai.
-        </div>
-      </div>
-    </div>
-
-    <div class="mirror-card">
-      <div class="mirror-card-top">
-        <div class="mirror-emoji-badge">🌙</div>
-        <span class="mirror-indicator">Klik untuk refleksi</span>
-      </div>
-      <h3>Menjelang Tidur</h3>
-      <p class="text-dim" style="font-size: 0.9rem;">Waktu istirahat malam</p>
-      <div class="reveal">
-        <div class="mirror-reflection-content">
-          Niat awal tidur jam 10 malam, namun "satu video lagi" berulang hingga lewat tengah malam. Besok pagi bangun dengan kepala berat dan energi terkuras.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 3: FAKTA & DATA (SOLUS PASTEL CARDS) ===== -->
-<section class="site-section" id="fakta">
-  <div class="section-header">
-    <div class="section-kicker">
-      <span>02 / RISET & DATA STATISTIK</span>
-    </div>
-    <h2 class="section-title">Angka yang bikin kita berpikir dua kali</h2>
-    <p class="section-subtitle">Data riil seputar screen time dan gaya hidup digital di Indonesia. Statistik beranimasi saat kamu berada di sini.</p>
-  </div>
-
-  <div class="facts-grid">
-    <div class="fact-card fact-card-peach">
-      <div>
-        <div class="stat-num fact-number" data-target="7.4" data-suffix=" jam">0</div>
-        <div class="fact-desc">Rata-rata screen time harian tertinggi di Indonesia menurut laporan Global Digital Overview.</div>
-      </div>
-      <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-top: 1rem;">Laporan Global Digital 2025</div>
-    </div>
-
-    <div class="fact-card fact-card-white">
-      <div>
-        <div class="stat-num fact-number" data-target="66" data-suffix="%">0</div>
-        <div class="fact-desc">Populasi dengan gaya hidup sedentari yang minim aktivitas fisik menurut studi klinis RS Insan Permata.</div>
-      </div>
-      <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-top: 1rem;">Studi Kesehatan 2025</div>
-    </div>
-
-    <div class="fact-card fact-card-mint">
-      <div>
-        <div class="stat-num fact-number" data-target="45" data-suffix="%">0</div>
-        <div class="fact-desc">Remaja Indonesia yang pernah mengalami kelelahan mental atau cyberbullying di media sosial.</div>
-      </div>
-      <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-top: 1rem;">Laporan UNICEF Indonesia</div>
-    </div>
-
-    <div class="fact-card fact-card-rose">
-      <div>
-        <div class="stat-num fact-number" data-target="61" data-suffix="%">0</div>
-        <div class="fact-desc">Penduduk yang mengonsumsi minuman manis dan camilan ultra-proses lebih dari 1 kali sehari saat berselancar.</div>
-      </div>
-      <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; margin-top: 1rem;">Riset Kemenkes RI</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 4: DAMPAK KESEHATAN & COACHING ===== -->
-<section class="site-section" id="dampak">
-  <div class="section-header">
-    <div class="section-kicker">
-      <span>03 / DAMPAK NYATA</span>
-    </div>
-    <h2 class="section-title">Fisik dan mental, dua-duanya kena</h2>
-    <p class="section-subtitle">Paparan layar tanpa henti yang tidak diimbangi gaya hidup sehat menimbulkan efek bertahap pada tubuh dan pikiran.</p>
-  </div>
-
-  <div class="impact-grid">
-    <div class="impact-card">
-      <span class="impact-badge badge-fisik">Dampak Fisik</span>
-      <h3>Postur & Mata</h3>
-      <p>"Tech neck", nyeri punggung bawah kronis, dan digital eye strain akibat posisi menunduk serta menatap layar berjam-jam tanpa kedipan teratur.</p>
-    </div>
-
-    <div class="impact-card">
-      <span class="impact-badge badge-fisik">Dampak Fisik</span>
-      <h3>Metabolisme & Berat Badan</h3>
-      <p>Kombinasi minim gerak (sedentari) dan kebiasaan ngemil makanan ultra-proses meningkatkan risiko resistensi insulin dan obesitas usia muda.</p>
-    </div>
-
-    <div class="impact-card">
-      <span class="impact-badge badge-mental">Dampak Mental</span>
-      <h3>Kecemasan & FOMO</h3>
-      <p>Arus perbandingan sosial yang konstan di media sosial memicu stres, rasa tidak cukup baik, dan kecemasan tertinggal informasi (Fear of Missing Out).</p>
-    </div>
-
-    <div class="impact-card">
-      <span class="impact-badge badge-mental">Dampak Mental</span>
-      <h3>Kualitas Tidur</h3>
-      <p>Paparan spektrum blue light menekan pelepasan hormon melatonin, merusak ritme sirkadian tubuh sehingga tidur tidak nyenyak dan mudah lelah.</p>
-    </div>
-  </div>
-
-  <!-- Solus Signature Featured Wide Card -->
-  <div class="featured-wide-card">
-    <div>
-      <span class="hero-kicker-badge" style="margin-bottom: 0.75rem;">SOLUSI SEIMBANG</span>
-      <h3>Bukan Anti-Teknologi, Tapi Menemukan Titik Temu</h3>
-      <p>
-        Tujuan kita bukan membuang smartphone atau berhenti menikmati hiburan digital, melainkan membangun kesadaran agar teknologi bekerja untuk kita — bukan sebaliknya.
-      </p>
-      <a href="tips.html" class="btn-solus-primary">Pelajari Tips & Tracker →</a>
-    </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-      <img src="mascot/aset7.png" alt="Maskot santai seimbang" style="max-width: 260px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 5: TESTIMONIALS (SOLUS QUOTE CARDS) ===== -->
-<section class="site-section">
-  <div class="section-header">
-    <div class="section-kicker">
-      <span>04 / CERITA NYATA</span>
-    </div>
-    <h2 class="section-title">Apa kata mereka yang mulai berproses?</h2>
-    <p class="section-subtitle">Pengalaman nyata generasi muda yang mulai mengatur batas sehat antara dunia nyata dan dunia maya.</p>
-  </div>
-
-  <div class="testimonials-grid">
-    <div class="testimonial-card-peach">
-      <p class="testimonial-quote">
-        "Dulu waktu bangun tidur langsung buka medsos 1 jam sampai leher pegal. Setelah mencoba tips '1 jam bebas HP sebelum tidur' dan habit tracker di web ini, bangun pagi terasa jauh lebih ringan dan segar."
-      </p>
-      <div>
-        <div class="testimonial-author">— Annisa R., 22 Tahun</div>
-        <div class="text-dim" style="font-size: 0.82rem;">Mahasiswi Desain Komunikasi Visual</div>
-      </div>
-    </div>
-
-    <div class="testimonial-card-dark">
-      <p class="testimonial-quote">
-        "Kuis adaptif di sini akurat banget membaca kebiasaan saya yang sering ngemil sambil scroll malam hari. Sekarang saya mulai pasang alarm jalan santai 5 menit tiap jam kerja."
-      </p>
-      <div>
-        <div class="testimonial-author" style="color: #ffffff;">— Fikri H., 24 Tahun</div>
-        <div style="font-size: 0.82rem; color: #90a5aa;">Junior Software Engineer</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 6: MITRA & RISET EDUKASI ===== -->
-<section class="partners-section">
-  <div class="partners-container">
-    <span class="partners-label">Rujukan Data & Kolaborasi:</span>
-    <span class="partner-logo-item">Kemenkes RI</span>
-    <span class="partner-logo-item">UNICEF Indonesia</span>
-    <span class="partner-logo-item">RS Insan Permata</span>
-    <span class="partner-logo-item">INVENTION 2026</span>
-    <span class="partner-logo-item">Digital Wellness Lab</span>
-  </div>
-</section>
-
-<!-- ===== SECTION 7: EXPLORE & LEARN (2 GRAND CARDS) ===== -->
-<section class="site-section" id="explorePages">
-  <div class="section-header">
-    <div class="section-kicker">
-      <span>05 / FITUR UTAMA</span>
-    </div>
-    <h2 class="section-title">Mulai langkah perubahanmu hari ini</h2>
-    <p class="section-subtitle">Dua fitur interaktif yang dirancang khusus untuk membantumu mengevaluasi dan membangun kebiasaan baru.</p>
-  </div>
-
-  <div class="explore-grid">
-    <div class="explore-card fact-card-peach">
-      <div>
-        <div class="explore-card-icon">🎯</div>
-        <h3>Cek Level Kebiasaanmu</h3>
-        <p>Kuis interaktif 2 menit dengan 10 soal inti plus maksimal 2 pertanyaan adaptif untuk menganalisis 5 dimensi kesehatan digitalmu secara objektif.</p>
-      </div>
-      <div>
-        <a href="kuis.html" class="btn-solus-primary">Mulai Kuis Adaptif →</a>
-      </div>
-    </div>
-
-    <div class="explore-card fact-card-mint">
-      <div>
-        <div class="explore-card-icon">🌱</div>
-        <h3>Tips & Habit Tracker Harian</h3>
-        <p>Rekomendasi aksi nyata, generator fakta acak, serta checklist habit harian dengan sistem reset otomatis setiap pukul 22:00 WIB untuk menjaga konsistensi.</p>
-      </div>
-      <div>
-        <a href="tips.html" class="btn-solus-primary">Buka Tips & Tracker →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 8: COMMUNITY CTA BANNER ===== -->
-<section class="site-section">
-  <div class="community-banner">
-    <div>
-      <div class="hero-kicker-badge" style="margin-bottom: 0.75rem;">KOMUNITAS SEHAT DIGITAL</div>
-      <h3>Kamu tidak sendirian di perjalanan ini</h3>
-      <p>
-        Banyak anak muda mengalami tantangan serupa dalam mengelola distraksi layar. Bergabunglah dalam gerakan kesadaran hidup seimbang untuk tubuh dan pikiran yang lebih berdaya.
-      </p>
-      <a href="kuis.html" class="btn-solus-primary">Mulai Cek Kebiasaanmu</a>
-    </div>
-    <div class="community-art-wrap">
-      <img src="mascot/aset8.png" alt="Maskot kukang ceria">
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECTION 9: FAQ ACCORDION ===== -->
-<section class="site-section" id="faq">
-  <div class="faq-grid">
-    <div class="faq-left-col">
-      <div class="section-kicker">
-        <span>06 / TANYA JAWAB</span>
-      </div>
-      <h2>Pertanyaan yang sering muncul</h2>
-      <p>Temukan jawaban seputar konsep kampanye, fitur kuis adaptif, dan penggunaan habit tracker harian.</p>
-      
-      <div class="faq-mascot-card">
-        <img src="mascot/aset4.png" alt="Maskot kukang ramah">
-      </div>
-    </div>
-
-    <div class="accordion-container">
-      <div class="accordion-item open">
-        <div class="accordion-head">
-          <span>Apakah rebahan itu selalu berakibat buruk?</span>
-          <span class="plus">−</span>
-        </div>
-        <div class="accordion-body-wrapper">
-          <div class="accordion-body-content">
-            Tentu tidak. Istirahat dan relaksasi sangat penting bagi pemulihan tubuh. Yang berbahaya adalah "sedentari kronis" — rebahan berjam-jam sambil terus menatap layar tanpa jeda gerak fisik dan membiarkan waktu produktif serta jam tidur terabaikan.
-          </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 text-[0.9rem] font-semibold text-[#14171c] no-underline hover:brightness-110" href="kuis.html">Cek Level Rebahanmu →</a>
+          <a class="inline-block cursor-pointer rounded-full border border-line px-[22px] py-3 text-[0.9rem] font-semibold text-ink no-underline hover:border-accent" href="bmi.html">Kalkulator BMI ⚡</a>
+          <a class="inline-block cursor-pointer rounded-full border border-line px-[22px] py-3 text-[0.9rem] font-semibold text-ink no-underline hover:border-accent" href="#fakta">Lihat Data Lengkap</a>
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-head">
-          <span>Berapa screen time yang sehat menurut para ahli?</span>
-          <span class="plus">+</span>
+      <div class="flex flex-col items-center gap-2.5 max-lg:order-1 max-lg:mx-auto max-lg:mb-2 max-lg:max-w-[320px]">
+        <div class="relative flex w-full max-w-[420px] items-center justify-center" id="mascotContainer">
+          <span class="mascot-glow pointer-events-none absolute inset-[12%_10%_18%] z-0 rounded-full blur-[8px]" aria-hidden="true"></span>
+          <img
+            id="heroMascotImg"
+            class="relative z-[1] block h-auto w-full max-w-[380px] animate-mascot-float transition-opacity duration-250"
+            src="mascot/aset6.png"
+            alt="Maskot kukang Generasi Rebahan sedang rebahan dengan tablet dan keripik"
+            width="420"
+            height="420"
+          >
         </div>
-        <div class="accordion-body-wrapper">
-          <div class="accordion-body-content">
-            Organisasi kesehatan merekomendasikan screen time non-pekerjaan/non-belajar tidak melebihi 2 jam per hari, serta menerapkan kaidah 20-20-20: setiap 20 menit menatap layar, istirahatkan mata dengan melihat objek berjarak 20 kaki (6 meter) selama 20 detik.
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head">
-          <span>Bagaimana cara kerja kuis adaptif di web ini?</span>
-          <span class="plus">+</span>
-        </div>
-        <div class="accordion-body-wrapper">
-          <div class="accordion-body-content">
-            Kuis terdiri dari 10 pertanyaan inti. Jika sistem mendeteksi skor tinggi pada kategori tertentu (misalnya screen time malam atau konsumsi junk food), sistem akan otomatis menambahkan maksimal 2 pertanyaan lanjutan adaptif untuk memperdalam diagnosa profil kebiasaanmu.
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head">
-          <span>Mengapa tracker harian di-reset pada jam 22:00?</span>
-          <span class="plus">+</span>
-        </div>
-        <div class="accordion-body-wrapper">
-          <div class="accordion-body-content">
-            Pukul 22:00 (10 PM) dipilih sebagai cutoff agar kamu diajak menutup aktivitas gadget tepat sebelum jam tidur, mengevaluasi capaian hari itu, dan mulai beristirahat tanpa memeriksa ponsel lagi.
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-head">
-          <span>Apakah data jawaban dan habit saya tersimpan aman?</span>
-          <span class="plus">+</span>
-        </div>
-        <div class="accordion-body-wrapper">
-          <div class="accordion-body-content">
-            Ya! Semua progres, skor kuis, dan checklist habit tersimpan secara lokal di browser kamu (Local Storage) tanpa dikirimkan ke server eksternal, sehingga privasimu tetap aman 100%.
+        <div class="mascot-meter z-[1] w-[min(100%,280px)]">
+          <input type="range" id="rebahanSlider" min="0" max="100" value="82" aria-label="Level rebahan maskot">
+          <div class="mt-2 flex justify-between text-[0.72rem] font-semibold tracking-wide text-dim">
           </div>
         </div>
       </div>
@@ -449,125 +77,184 @@
   </div>
 </section>
 
-<!-- ===== SECTION 10: CONTACT & FEEDBACK ===== -->
-<section class="site-section" id="kontak">
-  <div class="contact-grid">
-    <div class="contact-info-col">
-      <div class="section-kicker">
-        <span>07 / HUBUNGI KAMI</span>
-      </div>
-      <h2 class="section-title">Punya saran atau ingin berkolaborasi?</h2>
-      <p class="section-subtitle" style="margin-bottom: 2rem;">
-        Purwarupa ini dikembangkan untuk lomba Web Design INVENTION 2026. Kami terbuka atas masukan, kritik, maupun kolaborasi pengembangan lebih lanjut.
-      </p>
-
-      <div class="contact-detail-item">
-        <strong>Email:</strong> halo@generasirebahan.id
-      </div>
-      <div class="contact-detail-item">
-        <strong>Kompetisi:</strong> INVENTION 2026 — Web Design Competition
-      </div>
-      <div class="contact-detail-item">
-        <strong>Subtema:</strong> "Designing a Healthier Society Through the Web"
-      </div>
-
-      <div class="contact-social-row">
-        <a href="#" class="social-pill" aria-label="Instagram">📸</a>
-        <a href="#" class="social-pill" aria-label="LinkedIn">💼</a>
-        <a href="#" class="social-pill" aria-label="GitHub">💻</a>
-        <a href="#" class="social-pill" aria-label="YouTube">▶️</a>
-      </div>
-    </div>
-
-    <div class="contact-form-box">
-      <h3 style="font-size: 1.35rem; margin-bottom: 1.5rem;">Kirim Pesan / Masukan</h3>
-      <form id="contactForm">
-        <div class="form-field-group">
-          <label class="form-label" for="contactEmail">Email Anda</label>
-          <input type="email" id="contactEmail" class="form-input-solus" placeholder="nama@email.com" required>
+<section class="border-b border-line py-[72px] scroll-reveal" id="cermin">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-3.5 inline-flex items-center gap-2 font-display text-[0.85rem] text-dim"><em class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-line text-[0.75rem] not-italic">2</em> Cermin Kebiasaan</div>
+    <h2 class="mb-2 font-display text-3xl font-bold">Coba tebak, mana yang kebiasaanmu?</h2>
+    <p class="mb-4 max-w-[65ch] text-dim">Klik tiap kartu untuk lihat refleksinya.</p>
+    <div class="mt-7 grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4" id="mirrorGrid">
+      <div class="mirror-card tilt-card relative min-h-[140px] cursor-pointer rounded-[14px] border border-line bg-surface p-5 transition hover:border-accent-2">
+        <div class="spotlight-glow"></div>
+        <h3 class="mb-1.5 flex items-center gap-2 font-display text-base"><img class="ui-icon" src="icon/get-up-svgrepo-com.svg" alt="" aria-hidden="true">Bangun tidur</h3>
+        <span class="text-xs text-accent-2">klik untuk refleksi</span>
+        <div class="reveal mt-2.5 border-t border-dashed border-line text-[0.88rem] text-dim">
+          <div class="pt-2.5">Alarm bunyi, tangan otomatis cari HP dulu sebelum kaki menyentuh lantai. 30 menit pertama hari ini habis untuk scroll, bukan untuk diri sendiri.</div>
         </div>
-        <div class="form-field-group">
-          <label class="form-label" for="contactMsg">Pesan atau Masukan</label>
-          <input type="text" id="contactMsg" class="form-input-solus" placeholder="Tuliskan saran atau pesan Anda di sini..." required>
+      </div>
+      <div class="mirror-card tilt-card relative min-h-[140px] cursor-pointer rounded-[14px] border border-line bg-surface p-5 transition hover:border-accent-2">
+        <div class="spotlight-glow"></div>
+        <h3 class="mb-1.5 flex items-center gap-2 font-display text-base"><img class="ui-icon" src="icon/junk-food-burger-svgrepo-com%20(1).svg" alt="" aria-hidden="true">Jam makan siang</h3>
+        <span class="text-xs text-accent-2">klik untuk refleksi</span>
+        <div class="reveal mt-2.5 border-t border-dashed border-line text-[0.88rem] text-dim">
+          <div class="pt-2.5">Makan sambil nonton video pendek — porsi jadi tidak terasa, dan yang dipesan biasanya yang paling cepat sampai, bukan yang paling sehat.</div>
         </div>
-        <button type="submit" class="btn-solus-primary" style="width: 100%; margin-top: 1rem;">Kirim Pesan Sekarang</button>
-      </form>
+      </div>
+      <div class="mirror-card tilt-card relative min-h-[140px] cursor-pointer rounded-[14px] border border-line bg-surface p-5 transition hover:border-accent-2">
+        <div class="spotlight-glow"></div>
+        <h3 class="mb-1.5 flex items-center gap-2 font-display text-base"><img class="ui-icon" src="icon/sunset-svgrepo-com.svg" alt="" aria-hidden="true">Sore hari</h3>
+        <span class="text-xs text-accent-2">klik untuk refleksi</span>
+        <div class="reveal mt-2.5 border-t border-dashed border-line text-[0.88rem] text-dim">
+          <div class="pt-2.5">"Rebahan sebentar" setelah pulang, ternyata tahu-tahu sudah dua jam berlalu di media sosial.</div>
+        </div>
+      </div>
+      <div class="mirror-card tilt-card relative min-h-[140px] cursor-pointer rounded-[14px] border border-line bg-surface p-5 transition hover:border-accent-2">
+        <div class="spotlight-glow"></div>
+        <h3 class="mb-1.5 flex items-center gap-2 font-display text-base"><img class="ui-icon" src="icon/moon-night-svgrepo-com.svg" alt="" aria-hidden="true">Menjelang tidur</h3>
+        <span class="text-xs text-accent-2">klik untuk refleksi</span>
+        <div class="reveal mt-2.5 border-t border-dashed border-line text-[0.88rem] text-dim">
+          <div class="pt-2.5">Niatnya tidur jam 10, tapi "satu video lagi" berulang sampai lewat tengah malam — besok bangun tetap harus jam yang sama.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 11: SOLUS SIGNATURE FOOTER ===== -->
-<footer class="site-footer" id="tentang">
-  <div class="footer-container">
-    <div class="footer-left">
-      <div>
-        <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span>Generasi<span style="color: var(--accent);">Rebahan</span></span>
-        </a>
-        <p class="text-dim" style="font-size: 0.92rem; max-width: 38ch; line-height: 1.6;">
-          Platform edukasi kesadaran gaya hidup digital seimbang untuk generasi muda Indonesia.
-        </p>
-
-        <div class="footer-links-grid">
-          <div>
-            <div class="footer-col-title">Navigasi</div>
-            <ul class="footer-link-list">
-              <li><a href="index.html#beranda">Beranda</a></li>
-              <li><a href="index.html#cermin">Cermin Kebiasaan</a></li>
-              <li><a href="index.html#fakta">Fakta & Data</a></li>
-              <li><a href="index.html#dampak">Dampak Kesehatan</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-title">Fitur Web</div>
-            <ul class="footer-link-list">
-              <li><a href="kuis.html">Kuis Adaptif</a></li>
-              <li><a href="tips.html">Tips Digital Detox</a></li>
-              <li><a href="tips.html#habitTracker">Habit Tracker</a></li>
-              <li><a href="#faq">FAQ</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="footer-col-title">Kompetisi</div>
-            <ul class="footer-link-list">
-              <li><a href="#kontak">INVENTION 2026</a></li>
-              <li><a href="#kontak">Subtema Lomba</a></li>
-              <li><a href="#kontak">Kontak Tim</a></li>
-            </ul>
-          </div>
-        </div>
+<section class="border-b border-line py-[72px] scroll-reveal" id="fakta">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-3.5 inline-flex items-center gap-2 font-display text-[0.85rem] text-dim"><em class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-line text-[0.75rem] not-italic">3</em> Fakta & Data</div>
+    <h2 class="mb-2 font-display text-3xl font-bold">Angka yang mungkin bikin kaget</h2>
+    <p class="mb-4 max-w-[65ch] text-dim">Statistik ini animasi menghitung naik saat kamu scroll sampai sini.</p>
+    <div class="mt-7 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5">
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-[22px]">
+        <div class="spotlight-glow"></div>
+        <div class="stat-num font-display text-[2.3rem] text-accent-2" data-target="7.4" data-suffix=" jam">0</div>
+        <div class="mt-1 text-[0.85rem] text-dim">Rata-rata screen time harian tertinggi di Indonesia</div>
       </div>
-
-      <div class="footer-copyright">
-        © 2026 Generasi Rebahan. Dibuat untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web".
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-[22px]">
+        <div class="spotlight-glow"></div>
+        <div class="stat-num font-display text-[2.3rem] text-accent-2" data-target="66" data-suffix="%">0</div>
+        <div class="mt-1 text-[0.85rem] text-dim">Populasi dengan gaya hidup sedentari (studi RS Insan Permata, 2025)</div>
       </div>
-    </div>
-
-    <!-- Solus Signature Dark Card in Footer -->
-    <div class="footer-cta-card">
-      <div class="footer-card-art" aria-hidden="true">
-        <span style="font-size: 3rem;">🌱</span>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-[22px]">
+        <div class="spotlight-glow"></div>
+        <div class="stat-num font-display text-[2.3rem] text-accent-2" data-target="45" data-suffix="%">0</div>
+        <div class="mt-1 text-[0.85rem] text-dim">Remaja Indonesia pernah mengalami cyberbullying (UNICEF)</div>
       </div>
-      <div>
-        <span class="hero-kicker-badge" style="background: rgba(255,255,255,0.12); color: #ffffff; border-color: rgba(255,255,255,0.2); margin-bottom: 1.25rem;">
-          MULAI HARI INI
-        </span>
-        <h3>
-          Temukan Keseimbangan Baru untuk Tubuh dan Pikiranmu.
-        </h3>
-      </div>
-      <div>
-        <a href="kuis.html" class="btn-footer-solus">Cek Level Kebiasaanmu</a>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-[22px]">
+        <div class="spotlight-glow"></div>
+        <div class="stat-num font-display text-[2.3rem] text-accent-2" data-target="61" data-suffix="%">0</div>
+        <div class="mt-1 text-[0.85rem] text-dim">Penduduk konsumsi minuman berpemanis &gt;1x/hari (Kemenkes)</div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="border-b border-line py-[72px] scroll-reveal" id="dampak">
+  <div class="mx-auto max-w-page px-6">
+    <div class="mb-3.5 inline-flex items-center gap-2 font-display text-[0.85rem] text-dim"><em class="inline-flex h-[26px] w-[26px] items-center justify-center rounded-full border border-line text-[0.75rem] not-italic">4</em> Dampaknya Buat Kamu</div>
+    <h2 class="mb-2 font-display text-3xl font-bold">Fisik dan mental, dua-duanya kena</h2>
+    <div class="mt-7 grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4">
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-5">
+        <div class="spotlight-glow"></div>
+        <span class="mb-2.5 inline-block rounded-full bg-surface-2 px-[9px] py-[3px] text-[0.72rem] text-dim">Fisik</span>
+        <h3 class="mb-1 font-display text-lg">Postur & mata</h3>
+        <p class="m-0 text-[0.9rem] text-dim">"Tech neck", nyeri punggung, dan digital eye strain dari posisi menunduk berjam-jam.</p>
+      </div>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-5">
+        <div class="spotlight-glow"></div>
+        <span class="mb-2.5 inline-block rounded-full bg-surface-2 px-[9px] py-[3px] text-[0.72rem] text-dim">Fisik</span>
+        <h3 class="mb-1 font-display text-lg">Berat badan</h3>
+        <p class="m-0 text-[0.9rem] text-dim">Kombinasi kurang gerak dan junk food meningkatkan risiko obesitas & diabetes tipe 2.</p>
+      </div>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-5">
+        <div class="spotlight-glow"></div>
+        <span class="mb-2.5 inline-block rounded-full bg-surface-2 px-[9px] py-[3px] text-[0.72rem] text-dim">Mental</span>
+        <h3 class="mb-1 font-display text-lg">Kecemasan & FOMO</h3>
+        <p class="m-0 text-[0.9rem] text-dim">Paparan media sosial berlebih dikaitkan dengan kecemasan dan perbandingan sosial.</p>
+      </div>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-5">
+        <div class="spotlight-glow"></div>
+        <span class="mb-2.5 inline-block rounded-full bg-surface-2 px-[9px] py-[3px] text-[0.72rem] text-dim">Mental</span>
+        <h3 class="mb-1 font-display text-lg">Kualitas tidur</h3>
+        <p class="m-0 text-[0.9rem] text-dim">Cahaya layar sebelum tidur mengganggu ritme sirkadian, bikin susah tidur nyenyak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="explorePages" class="border-b border-line py-[72px] scroll-reveal">
+  <div class="mx-auto max-w-page px-6">
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-7">
+        <div class="spotlight-glow"></div>
+        <div class="mb-2"><img class="ui-icon ui-icon--feature" src="icon/target-hit-aim-svgrepo-com.svg" alt="" aria-hidden="true"></div>
+        <h3 class="mb-2 font-display text-xl">Ingin Tahu Level Kebiasaanmu?</h3>
+        <p class="mb-5 max-w-[65ch] text-dim">Ikuti Cek Kebiasaan 2 Menit (12 Soal Adaptif) untuk mengetahui skor profil digitalmu dari 5 dimensi.</p>
+        <a href="kuis.html" class="inline-block cursor-pointer rounded-full border border-transparent bg-accent px-[22px] py-3 text-[0.9rem] font-semibold text-[#14171c] no-underline hover:brightness-110">Mulai Kuis Adaptif →</a>
+      </div>
+      <div class="tilt-card hover-lift rounded-[14px] border border-line bg-surface p-7">
+        <div class="spotlight-glow"></div>
+        <div class="mb-2"><img class="ui-icon ui-icon--feature" src="icon/tactics-planning-svgrepo-com.svg" alt="" aria-hidden="true"></div>
+        <h3 class="mb-2 font-display text-xl">Tips & Habit Tracker Harian</h3>
+        <p class="mb-5 max-w-[65ch] text-dim">Akses rekomendasi aksi nyata, fakta acak, serta tracker target harian dengan fitur reset otomatis Jam 22:00.</p>
+        <a href="tips.html" class="inline-block cursor-pointer rounded-full border border-line px-[22px] py-3 text-[0.9rem] font-semibold text-ink no-underline hover:border-accent">Buka Tips & Tracker →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="px-6 py-10 text-center text-[0.85rem] text-dim" id="tentang">
+  Dibuat sebagai purwarupa belajar fitur untuk Lomba Web Design INVENTION 2026 · Subtema "Designing a Healthier Society Through the Web"
 </footer>
 
-<!-- Interactive System Elements -->
 <canvas id="confettiCanvas"></canvas>
 <div class="toast-container" id="toastContainer"></div>
-<button class="back-to-top" id="backToTop" title="Kembali ke atas" aria-label="Kembali ke atas">↑</button>
+<button class="back-to-top" id="backToTop" title="Kembali ke atas">↑</button>
+
+<div class="account-modal-overlay" id="accountModalOverlay" hidden>
+  <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+    <button class="account-modal-close" id="accountModalClose" type="button" aria-label="Tutup login">×</button>
+    <h2 id="accountModalTitle">Simpan progresmu</h2>
+    <p class="account-modal-note">Login dummy untuk menyimpan checklist rutinitas di akun perangkat ini. Tidak ada data yang dikirim ke server.</p>
+    <form id="accountForm">
+      <label for="accountName">Nama pengguna</label>
+      <input id="accountName" type="text" maxlength="40" required placeholder="Contoh: Raka">
+      <label for="accountEmail">Email dummy</label>
+      <input id="accountEmail" type="email" required placeholder="raka@email.test">
+      <button type="submit">Masuk & Simpan Progres</button>
+    </form>
+    <button class="account-logout" id="accountLogout" type="button" hidden>Keluar dari akun</button>
+  </section>
+</div>
+
+<div class="info-chatbot" id="infoChatbot">
+  <button class="chatbot-launcher" id="chatbotLauncher" type="button" aria-label="Buka Rebahan Bot" title="Buka Rebahan Bot" aria-expanded="false" aria-controls="chatbotPanel"><span class="chatbot-avatar"><img src="mascot/aset4.png" alt="" aria-hidden="true"></span></button>
+  <section class="chatbot-panel" id="chatbotPanel" aria-label="Chatbot informasi kesehatan digital" hidden>
+    <div class="chatbot-header">
+      <div class="chatbot-brand">
+        <span class="chatbot-avatar chatbot-avatar-large"><img src="mascot/aset4.png" alt="Maskot Rebahan Bot"></span>
+        <div>
+        <strong>Rebahan Bot</strong>
+        <span>Informasi berbasis sumber</span>
+        </div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose" type="button" aria-label="Tutup chatbot">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite">
+      <div class="chatbot-message bot">Halo! Tanyakan tentang screen time, sedentari, cyberbullying, minuman manis, atau tips hidup lebih aktif.</div>
+    </div>
+    <div class="chatbot-quick-actions">
+      <button type="button" data-chat-question="Apa temuan jurnal tentang screen time?">Temuan jurnal</button>
+      <button type="button" data-chat-question="Apa dampak terlalu lama duduk?">Dampak sedentari</button>
+      <button type="button" data-chat-question="Berapa lama penggunaan ponsel di Indonesia?">Data ponsel</button>
+      <button type="button" data-chat-question="Apa sumber data kamu?">Sumber data</button>
+    </div>
+    <form class="chatbot-form" id="chatbotForm">
+      <input id="chatbotInput" type="text" maxlength="180" placeholder="Tulis pertanyaan..." autocomplete="off" aria-label="Pertanyaan untuk chatbot">
+      <button type="submit" aria-label="Kirim pertanyaan">Kirim</button>
+    </form>
+  </section>
+</div>
 
 <script src="js/script.js"></script>
 </body>
