@@ -1062,6 +1062,12 @@ h1, h2, h3, h4, h5 {
   flex-direction: column-reverse;
   align-items: flex-end;
   gap: 0.75rem;
+  pointer-events: none;
+}
+
+.chatbot-launcher,
+.chatbot-panel {
+  pointer-events: auto;
 }
 
 .chatbot-launcher,
@@ -1121,7 +1127,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .chatbot-panel {
-  display: flex !important;
+  display: flex;
   width: min(390px, calc(100vw - 2rem));
   max-height: min(620px, calc(100vh - 7rem));
   flex-direction: column;
@@ -1134,6 +1140,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .chatbot-panel[hidden] {
+  display: none !important;
   opacity: 0;
   transform: translateY(20px) scale(0.95);
   pointer-events: none;
@@ -2394,17 +2401,36 @@ body {
   }
 
   nav.site-nav #accountButton {
+    min-width: 44px;
     max-width: 90px;
     font-size: 0.75rem !important;
     padding-inline: 0.4rem !important;
-    min-height: 36px !important;
+    min-height: 44px !important;
   }
 
   nav.site-nav #modeToggle,
   nav.site-nav .nav-menu-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    min-height: 36px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+@media (pointer: coarse) {
+  nav.site-nav #accountButton,
+  nav.site-nav #modeToggle,
+  nav.site-nav .nav-menu-toggle {
+    min-height: 44px;
+  }
+
+  nav.site-nav #accountButton,
+  nav.site-nav #modeToggle {
+    min-width: 44px;
+  }
+
+  nav.site-nav .nav-menu-toggle {
+    width: 44px;
+    height: 44px;
   }
 }
 
