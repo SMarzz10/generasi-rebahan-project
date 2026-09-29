@@ -1813,3 +1813,161 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCountdownTimer();
 
 });
+
+/* =========================================================
+   PAGE TRANSITION LOGIC
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      // Ignore if no href, or if it's an external link
+      if (!href || href.startsWith('http') || href.startsWith('mailto:')) return;
+      
+      // Ignore if it's just an anchor hash
+      if (href.startsWith('#')) return;
+
+      // Extract the path without hash
+      const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+      const targetPath = href.split('#')[0];
+
+      // If linking to the same page, do not animate (let default scroll handle it)
+      if (targetPath === currentPath) return;
+
+      // Only animate internal html page transitions
+      if (href.indexOf('.html') !== -1) {
+        e.preventDefault(); // Stop immediate navigation
+        document.body.classList.add('page-fade-out');
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 280); // Wait for animation to almost finish
+      }
+    });
+  });
+});
+
+/* =========================================================
+   PARALLAX STARS BACKGROUND (Continuous Drift Only)
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', function() {
+  const body = document.body;
+  if (!body.classList.contains('bg-bg')) return;
+  
+  function animateBackground(time) {
+    // Continuous idle drift based on time
+    const drift0 = time * 0.005;
+    const drift1 = time * 0.003;
+    const drift2 = time * 0.007;
+    const drift3 = time * 0.004;
+
+    // Use only drift (X and Y directions for a natural float)
+    const x0 = drift0 * 0.5;  const y0 = drift0;
+    const x1 = drift1 * -0.5; const y1 = drift1;
+    const x2 = drift2 * 0.3;  const y2 = drift2;
+    const x3 = drift3 * -0.4; const y3 = drift3;
+    
+    body.style.backgroundPosition = `
+      ${x0}px ${y0}px, ${x1}px ${y1}px, ${x2}px ${y2}px, ${x3}px ${y3}px,
+      ${x0}px ${y0}px, ${x1}px ${y1}px, ${x2}px ${y2}px, ${x3}px ${y3}px
+    `;
+    
+    requestAnimationFrame(animateBackground);
+  }
+  
+  requestAnimationFrame(animateBackground);
+});
+
+/* =========================================================
+   CONSTELLATION EFFECT (Rasi Bintang)
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', function() {
+  const body = document.body;
+  if (!body.classList.contains('bg-bg')) return;
+  
+  const canvas = document.createElement('canvas');
+  canvas.id = 'constellationCanvas';
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.style.zIndex = '0'; // Behind content, above background color
+  canvas.style.pointerEvents = 'none'; // Don't block clicks
+  
+  // Insert as the first child of body
+  body.insertBefore(canvas, body.firstChild);
+  
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  
+  const stars = [];
+  // Number of constellation stars (sparse, so it looks like constellations)
+  const numStars = Math.floor((width * height) / 25000); 
+  
+  for (let i = 0; i < numStars; i++) {
+    stars.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      radius: Math.random() * 1.5 + 0.5
+    });
+  }
+  
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    
+    // Draw and update stars
+    ctx.fillStyle = 'rgba(224, 233, 255, 0.8)';
+    for (let i = 0; i < numStars; i++) {
+      const star = stars[i];
+      star.x += star.vx;
+      star.y += star.vy;
+      
+      // Wrap around edges
+      if (star.x < 0) star.x = width;
+      if (star.x > width) star.x = 0;
+      if (star.y < 0) star.y = height;
+      if (star.y > height) star.y = 0;
+      
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    // Draw constellation lines
+    ctx.lineWidth = 0.5;
+    const maxDist = 120;
+    
+    for (let i = 0; i < numStars; i++) {
+      for (let j = i + 1; j < numStars; j++) {
+        const dx = stars[i].x - stars[j].x;
+        const dy = stars[i].y - stars[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < maxDist) {
+          const opacity = 1 - (dist / maxDist);
+          ctx.strokeStyle = `rgba(111, 228, 214, ${opacity * 0.5})`;
+          ctx.beginPath();
+          ctx.moveTo(stars[i].x, stars[i].y);
+          ctx.lineTo(stars[j].x, stars[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    
+    requestAnimationFrame(draw);
+  }
+  
+  requestAnimationFrame(draw);
+});
