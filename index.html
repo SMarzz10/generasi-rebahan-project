@@ -7,7 +7,23 @@
 <meta name="description" content="Kampanye kesadaran gaya hidup digital sehat: screen time, sedentary lifestyle, junk food, dan kurang tidur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/output.css">
+<style type="text/tailwindcss">
+  @theme {
+    --color-bg: var(--bg);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-ink: var(--text);
+    --color-dim: var(--text-dim);
+    --color-accent: var(--accent);
+    --color-accent-2: var(--accent-2);
+    --color-danger: var(--danger);
+    --color-line: var(--border);
+    --font-body: Inter, sans-serif;
+    --font-display: "Space Grotesk", sans-serif;
+    --container-page: 1180px;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link rel="stylesheet" href="css/style.css">
 <script>
   document.documentElement.dataset.mode = localStorage.getItem('rebahan_mode') || 'rebahan';
